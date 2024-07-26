@@ -1,0 +1,95 @@
+.carousel {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    min-height: 60vw;
+   
+    z-index: 0;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.cr-img1 img {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    object-fit: cover;
+    /* Ensure the image covers the entire .cr-img1 container */
+    display: block;
+    animation: zoomAnimation 18s infinite;
+    transition: transform 0.5s ease;
+}
+
+@keyframes zoomAnimation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+        /* Zoom in at 50% of the animation */
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.area {
+    position: absolute;
+    width: 80vw;
+    height: 40vh;
+    background-color: transparent;
+    z-index: 2;
+    margin-top: 25vw;
+    left: 50%;
+    color: white;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.area p {
+    text-align: center;
+    margin-top: 0.6rem;
+    /* line-height: 10px; */
+    font-size: larger;
+}
+
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.caousel-h2{
+    font-size: 50px;
+}
+
+@media screen and (max-width: 1075px){
+    
+    .caousel-h2{
+        font-size: 5vw;
+    }
+
+    .area p {
+        font-size: 2vw;
+    }
+
+    .carousel{
+        height: 50vh;
+    }
+    
+    .cr-img1 img{
+        min-height: 50vh;
+        height: auto;
+    }
+}

@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@500&display=swap');
+
+/* for navbar container style */
+.navbar-container {
+    position: sticky;
+    top: 0;
+    margin-top: 0;
+    padding-top: 0;
+    height: 10vh;
+    /* background-image: url("/public/im3.jpg"); */
+    /* background-position: center; */
+    /* box-shadow: inset -200px 2px 98px -40px rgba(0,0,0,0.5); */
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .5);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 10;
+    /* overflow: hidden; */
+    /* background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); */
+
+}
+
+.animation-nav{
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    /* background-color: #000; */
+    top: 0;
+    overflow: hidden;
+}
+
+/* for navbar main content eg. logo, signin, manubar, etc.. */
+.navbar-body {
+    display: grid;
+    grid-template-columns: 2rem 1fr 1fr 2rem;
+    align-items: center;
+    /* background-color: #000; */
+    position: absolute;
+    top: 0;
+    height: 10vh;
+    width: 100%;
+}
+
+/* for Brand Heading */
+.navbar-brandHeading {
+    grid-column: 2/3;
+    display: flex;
+}
+
+.brand-logo {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.brand-title {
+    display: flex;
+    align-items: center;
+}
+
+.brand-title h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: x-large;
+    margin: 0;
+    color: white;
+}
+
+/* For navbar menubar */
+.navbar-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-menu ul {
+    display: inline-flex;
+    list-style-type: none;
+    align-items: center;
+}
+
+.navbar-menu li{
+    padding-left: 20px;
+    font-size: large;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    color : white   
+}
+
+.navbar-menu li:hover {
+    color: #95e600;
+    cursor: pointer;
+    text-decoration: none;
+    transform: scale(1.15);
+}
+
+.navbar-menu li>a{
+    font-size: 1.25rem;
+    font-weight: lighter;
+    text-decoration: none;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    color : white   
+}
+
+.navbar-menu li>a:hover {
+    color: #95e600;
+    cursor: pointer;
+    text-decoration: none;
+    transform: scale(2);
+}
+/* For Navbar button just like sign in button */
+.navbar-button {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-btn {
+    background-image: linear-gradient(to right, #d6d6d6 0%, #fff 51%, #d6d6d6 100%);
+    padding: 0.15vw;
+    text-align: center;
+    font-size: 2vw;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #003323;
+    box-shadow: rgba(17, 17, 26, 0.8) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    border-radius: 30px;
+    display: block;
+    border: none;
+}
+
+.navbar-btn:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #003323;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-menu-icon {
+    display: none;
+}
+
+.navbar-menu.active {
+    display: none;
+}
+
+/* Small screens (phones) */
+@media (max-width: 575.98px) {
+    .navbar-body {
+        display: grid;
+        grid-template-columns: 1rem 3fr 1fr 1rem;
+        position: absolute;
+        top: 0;
+    }
+
+    .brand-title h1 {
+        font-size: medium;
+    }
+
+    .brand-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .brand-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar-menu-icon {
+        display: inline;
+        margin: auto 0 auto auto;
+        font-size: x-large;
+        color: #000;
+    }
+
+    /* for menu */
+    .navbar-menu {
+        /* display: none; */
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 2vh 0 2vh 0;
+        top: 10vh;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        border-radius: 0 0 5vw 5vw;
+        z-index: 10;
+    }
+
+    .navbar-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }    
+
+    .navbar-btn {
+        margin: 0;
+        font-size: xx-large;
+        padding: 1vw;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .navbar-body {
+        display: grid;
+        grid-template-columns: 1rem 3fr 1fr 1rem;
+        position: absolute;
+        top: 0;
+    }
+
+    .brand-title h1 {
+        font-size: medium;
+    }
+
+    .brand-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .brand-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar-menu-icon {
+        display: inline;
+        margin: auto 0 auto auto;
+        font-size: x-large;
+        color: #000;
+    }
+
+    /* for menu */
+    .navbar-menu {
+        /* display: none; */
+        position: absolute;
+        background-color: #000000;
+        padding: 2vh 0 2vh 0;
+        top: 10vh;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        
+    }
+
+    .navbar-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+        
+    }
+
+    .navbar-btn {
+        margin: 0;
+        font-size: xx-large;
+        padding: 1vw;
+    }
+}
+
+/* Large screens (landscape tablets and small desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .navbar-body {
+        display: grid;
+        grid-template-columns: 1rem 3fr 1fr 1rem;
+        position: absolute;
+        top: 0;
+    }
+
+    .brand-title h1{
+        font-size: medium;
+    }
+
+    .brand-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .brand-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar-menu-icon{
+        display: inline;
+        margin: auto 0 auto auto;
+        font-size: x-large;
+        color: #000;
+    }
+
+    /* for menu */
+    .navbar-menu{
+        /* display: none; */
+        position: absolute;
+        background-color: #000000;
+        padding: 2vh 0 2vh 0;
+        top: 10vh;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .navbar-menu ul{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .navbar-menu ul>li{
+        line-height: 4vh;
+    }
+
+    .navbar-btn{
+        margin: 0;
+        font-size: xx-large;
+        padding: 1vw;
+    }
+}
+
+.l1-img-cont{
+    position: absolute;
+    width: 60vw;
+    /* background-color: #000; */
+    z-index: -1;
+    transform: rotate(90deg);
+    margin-top: -130vh;
+    margin-left: -30vw;
+    animation: paru 20s infinite linear;
+    transform-origin: bottom center;
+    
+}
+
+.l1-img{
+    /* position: absolute; */
+    width: 60vw;
+    z-index: 5;
+    opacity: 20%;
+}
+
+@keyframes paru {
+
+    0%{
+        /* margin-top: -60vh; */
+        transform: rotate(120deg);
+    }
+    50%{
+        /* margin-top: -60vh; */
+        transform: rotate(80deg);
+    }
+    100%{
+        /* margin-top: -60vh; */
+        transform: rotate(120deg);
+    }
+    
+}
+
+.l1-img-cont2{
+    position: absolute;
+    width: 20vw;
+    /* background-color: #000; */
+    z-index: -1;
+    transform: rotate(-90deg);
+    margin-top: -25vh;
+    margin-left: 90vw;
+    animation: paru2 10s infinite linear;
+    transform-origin: bottom center;
+    /* background-color: #000; */
+    
+}
+
+.l1-img2{
+    /* position: absolute; */
+    width: 40vw;
+    z-index: 5;
+    opacity: 20%;
+}
+
+@keyframes paru2 {
+
+    0%{
+        margin-left: 90vw;
+        transform: rotate(-30deg);
+        /* margin-top: -25vh; */
+    }
+    50%{
+        margin-left: 80vw;
+        transform: rotate(-85deg);
+        /* margin-top: -40vh; */
+    }
+    100%{
+        margin-left: 90vw;
+        transform: rotate(-30deg);
+        /* margin-top: -25vh; */
+    }
+    
+}

@@ -1,0 +1,43 @@
+
+
+/* Apply padding, margin, and background color to the section */
+.contact-area {
+    padding: 10px 0; /* Adjust padding as needed */
+}
+
+/* Adjust margin and padding for the content within the section */
+.contact-area .container {
+    margin-top: 0px; /* Adjust the top margin as needed */
+    margin-bottom: 0px; /* Adjust the bottom margin as needed */
+    padding: 20px; /* Adjust padding as needed */
+}
+
+/* Additional styles for the section heading */
+.contact-area .section-heading {
+    margin-bottom: 0px; /* Adjust the bottom margin as needed */
+}
+
+/* Additional styles for the contact form area */
+.contact-area .contact-form-area {
+    margin-top: 0px; /* Adjust the top margin as needed */
+    margin-bottom: 0px; /* Adjust the bottom margin as needed */
+}
+
+/* Additional styles for the form elements */
+.contact-area .form-group {
+    margin-bottom: 10px; /* Adjust the margin between form elements */
+}
+
+.contact-form-area .btn.alazea-btn {
+    background-color: #007bff; /* Set the background color */
+    color: #ffffff; /* Set the text color */
+    padding: 10px 10px; /* Adjust padding as needed */
+    border: none; /* Remove border */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Hover effect for the button */
+.contact-form-area .btn.alazea-btn:hover {
+    background-color: #2df570; /* Change background color on hover */
+}

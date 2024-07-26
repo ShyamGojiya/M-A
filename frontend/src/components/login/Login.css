@@ -1,0 +1,195 @@
+.form-body {
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ls-cont {
+    width: 50vw;
+    /* height: fit-content; */
+    height: 50vh;
+    /* background-color: chartreuse; */
+}
+
+.ls-buttons {
+    width: 100%;
+    height: 5vw;
+    /* background-color: aqua; */
+    display: flex;
+}
+
+#signupBtn {
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 2vw;
+    font-weight: lighter;
+}
+
+#loginBtn {
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 2vw;
+    font-weight: lighter;
+}
+
+.signup-form {
+    width: 100%;
+    min-height: 10vw;
+    height: fit-content;
+    background-color: grey;
+    display: none;
+}
+
+.login-form {
+    width: 100%;
+    min-height: 10vw;
+    height: fit-content;
+    background-color: blue;
+    display: none;
+}
+
+.form-row {
+    width: 100%;
+    height: 5vw;
+    /* background-color: grey; */
+    display: flex;
+    align-items: center;
+    font-size: 1.5vw;
+    font-weight: bolder;
+}
+
+.form-row-btn {
+    width: 100%;
+    height: 4vw;
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5vw;
+    font-weight: bolder;
+}
+
+.donebutton {
+    width: 45%;
+    height: 80%;
+    background-color: green;
+    border: none;
+    color: white;
+    /* align-self: flex-end; */
+    font-size: 1.15vw;
+}
+
+.cancelbutton {
+    width: 45%;
+    height: 80%;
+    background-color: red;
+    border: none;
+    color: white;
+    /* align-self: flex-end; */
+    font-size: 1.15vw;
+}
+
+.button-area {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-between;
+    margin-right: 1vw;
+}
+
+.signup-form.active,
+.login-form.active {
+    display: block;
+    background-color: rgb(188, 188, 188);
+}
+
+#signupBtn.active,
+#loginBtn.active {
+    background-color: rgb(0, 120, 80);
+    color: aliceblue;
+}
+
+.inputs {
+    height: 2vw;
+    font-size: 1.5vw;
+    margin-left: 2vw;
+}
+
+.label {
+    margin-left: 1vw;
+    width: 26%;
+}
+
+
+
+@media screen and (max-width: 1075px) {
+    .ls-cont {
+        width: 80vw;
+        height: 80vh;
+    }
+
+    .ls-buttons {
+        width: 100%;
+        height: 10vw;
+    }
+
+    #signupBtn {
+        width: 50%;
+        height: 100%;
+        font-size: 4vw;
+    }
+
+    #loginBtn {
+        font-size: 4vw;
+    }
+
+    .signup-form {
+        min-height: 20vw;
+    }
+
+    .login-form {
+        min-height: 20vw;
+    }
+
+    .form-row {
+        height: 10vw;
+        font-size: 3vw;
+    }
+
+    .form-row-btn {
+        height: 8vw;
+        font-size: 3vw;
+    }
+
+    .donebutton {
+        font-size: 2.3vw;
+    }
+
+    .cancelbutton {
+        font-size: 2.3vw;
+    }
+
+    .button-area {
+        margin-right: 2vw;
+    }
+
+    .inputs {
+        height: 4vw;
+        font-size: 3vw;
+        margin-left: 4vw;
+    }
+
+    .label {
+        margin-left: 2vw;
+        width: 35%;
+    }
+}

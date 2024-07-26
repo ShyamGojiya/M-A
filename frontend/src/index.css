@@ -1,0 +1,61 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  min-height: 100vh;
+  background-color: #ededed;
+}
+
+.w-48{
+  width: 48%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.product-size-active{
+  border-color: #6300b2;
+  color: #6300b2;
+}
+
+@media (max-width: 767px) {
+  .imgRowMobile{
+    width: 4rem;
+    height: 5rem;
+  }
+
+  .product-size{
+    line-height: 0%;
+  }
+}
+
+/* Scrollbar CSS for model */
+.model::-webkit-scrollbar {
+  width: 6px;
+	background-color: #F5F5F5;
+}
+ 
+.model::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+ 
+.model::-webkit-scrollbar-thumb {
+  background-color: #f472b6;
+  border-radius: 3px;
+}
+/* Srollbar css over */
+
+/* Style for radio button */

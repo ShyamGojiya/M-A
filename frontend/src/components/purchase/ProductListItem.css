@@ -1,0 +1,186 @@
+.buy-card {
+    width: 20vw;
+    min-height: 20vw;
+    height: fit-content;
+    background-color: white;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 0.5vw;
+    padding: 0.5vw 0;
+    transition: smooth 2s ease-out;
+  }
+
+  /* Change after completion */
+  .buy-card-img:hover {
+    transform: scale(1.3);
+    transition: all 3s;
+  }
+  /* .buy-card:hover {
+    .buy-card-img {
+      transform: scale(1.3);
+      transition: all 3s;
+    }
+  } */
+
+  .buy-card-img-cont {
+    width: 19vw;
+    height: 19vw;
+    /* background-color: aqua; */
+    border-radius: 1vw;
+    overflow: hidden;
+  }
+
+  .buy-card-img {
+    width: 19vw;
+    height: auto;
+    transition: smooth 2s;
+  }
+
+  .buy-card-info {
+    display: flex;
+    flex-direction: row;
+    width: 19vw;
+    height: 3vw;
+  }
+
+  .buy-card-name {
+    width: 16vw;
+    height: 3vw;
+    /* background-color: red; */
+    font-weight: bold;
+    color: black;
+    font-size: 1.2vw;
+    padding-left: 0.5vw;
+    display: flex;
+    align-items: center;
+  }
+
+  .buy-card-price {
+    width: 3vw;
+    height: 3vw;
+    /* background-color: aquamarine; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buy-card-price-offer {
+    width: 3vw;
+    height: 1.5vw;
+    font-size: 1.3vw;
+    font-weight: bold;
+    margin: 0;
+    line-height: auto;
+    text-align: center;
+  }
+
+  .buy-card-price-real {
+    width: 3vw;
+    height: 1vw;
+    font-size: 1.1vw;
+    /* font-weight: medium; */
+    margin: 0;
+    line-height: auto;
+    text-align: center;
+    text-decoration: line-through;
+  }
+
+  .buy-card-button {
+    width: 19vw;
+    height: 4vw;
+    background-color: #004a34;
+    border-radius: 0.5vw;
+    color: white;
+    font-size: 1.3vw;
+    font-weight: bolder;
+    border: none;
+  }
+
+  .buy-card-button:hover {
+    background-color: #003323;
+    border: none;
+  }
+
+  .selling-cont {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    /* background-color: aquamarine; */
+    width: 90vw;
+    margin: auto;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 1075px) {
+    .selling-cont {
+      width: 70vw;
+    }
+
+    @media screen and (max-width: 700px) {
+      .buy-card {
+        width: 40vw;
+        min-height: 40vw;
+        height: fit-content;
+        border-radius: 2vw;
+        gap: 1vw;
+        padding: 1vw 0;
+        transition: smooth 2s ease-out;
+      }
+
+      .buy-card-img-cont {
+        width: 38vw;
+        height: 38vw;
+        border-radius: 2vw;
+      }
+
+      .buy-card-img {
+        width: 38vw;
+      }
+
+      .buy-card-info {
+        width: 38vw;
+        height: 6vw;
+      }
+
+      .buy-card-name {
+        width: 32vw;
+        height: 6vw;
+        font-size: 2.4vw;
+        padding-left: 1vw;
+      }
+
+      .buy-card-price {
+        width: 6vw;
+        height: 6vw;
+      }
+
+      .buy-card-price-offer {
+        width: 6vw;
+        height: 3vw;
+        font-size: 2.6vw;
+      }
+
+      .buy-card-price-real {
+        width: 6vw;
+        height: 2vw;
+        font-size: 2.2vw;
+      }
+
+      .buy-card-button {
+        width: 38vw;
+        height: 8vw;
+        border-radius: 1vw;
+        font-size: 2.6vw;
+      }
+
+      .selling-cont {        
+        gap: 6vw;
+        justify-content: center;
+        width: 95vw;
+      }
+    }
+  }

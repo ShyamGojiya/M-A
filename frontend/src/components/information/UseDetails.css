@@ -1,0 +1,260 @@
+.use_cont{
+    width: 100vw;
+    height: fit-content;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    padding: 3vw 0;
+}    
+
+.use_img{
+    width: 50vw;
+    height: fit-content;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw 0;
+}
+
+.use_info{
+    width: 50vw;
+    height: auto;
+    min-height: 70vh;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.use_img_r1{
+    width: 20vw;
+    height: 20vw;
+    background-color: aquamarine;
+    border-radius: 10vw;
+    overflow: hidden;
+    position: absolute;
+    margin: auto;
+}
+
+.use_img_1{
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+    z-index: 1;
+}
+
+.use_img_r1_overlay{
+    width: 20vw;
+    height: 20vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 2;
+}
+
+.use_img_r1_text{
+    width: 16vw;
+    height: 20vw;
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.use_img_r2_text{
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2vw;
+    font-weight: bold;
+
+}
+
+.use_img_r2{
+    width: 20vw;
+    height: 20vw;
+    background-color: aquamarine;
+    border-radius: 10vw;
+    overflow: hidden;
+    position: absolute;
+    margin: auto;
+    margin-left: 15VW;
+    z-index: 2;
+    box-shadow: 0 0 1vw 1vw rgba(255, 255, 255, 0.5);
+}
+
+.use_img_2{
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+    z-index: 1;
+}
+
+.use_img_r1_overlay1{
+    width: 20vw;
+    height: 20vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 2;
+
+}
+
+.use_img_r2_overlay2{
+    width: 20vw;
+    height: 20vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 2;
+}
+
+
+.use_img_2{
+    
+    display: flex;
+    flex-direction: row;
+    width: 35vw;
+    height: 20vw;
+    position: relative;
+}
+
+.use_info_area {
+    width: 85%;
+    height: fit-content;
+    background-color: blanchedalmond;
+    border: solid 0.2vw;
+    border-radius: 1vw;
+    border-color: grey;
+    margin-top: 4vw;
+    padding: 2vw;
+}
+
+.effect4
+{
+  position: relative;
+}
+.effect4:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  right: 10px;
+  left: auto;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+.use_info_text1{
+    font-size: 2vw;
+    font-weight: bold;
+    
+}
+
+.use_info_text2{
+    font-size: 1.2vw;
+    font-weight: 500;
+    margin-top: 1vw;
+}
+
+@media  screen and (max-width: 1075px) {
+    .use_cont{
+        flex-direction: column;
+    }
+
+    .use_img{
+        width: 100vw;
+    }
+
+    .use_info{
+        width: 100vw;
+    }
+
+    .use_img_r1{
+        width: 40vw;
+        height: 40vw;
+        border-radius: 20vw;
+    }
+
+    .use_img_1{
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .use_img_r1_overlay{
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .use_img_r1_text{
+        width: 32vw;
+        height: 40vw;
+        font-size: 5vw;
+    }
+
+    .use_img_r2_text{
+        width: 40vw;
+        height: 40vw;
+        font-size: 5vw;
+    }
+
+    .use_img_r2{
+        width: 40vw;
+        height: 40vw;
+        border-radius: 20vw;
+        margin-left: 30vw;
+        box-shadow: 0 0 2vw 2vw rgba(255, 255, 255, 0.5);
+    }
+
+    .use_img_2{
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .use_img_r1_overlay1{
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .use_img_r2_overlay2{
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .use_img_2{
+        width:70vw;
+        height: 40vw;
+    }
+
+    .use_info_area{
+        border: solid 0.4vw;
+        margin-top: 8vw;
+        padding: 4vw;
+    }
+
+    .use_info_text1{
+        font-size: 4vw;
+    }
+
+    .use_info_text2{
+        font-size: 2.4vw;
+        margin-top: 2vw;
+    }
+}
