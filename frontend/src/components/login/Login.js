@@ -3,7 +3,7 @@ import "./Login.css";
 
 const Login = () => {
   const [formType, setFormType] = useState("login");
-  const [firstName, setFirstName] = useState("");
+  const [Name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -33,7 +33,7 @@ const Login = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        firstName,
+        Name,
         lastName,
         address,
         mobileNumber,
@@ -70,92 +70,75 @@ const Login = () => {
             Log in
           </button>
         </div>
+
         {formType === "signup" && (
           <div className="signup-form">
-          <form>
-            {/* ... (other form fields) */}
-            <div className="form-row">
-              <label className="label">First Name:</label>
-              <input
-                type="text"
-                className="inputs"
-                required=""
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Last Name:</label>
-              <input
-                type="text"
-                className="inputs"
-                required=""
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Address:</label>
-              <input
-                type="text"
-                className="inputs"
-                required=""
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Mobile Number:</label>
-              <input
-                type="text"
-                className="inputs"
-                required=""
-                onChange={(e) => setMobileNumber(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Email:</label>
-              <input
-                type="email"
-                className="inputs"
-                required=""
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Password:</label>
-              <input
-                type="password"
-                className="inputs"
-                required=""
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Confirm Password:</label>
-              <input
-                type="password"
-                className="inputs"
-                required=""
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            {/* ... (other form fields) */}
-            <div className="form-row-btn">
-              <div className="button-area">
-                <button className="donebutton" onClick={handleSubmit}>
-                  Sign Up
-                </button>
-                <button className="cancelbutton">Cancel</button>
+            <form>
+              <div className="form-row">
+                <label className="label">Name:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="contact-name"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
               </div>
-            </div>
-          </form>
-        </div>
+              <div className="form-row">
+                <label className="label">Mobile :</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  required=""
+                  onChange={(e) => setMobileNumber(e.target.value)}
+                />
+              </div>
+              <div className="form-row">
+                <label className="label">Email:</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  required=""
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-row">
+                <label className="label">Password:</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  required=""
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-row">
+                <label className="label">Confirm Password:</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  required=""
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-row-btn">
+                <div className="button-area">
+                  <button className="btn btn-primary" onClick={handleSubmit}>
+                    Sign Up
+                  </button>
+                  <button className="btn btn-danger">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
         )}
+
         {formType === "login" && (
           <div className="login-form">
             <div className="form-row">
               <label className="label">User name :</label>
               <input
                 type="text"
-                className="inputs"
+                className="form-control"
                 required=""
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -164,17 +147,17 @@ const Login = () => {
               <label className="label">Password :</label>
               <input
                 type="password"
-                className="inputs"
+                className="form-control"
                 required=""
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="form-row-btn">
               <div className="button-area">
-                <button className="donebutton" onClick={handleSubmit}>
-                  Done
+                <button className="btn btn-primary" onClick={handleSubmit}>
+                  Submit
                 </button>
-                <button className="cancelbutton">Cancel</button>
+                <button className="btn btn-danger">Cancel</button>
               </div>
             </div>
           </div>

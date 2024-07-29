@@ -1,15 +1,11 @@
 import React from "react";
 import "./Practices.css";
-import { FaImages } from "react-icons/fa";
-import { IoVideocam } from "react-icons/io5";
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
 function Practices(props) {
-  const navigate = useNavigate();
   return (
     <div className="container-fluid">
-      {props.data.details.map((value, index) => (
+      {props?.data?.map((value, index) => (
         <div key={index} id={`content${index}`} className="content">
           <h2>
             <b className="text-lg font-extrabold">{value.title}</b>
@@ -68,82 +64,10 @@ function Practices(props) {
                           </li>
                         ))}
                       </ul>
-                      <div className="flex mt-3 gap-2">
-                        <button
-                          onClick={() =>
-                            navigate(
-                              "/" +
-                                props.data.plantName +
-                                "/" +
-                                value.title +
-                                "/છબીઓ"
-                            )
-                          }
-                          className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                        >
-                          <FaImages className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                          છબીઓ
-                          <TbPlayerTrackNextFilled />
-                        </button>
-
-                        <button
-                          onClick={() =>
-                            navigate(
-                              "/" +
-                                props.data.plantName +
-                                "/" +
-                                value.title +
-                                "/વિડિઓ"
-                            )
-                          }
-                          className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                        >
-                          <IoVideocam className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                          વિડિઓ
-                          <TbPlayerTrackNextFilled />
-                        </button>
-                      </div>
                     </>
                   ) : (
                     <>
                       <p className="text text-justify">{val.desc}</p>
-                      <div className="flex mt-3 gap-2">
-                        {/* Images Button */}
-                        <button
-                          onClick={() =>
-                            navigate(
-                              "/" +
-                                props.data.plantName +
-                                "/" +
-                                value.title +
-                                "/છબીઓ"
-                            )
-                          }
-                          className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                        >
-                          <FaImages className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                          છબીઓ
-                          <TbPlayerTrackNextFilled />
-                        </button>
-
-                          {/* Video Butto */}
-                        <button
-                          onClick={() =>
-                            navigate(
-                              "/" +
-                                props.data.plantName +
-                                "/" +
-                                value.title +
-                                "/વિડિઓ"
-                            )
-                          }
-                          className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                        >
-                          <IoVideocam className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                          વિડિઓ
-                          <TbPlayerTrackNextFilled />
-                        </button>
-                      </div>
                     </>
                   )}
                 </div>
@@ -152,33 +76,6 @@ function Practices(props) {
           ) : (
             <>
               <p className="text text-justify">{value.desc}</p>
-              <div className="flex mt-3 gap-2">
-                <button
-                  onClick={() =>
-                    navigate(
-                      "/" + props.data.plantName + "/" + value.title + "/છબીઓ"
-                    )
-                  }
-                  className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                >
-                  <FaImages className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                  છબીઓ
-                  <TbPlayerTrackNextFilled />
-                </button>
-
-                <button
-                  onClick={() =>
-                    navigate(
-                      "/" + props.data.plantName + "/" + value.title + "/વિડિઓ"
-                    )
-                  }
-                  className="bg-br flex gap-2.5 items-center justify-center rounded-full sm:px-1.5 sm:py-1 max-sm:px-1 max-sm:py-0.5 max-sm:text-sm font-semibold text-white hover:bg-hbr "
-                >
-                  <IoVideocam className="text-4xl max-sm:text-3xl p-1 rounded-full border border-white" />
-                  વિડિઓ
-                  <TbPlayerTrackNextFilled />
-                </button>
-              </div>
             </>
           )}
         </div>

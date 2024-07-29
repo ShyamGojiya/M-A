@@ -11,6 +11,16 @@ export const allPakPadhati = createAsyncThunk(
     }
   }
 );
+export const singlePakPadhati = createAsyncThunk(
+  "pakPadhati/singlePakPadhati",
+  async (id, thunkAPI) => {
+    try {
+      return await pakPadhatiService.singlePakPadhati(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const initialState = {
   pakPadhati: "",
@@ -32,8 +42,24 @@ export const pakPadhatiSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
+        state.pakPadhati = action.payload;
       })
       .addCase(allPakPadhati.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(singlePakPadhati.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(singlePakPadhati.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.singlePakPadhati = action.payload;
+      })
+      .addCase(singlePakPadhati.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

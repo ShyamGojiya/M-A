@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import {FaUserCircle} from 'react-icons/fa';
-// import { Button } from "react-bootstrap";
-// import Signin from "./Signin.js";
-// import Cart from "./Cart";
+import { FaUserCircle } from "react-icons/fa";
 import l1 from "../../Images/l1.png";
 
 export default function Navbar() {
@@ -21,11 +18,6 @@ export default function Navbar() {
     }
   }
 
-  // const handleHomeClick = () => {
-  //   // Replace '/' with the actual URL you want to navigate to
-  //   window.location.href = '/';
-  // };
-
   // Run the function when the page loads
   window.addEventListener("load", checkAndSetShowMenu);
 
@@ -35,14 +27,13 @@ export default function Navbar() {
   return (
     <>
       <div className="navbar-container bg-[#009372] py-2">
-
         <div className="animation-nav">
-        <div className="l1-img-cont">
-          <img src={l1} alt="" className="l1-img"/>
-        </div>
-        <div className="l1-img-cont2">
-          <img src={l1} alt="" className="l1-img2"/>
-        </div>
+          <div className="l1-img-cont">
+            <img src={l1} alt="" className="l1-img" />
+          </div>
+          <div className="l1-img-cont2">
+            <img src={l1} alt="" className="l1-img2" />
+          </div>
         </div>
 
         <div className="navbar-body">
@@ -84,9 +75,11 @@ export default function Navbar() {
             </ul>
 
             <div className="navbar-button">
-              <button className="navbar-btn">
-                <FaUserCircle />
-              </button>
+              <Link to={"/login"}>
+                <button className="navbar-btn">
+                  <FaUserCircle />
+                </button>
+              </Link>
             </div>
           </div>
 

@@ -1,10 +1,21 @@
 import axios from "axios";
+import { REACT_APP_BACKEND_URL } from "../../config";
 
 const allPakPadhati = async () => {
-  const response = await axios.get("http://localhost:2034/api/v1/pakPadhati");
+  // console.log(REACT_APP_BACKEND_URL);
+  const response = await axios.get(REACT_APP_BACKEND_URL + "/pakPadhati");
   if (response.data) {
     return response.data;
   }
 };
 
-export const pakPadhatiService = { allPakPadhati };
+const singlePakPadhati = async (id) => {
+  const response = await axios.get(
+    `http://localhost:2034/api/v1/pakPadhati/${id}`
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const pakPadhatiService = { allPakPadhati, singlePakPadhati };
