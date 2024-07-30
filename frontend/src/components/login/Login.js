@@ -15,7 +15,7 @@ const Login = () => {
     setFormType(type);
   };
 
-  const handleSubmit = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -53,6 +53,10 @@ const Login = () => {
       });
   };
 
+  const handleLogin = () => {
+    window.location.href = "./login";
+  };
+
   return (
     <div className="form-body">
       <div className="ls-cont">
@@ -73,32 +77,32 @@ const Login = () => {
 
         {formType === "signup" && (
           <div className="signup-form">
-            <form>
+            <form onSubmit={handleSignup}>
               <div className="form-row">
                 <label className="label">Name:</label>
                 <input
+                  required
                   type="text"
                   className="form-control"
                   id="contact-name"
                   onChange={(e) => setName(e.target.value)}
-                  required
                 />
               </div>
               <div className="form-row">
                 <label className="label">Mobile :</label>
                 <input
-                  type="text"
+                  required
+                  type="number"
                   className="form-control"
-                  required=""
                   onChange={(e) => setMobileNumber(e.target.value)}
                 />
               </div>
               <div className="form-row">
                 <label className="label">Email:</label>
                 <input
+                  required
                   type="email"
                   className="form-control"
-                  required=""
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -107,7 +111,7 @@ const Login = () => {
                 <input
                   type="password"
                   className="form-control"
-                  required=""
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
@@ -116,16 +120,13 @@ const Login = () => {
                 <input
                   type="password"
                   className="form-control"
-                  required=""
+                  required
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <div className="form-row-btn">
                 <div className="button-area">
-                  <button className="btn btn-primary" onClick={handleSubmit}>
-                    Sign Up
-                  </button>
-                  <button className="btn btn-danger">Cancel</button>
+                  <button className="btn btn-primary">Submit</button>
                 </div>
               </div>
             </form>
@@ -133,34 +134,34 @@ const Login = () => {
         )}
 
         {formType === "login" && (
-          <div className="login-form">
-            <div className="form-row">
-              <label className="label">User name :</label>
-              <input
-                type="text"
-                className="form-control"
-                required=""
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-row">
-              <label className="label">Password :</label>
-              <input
-                type="password"
-                className="form-control"
-                required=""
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="form-row-btn">
-              <div className="button-area">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                  Submit
-                </button>
-                <button className="btn btn-danger">Cancel</button>
+          <form onSubmit={handleLogin}>
+            <div className="login-form">
+              <div className="form-row">
+                <label className="label">User name :</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-row">
+                <label className="label">Password :</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-row-btn">
+                <div className="button-area">
+                  <button className="btn btn-primary">Submit</button>
+                  {/* <button className="btn btn-danger">Cancel</button> */}
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         )}
       </div>
     </div>
