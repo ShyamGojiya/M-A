@@ -1,60 +1,56 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./Login.css";
+import { registerUser } from "../../features/User/userSlice";
+import ProfileImage from "../../Images/human_icon.png";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [formType, setFormType] = useState("login");
-  const [Name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [avatar, setAvatar] = useState(ProfileImage);
+  const [avatarPreview, setAvatarPreview] = useState(ProfileImage);
+
+  const [user, setUser] = useState({
+    name: "",
+    mobile: "",
+    email: "",
+    password: "",
+  });
+
+  const { name, mobile, email, password } = user;
+
+  //login - signup change btn
   const toggleForm = (type) => {
     setFormType(type);
+  };
+
+  const handleChange = (e) => {
+    //profile pick remain
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    // console.log(email, password);
-    fetch("http://localhost:5000/login-user", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        Name,
-        lastName,
-        address,
-        mobileNumber,
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "Ok") {
-          alert("Login Successful");
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
-          window.location.href = "./userDetails";
-        }
-      });
+    // const newUser = new FormData();
+    // console.log(name, email, mobile, password);
+    // newUser.set("name", name);
+    // newUser.set("mobile", mobile);
+    // newUser.set("email", email);
+    // newUser.set("password", password);
+    // newUser.append("confirmPassword", confirmPassword);
+    // newUser.append("address", address);
+    // newUser("avatar",avatar);
+    console.log(user);
+    dispatch(registerUser(user));
   };
 
   const handleLogin = () => {
-    window.location.href = "./login";
+    // window.location.href = "./login";
   };
 
   return (
@@ -77,7 +73,7 @@ const Login = () => {
 
         {formType === "signup" && (
           <div className="signup-form">
-            <form onSubmit={handleSignup}>
+            <form onSubmit={handleSignup} encType="multipart/form-data">
               <div className="form-row">
                 <label className="label">Name:</label>
                 <input
@@ -85,7 +81,9 @@ const Login = () => {
                   type="text"
                   className="form-control"
                   id="contact-name"
-                  onChange={(e) => setName(e.target.value)}
+                  name="name"
+                  value={name}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-row">
@@ -94,7 +92,9 @@ const Login = () => {
                   required
                   type="number"
                   className="form-control"
-                  onChange={(e) => setMobileNumber(e.target.value)}
+                  name="mobile"
+                  value={mobile}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-row">
@@ -103,7 +103,9 @@ const Login = () => {
                   required
                   type="email"
                   className="form-control"
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-row">
@@ -112,16 +114,9 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-row">
-                <label className="label">Confirm Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  required
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-row-btn">
@@ -142,7 +137,7 @@ const Login = () => {
                   type="text"
                   className="form-control"
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                 />
               </div>
               <div className="form-row">
@@ -151,7 +146,7 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   required
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                 />
               </div>
               <div className="form-row-btn">

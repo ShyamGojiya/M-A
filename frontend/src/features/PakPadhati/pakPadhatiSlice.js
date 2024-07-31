@@ -11,6 +11,7 @@ export const allPakPadhati = createAsyncThunk(
     }
   }
 );
+
 export const singlePakPadhati = createAsyncThunk(
   "pakPadhati/singlePakPadhati",
   async (id, thunkAPI) => {

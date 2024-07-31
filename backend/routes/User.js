@@ -12,9 +12,9 @@ const app = express.Router();
 
 app.post("/register", registerUser);
 app.get("/", getAllUser);
-app.get("/:id", getSingleUser);
-app.post("/login", loginUser);
 app.get("/logout", logoutUser);
-// app.get("/", myProfile);
+app.post("/login", loginUser);
+app.get("/profile", isAuthenticatedUser, myProfile);
+app.get("/:id", getSingleUser);
 
 module.exports = app;

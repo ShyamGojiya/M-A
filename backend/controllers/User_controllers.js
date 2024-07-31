@@ -5,23 +5,29 @@ const ErrorHandler = require("../utils/errorHandlers");
 
 //register user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.create(req.body);
+  const { name, email, password, mobile } = req.body;
+  const avatar = {
+    public_id: "coming..soon..",
+    url: "coming..soon..",
+  };
+  console.log(req.body);
+  const user = await User.create({ name, email, mobile, password, avatar });
   sendToken(user, 201, res);
 });
 
-//all user
+//all user --ADMIN
 exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
   const data = await User.find();
   res.status(201).json({ total: data.length, data });
 });
 
-//all user
+//SIngle user --ADMIN
 exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
   const data = await User.findOne({ _id: req.params.id });
   res.status(201).json({ succes: true, data });
 });
 
-//login user7
+//login user
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -50,6 +56,7 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//profile
 exports.myProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   res.status(200).json({ succes: true, data: user });
