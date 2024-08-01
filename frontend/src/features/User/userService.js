@@ -18,4 +18,21 @@ const registerUser = async (newUser) => {
   }
 };
 
-export const userService = { registerUser };
+const loginUser = async (loginData) => {
+  const config = {
+    withCredentials: true,
+    headers: { "Content-Type": "application/json" },
+  };
+  console.log(loginData);
+  const response = await axios.post(
+    REACT_APP_BACKEND_URL + "/user/login",
+    loginData,
+    config
+  );
+  console.log(response);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const userService = { registerUser, loginUser };

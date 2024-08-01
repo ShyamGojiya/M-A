@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./Login.css";
-import { registerUser } from "../../features/User/userSlice";
+import { loginUser, registerUser } from "../../features/User/userSlice";
 import ProfileImage from "../../Images/human_icon.png";
 
 const Login = () => {
@@ -35,22 +35,14 @@ const Login = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-
-    // const newUser = new FormData();
-    // console.log(name, email, mobile, password);
-    // newUser.set("name", name);
-    // newUser.set("mobile", mobile);
-    // newUser.set("email", email);
-    // newUser.set("password", password);
-    // newUser.append("confirmPassword", confirmPassword);
-    // newUser.append("address", address);
-    // newUser("avatar",avatar);
-    console.log(user);
+    // console.log(user);
     dispatch(registerUser(user));
   };
 
-  const handleLogin = () => {
-    // window.location.href = "./login";
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(loginEmail, loginPassword);
+    dispatch(loginUser({ email: loginEmail, password: loginPassword }));
   };
 
   return (
@@ -132,7 +124,7 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <div className="login-form">
               <div className="form-row">
-                <label className="label">User name :</label>
+                <label className="label">Email :</label>
                 <input
                   type="text"
                   className="form-control"
