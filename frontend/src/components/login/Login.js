@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./Login.css";
 import { loginUser, registerUser } from "../../features/User/userSlice";
 import ProfileImage from "../../Images/human_icon.png";
+import usericon from "../../Images/userup.png"
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -45,113 +46,140 @@ const Login = () => {
     dispatch(loginUser({ email: loginEmail, password: loginPassword }));
   };
 
-  return (
-    <div className="form-body">
-      <div className="ls-cont">
-        <div className="ls-buttons">
-          <button
-            className={`signup-btn ${formType === "signup" ? "active" : ""}`}
-            onClick={() => toggleForm("signup")}
-          >
-            Sign up
-          </button>
-          <button
-            className={`login-btn ${formType === "login" ? "active" : ""}`}
-            onClick={() => toggleForm("login")}
-          >
-            Log in
-          </button>
-        </div>
+  return (       
+
+<div className="div1">
+          <div className="divbtn">
+            <div className="btnsign">
+                <button
+                className={`signup-btn ${formType === "signup" ? "active" : ""}`}
+                onClick={() => toggleForm("signup")}
+              >
+                Sign up 
+              </button>
+            </div>
+            <div className="btnlogin">
+                <button
+                className={`login-btn ${formType === "login" ? "active" : ""}`}
+                onClick={() => toggleForm("login")}
+              >
+                Log in
+              </button>
+
+            </div>
+          
+          </div>
+        {formType === "login" && (
+        <form onSubmit={handleLogin}>
+              <div className="div2">
+                  <img src={usericon} width="80px" height="80px" alt=""/>
+                  <h1>Login</h1>
+                  <div className="div3">
+                      <label for="username">EMail</label>
+                      <input 
+                      type="text" 
+                      id="username" 
+                      name="username" 
+                      placeholder="Email id"
+                      required
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      />
+
+                      <label for="password">Password</label>
+                      <input 
+                      type="password"
+                      id="password" 
+                      name="password" 
+                      placeholder="password"
+                      required
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      />
+                  </div>
+                  <div>
+                      <button className="btn">Login</button>
+                  </div>
+                  <div>
+                    
+             
+                <a href="#">Forgot Password?</a>
+           
+                  </div>
+              </div>
+        </form>
+        )}
 
         {formType === "signup" && (
-          <div className="signup-form">
-            <form onSubmit={handleSignup} encType="multipart/form-data">
-              <div className="form-row">
-                <label className="label">Name:</label>
-                <input
-                  required
-                  type="text"
-                  className="form-control"
-                  id="contact-name"
-                  name="name"
-                  value={name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-row">
-                <label className="label">Mobile :</label>
-                <input
-                  required
-                  type="number"
-                  className="form-control"
-                  name="mobile"
-                  value={mobile}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-row">
-                <label className="label">Email:</label>
-                <input
-                  required
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-row">
-                <label className="label">Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  required
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-row-btn">
-                <div className="button-area">
-                  <button className="btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {formType === "login" && (
           <form onSubmit={handleLogin}>
-            <div className="login-form">
-              <div className="form-row">
-                <label className="label">Email :</label>
-                <input
-                  type="text"
-                  className="form-control"
+          <div className="div2">
+              <img src={usericon} width="80px" height="80px" alt=""/>
+           
+              <div className="div3">
+
+                  <label for="username">Name</label>
+                  <input 
+                  type="text" 
+                  id="username" 
+                  name="username" 
+                  placeholder="Your Name"
                   required
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                />
-              </div>
-              <div className="form-row">
-                <label className="label">Password :</label>
-                <input
+                  onChange={handleChange}
+                  />
+
+                  <label for="username">EMail</label>
+                  <input 
+                  type="text" 
+                  id="username" 
+                  name="username" 
+                  placeholder="Email id"
+                  required
+                  onChange={handleChange}
+                  />
+
+                  <label for="password">Mobile No.</label>
+                  <input 
+                  type="number"
+                  id="number" 
+                  name="number" 
+                  placeholder="Mobile No."
+                  required
+                  onChange={handleChange}
+                  />
+
+                  <label for="password">Password</label>
+                  <input 
                   type="password"
-                  className="form-control"
+                  id="password" 
+                  name="password" 
+                  placeholder="password"
                   required
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                />
+                  onChange={handleChange}
+                  />
+
+                  <label for="password">Confirm Password</label>
+                  <input 
+                  type="password"
+                  id="password" 
+                  name="password" 
+                  placeholder="password"
+                  required
+                  onChange={handleChange}
+                  />
+
+                  
+
+                  
               </div>
-              <div className="form-row-btn">
-                <div className="button-area">
-                  <button className="btn btn-primary">Submit</button>
-                  {/* <button className="btn btn-danger">Cancel</button> */}
-                </div>
+              <div>
+                  <button className="btn">Submit</button>
               </div>
-            </div>
-          </form>
+          </div>
+      </form>
         )}
-      </div>
-    </div>
+        </div>
+
+
+        
+  
   );
 };
 
