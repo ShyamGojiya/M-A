@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { singlePakPadhati } from "../../features/PakPadhati/pakPadhatiSlice";
 import Practices from "./Practices.js";
@@ -10,7 +10,7 @@ function Click() {
 
   useEffect(() => {
     dispatch(singlePakPadhati(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   const singlePadhati = useSelector(
     (state) => state.pakPadhati?.singlePakPadhati?.data
@@ -22,30 +22,70 @@ function Click() {
     setVisibleText(textKey);
   };
 
-  // for random color generation
+  // For random color generation
   const colors = [
-    "#ef4444",
-    "#d97706",
-    "#d97706",
-    "#65a30d",
-    "#059669",
-    "#0d9488",
-    "#0891b2",
-    "#0284c7",
-    "#e11d48",
-    "#db2777",
-    "#c026d3",
-  ];
+    "linear-gradient(to right, #fd6585, #ffd3a5)",
+    "linear-gradient(to right, #0F3443 , #34E89E)",
+    "linear-gradient(to right, #12C2E9 , #F64F59)",
+    "linear-gradient(to right, #FCCF31 , #F55555)",
+    "linear-gradient(to right, #333399 , #FF00CC)",
+    "linear-gradient(to right, #7BC393, #31B7C2 )",
+    "linear-gradient(to right, #006663 , #111111)",
+    "linear-gradient(to right, #9e1f63 , #392d91)",
+    "linear-gradient(to right, #0694c6, #d2ffff )",
+    "linear-gradient(to right, #fd6585, #ffd3a5)",
+
+];
+
+
+
 
   const randomIndex = Math.floor(Math.random() * colors.length);
   const randomColor = colors[randomIndex];
 
   return (
     <>
+      <style>
+        {`
+          .gradient-container {
+              width: 1000px;
+              height: 110px;
+              border-radius : 50px 0 50px 0;
+              background: ${randomColor};
+              background-size: 400% 400%;
+              animation: slideIn 3s infinite;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+              
+          }
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            25% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            75% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+`}
+      </style>
+
       <div>
         <div
-          className={`flex w-4/5 mx-auto rounded-[3vw] my-4 h-[20vh] justify-center align-middle`}
-          style={{ backgroundColor: randomColor }}
+          className={`flex w-4/5 mx-auto rounded-[3vw] my-4 h-[20vh] justify-center align-middle gradient-container`}
+          style={{background:randomColor}}
         >
           <h1 className="my-auto text-7xl max-sm:text-5xl text-white font-bold">
             {singlePadhati?.plantName}

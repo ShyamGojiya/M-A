@@ -54,23 +54,23 @@ export default function Navbar() {
           <div className={showMenu ? "navbar-menu" : "navbar-menu active"}>
             <ul>
               <li>
-                <Link to="/">હોમ</Link>
+                <Link to="/">હોમ<hr/></Link>
                 {/* <button onClick={handleHomeClick}>હોમ</button> */}
               </li>
               <li>
-                <Link to="/information">માહિતી</Link>
+                <Link to="/information">માહિતી<hr/></Link>
               </li>
               <li>
-                <Link to="/practices">પાકની પદ્ધતિઓ</Link>
+                <Link to="/practices">પાકની પદ્ધતિઓ<hr/></Link>
               </li>
               <li>
-                <Link to="/purchase">ખરીદો</Link>
+                <Link to="/purchase">ખરીદો<hr/></Link>
               </li>
               {/* <li>
                 <Link to="/contact">સંપર્ક</Link>
               </li> */}
               <li>
-                <Link to="/about">અમારા વિશે</Link>
+                <Link to="/about">અમારા વિશે<hr/></Link>
               </li>
             </ul>
 

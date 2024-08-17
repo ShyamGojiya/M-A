@@ -52,11 +52,35 @@
     height: 75px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
+
+
 .brand-logo img {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+    transform-origin: center;
+    animation: rotate 2s linear forwards;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.brand-logo img:hover{
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+    transform: scale(1.1);
+    border-radius: 80px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .brand-title {
@@ -65,10 +89,29 @@
 }
 
 .brand-title h1 {
-    font-family: 'Libre Baskerville', serif;
-    font-size: x-large;
+    /* font-family: 'Libre Baskerville', serif;
+   
     margin: 0;
     color: white;
+ */
+ font-size: xx-large;
+ color: white;
+ transition: all 0.3s ease; /* Apply transition to all properties */
+
+}
+
+.brand-title h1:hover{
+    /* font-family: 'Libre Baskerville', serif;
+    font-size: x-large;
+    margin: 0;
+    color: black;
+    transition: width 0.4s ease, background-color 0.6s ease-in-out, opacity 0.2s linear;
+    transform: scale(1.1); */
+    /* color: #000000; Change text color */
+    transform: scale(0.9); /* Slightly enlarge the text */
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+
+
 }
 
 /* For navbar menubar */
@@ -112,7 +155,7 @@
     text-decoration: none;
     transform: scale(2);
 }
-/* For Navbar button just like sign in button */
+
 .navbar-button {
     padding-left: 20px;
     display: flex;
