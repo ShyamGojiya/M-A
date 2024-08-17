@@ -4,7 +4,6 @@
     max-width: 100%;
     height: auto;
     min-height: 60vw;
-   
     z-index: 0;
     overflow: hidden;
     background-size: cover;
@@ -55,10 +54,8 @@
 .area p {
     text-align: center;
     margin-top: 0.6rem;
-    /* line-height: 10px; */
-    font-size: larger;
+    font-size: larger; /* Adjust if necessary */
 }
-
 
 .dark-overlay {
     position: absolute;
@@ -69,14 +66,43 @@
     background-color: rgba(0, 0, 0, 0.35);
     z-index: 1;
 }
-
-.caousel-h2{
-    font-size: 50px;
+.carousel-h2 {
+    font-size: 3rem; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; 
+    color: #fff; 
+    letter-spacing: 0.1em; 
+    line-height: 1.2;
+    white-space: nowrap; 
+    overflow: hidden; 
+    border-right: 0.15em solid #f39c12; 
+    animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+    /* Typing animation (4s) and blinking caret animation */
+}
+/* Typewriter effect animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%; /* Expand to full width of the text */
+    }
 }
 
-@media screen and (max-width: 1075px){
-    
-    .caousel-h2{
+/* Blinking caret animation */
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #f39c12; /* Match the color of the cursor */
+    }
+}
+
+
+
+@media screen and (max-width: 1075px) {
+    .carousel-h2 { /* Corrected class name */
         font-size: 5vw;
     }
 
@@ -84,11 +110,11 @@
         font-size: 2vw;
     }
 
-    .carousel{
+    .carousel {
         height: 50vh;
     }
     
-    .cr-img1 img{
+    .cr-img1 img {
         min-height: 50vh;
         height: auto;
     }

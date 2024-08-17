@@ -34,11 +34,7 @@ function Click() {
     "linear-gradient(to right, #9e1f63 , #392d91)",
     "linear-gradient(to right, #0694c6, #d2ffff )",
     "linear-gradient(to right, #fd6585, #ffd3a5)",
-
-];
-
-
-
+  ];
 
   const randomIndex = Math.floor(Math.random() * colors.length);
   const randomColor = colors[randomIndex];
@@ -48,53 +44,92 @@ function Click() {
       <style>
         {`
           .gradient-container {
-              width: 1000px;
-              height: 110px;
-              border-radius : 50px 0 50px 0;
-              background: ${randomColor};
-              background-size: 400% 400%;
-              animation: slideIn 3s infinite;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-              
+            width: 100%;
+            max-width: 1000px;
+            height: 110px;
+            border-radius: 50px 0 50px 0;
+            background: ${randomColor};
+            background-size: 400% 400%;
+            animation: slideIn 3s ease-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
-        @keyframes slideIn {
+          .sizeof{
+            color : red;
+            font-size:40px;
+          }
+          @keyframes slideIn {
             0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            25% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            50% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            75% {
-                transform: translateX(0);
-                opacity: 1;
+              transform: translateX(-100%);
+              opacity: 0;
             }
             100% {
-                transform: translateX(100%);
-                opacity: 0;
+              transform: translateX(0);
+              opacity: 1;
             }
-        }
-`}
+          }
+
+          @media (max-width: 768px) {
+            .gradient-container {
+              width: 90%;
+              height: 80px;
+              border-radius: 50px 0 50px 0;
+              background-size: 200% 200%;
+              padding: 10px; /* Adjust padding for mobile */
+            }
+
+            h1 {
+              font-size: 2rem; /* Adjust font size for mobile */
+              text-align: center;
+            }
+
+            .button {
+              font-size: 1rem; /* Adjust button text size */
+              padding: 10px 20px; /* Adjust button padding */
+            }
+
+            .text-lg {
+              font-size: 1.25rem;
+            }
+
+            .text-base {
+              font-size: 1rem;
+            }
+
+            .text-sm {
+              font-size: 0.875rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h1 {
+              font-size: 1.5rem; /* Further reduce font size for very small screens */
+            }
+
+            .button {
+              font-size: 0.875rem; /* Further adjust button text size */
+              padding: 8px 16px; /* Further adjust button padding */
+            }
+          }
+        `}
       </style>
 
       <div>
         <div
-          className={`flex w-4/5 mx-auto rounded-[3vw] my-4 h-[20vh] justify-center align-middle gradient-container`}
-          style={{background:randomColor}}
+          className="gradient-container rounded-[3vw] my-4 flex items-center justify-center"
+          style={{ background: randomColor }}
         >
-          <h1 className="my-auto text-7xl max-sm:text-5xl text-white font-bold">
+          <h1 className="text-3xl sm:text-3xl xs:text-2xl text-white font-bold sizeof">
             {singlePadhati?.plantName}
           </h1>
         </div>
 
-        <section className="my-2">
+        <section className="my-2 text-center">
           <button
-            className="button m-1"
+            className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
             onClick={() => toggleVisibility("textAll")}
           >
             બધી વિગતો વાંચો
@@ -104,7 +139,7 @@ function Click() {
               index !== 0 && (
                 <button
                   key={`button${index}`}
-                  className="button m-1"
+                  className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
                   onClick={() => toggleVisibility(`text${index}`)}
                 >
                   {value.title}
@@ -144,30 +179,24 @@ function Click() {
                             <b>{val.title}</b>
                           </h3>
                           {Array.isArray(val.desc) ? (
-                            <>
-                              <ul>
-                                {val.desc.map((item, itemIndex) => (
-                                  <li
-                                    key={itemIndex}
-                                    className="text text-justify"
-                                  >
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            </>
+                            <ul>
+                              {val.desc.map((item, itemIndex) => (
+                                <li
+                                  key={itemIndex}
+                                  className="text text-justify"
+                                >
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
                           ) : (
-                            <>
-                              <p className="text text-justify">{val.desc}</p>
-                            </>
+                            <p className="text text-justify">{val.desc}</p>
                           )}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <>
-                      <p className="text text-justify">{value.desc}</p>
-                    </>
+                    <p className="text text-justify">{value.desc}</p>
                   )}
                 </div>
               )
