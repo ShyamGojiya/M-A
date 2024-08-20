@@ -63,7 +63,7 @@ const Login = () => {
                 className={`login-btn ${formType === "login" ? "active" : ""}`}
                 onClick={() => toggleForm("login")}
               >
-                Log in
+                Sign In
               </button>
 
             </div>

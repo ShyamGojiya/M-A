@@ -6,16 +6,38 @@ import { MdCall, MdMail } from "react-icons/md";
 function Footer() {
   return (
     <>
+    <style>
+      {
+        `
+        /* Define the keyframes for rotation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to the image */
+.rotate-animation {
+  animation: rotate 2s linear infinite;
+}
+
+        `
+      }
+    </style>
       <footer className=" self-end w-full flex mt-4 bg-[#4a4a4a] justify-around rounded-tr-3xl rounded-tl-3xl sm:p-8 max-sm:flex-col max-sm:gap-6 max-sm:p-2">
         {/* Logo, title and Links */}
         <div className="flex flex-col gap-3 justify-start">
-          <span>
-            <img
-              src="https://res.cloudinary.com/dcxdcs6l4/image/upload/v1689830261/College/LOGO_b8mklr.png"
-              className="max-sm:w-12 sm:w-24"
-              alt="logo"
-            />
-          </span>
+        <span>
+  <img
+    src="https://res.cloudinary.com/dcxdcs6l4/image/upload/v1689830261/College/LOGO_b8mklr.png"
+    className="max-sm:w-12 sm:w-24 rotate-animation"
+    alt="logo"
+  />
+</span>
+
           <h3 className="text-3xl font-semibold text-[#009372] font-sans max-sm:text-xl">
             Medicinal<span className="text-slate-200 font-sans"> and </span>Aromatic
             Plants
@@ -55,7 +77,7 @@ function Footer() {
               <MdCall />
             </span>
             <span className="text-lg text-slate-200 max-sm:text-sm">
-              (+91) 0000000000
+              (+91) 77777777777
             </span>
           </div>
 

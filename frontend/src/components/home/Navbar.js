@@ -46,7 +46,7 @@ export default function Navbar() {
                   alt="logo"
                 />
               </div>
-              <div className="brand-title max-sm:pl-2">
+              <div className="brand-title max-sm:pl-2 mb-2 pl-2">
                 <h1> Medicinal & Aromatic Plants Portal</h1>
               </div>
             </Link>

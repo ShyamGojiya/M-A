@@ -97,7 +97,7 @@
  font-size: xx-large;
  color: white;
  transition: all 0.3s ease; /* Apply transition to all properties */
-
+ text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .brand-title h1:hover{
@@ -109,7 +109,7 @@
     transform: scale(1.1); */
     /* color: #000000; Change text color */
     transform: scale(0.9); /* Slightly enlarge the text */
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
 
 
 }
