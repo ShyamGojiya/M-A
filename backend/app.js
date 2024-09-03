@@ -16,10 +16,12 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 //routes import
 const PakPadhati = require("./routes/PakPadhati");
+const pakMahiti = require("./routes/PakMahiti");
 const User = require("./routes/User");
 
 //routes
 app.use("/api/v1/pakPadhati", PakPadhati);
+app.use("/api/v1/pakMahiti", pakMahiti);
 app.use("/api/v1/user", User);
 
 // const razorpay = new Razorpay({

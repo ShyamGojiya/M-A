@@ -1,15 +1,15 @@
-  //  for finding Uses 
-  const Uses = mongoose.model("PlantUses");
+const express = require("express");
+const {
+  addPakMahiti,
+  getAllPakMahiti,
+  deletePakMahiti,
+  getSinglePakMahiti,
+} = require("../controllers/PakMahiti_controllers");
+const app = express.Router();
 
-  const onFindUses = (req,res)=>{
-    Uses.find({})
-    .then(docs => {
-        res.send(docs);
-        console.log(docs);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-    //res.send("Getting GET request");
-  };
-  app.get("/api/v1/PlantUses", onFindUses);
+app.post("/", addPakMahiti);
+app.get("/", getAllPakMahiti);
+app.delete("/del/:id", deletePakMahiti);
+app.get("/sing/:id", getSinglePakMahiti);
+
+module.exports = app;

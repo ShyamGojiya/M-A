@@ -15,6 +15,7 @@ import ProductList from "./components/purchase/ProductList";
 import Cart from "./components/purchase/Cart";
 import { Toaster } from "react-hot-toast";
 import ProductDetails from "./components/purchase/ProductDetails";
+import Single_Mahiti from "./components/information/Single_Mahiti";
 
 function App() {
   return (
@@ -23,12 +24,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/productInfo" element={<ProductDetails />} />
-        <Route path="/information" element={<UsesCards />} />
-        <Route path="/purchase" element={<ProductList product={Product} />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/practices" element={<Cards />} />
         <Route path="/practices/:id" element={<Click />} />
+        <Route path="/information" element={<UsesCards />} />
+        <Route path="/information/:id" element={<Single_Mahiti />} />
+        <Route path="/productInfo" element={<ProductDetails />} />
+        <Route path="/purchase" element={<ProductList product={Product} />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
       </Routes>
