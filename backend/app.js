@@ -18,11 +18,13 @@ app.use(cors({ credentials: true }));
 const PakPadhati = require("./routes/PakPadhati");
 const pakMahiti = require("./routes/PakMahiti");
 const User = require("./routes/User");
+const Product = require("./routes/Kharido");
 
 //routes
 app.use("/api/v1/pakPadhati", PakPadhati);
 app.use("/api/v1/pakMahiti", pakMahiti);
 app.use("/api/v1/user", User);
+app.use("/api/v1/product", Product);
 
 // const razorpay = new Razorpay({
 //   key_id: 'rzp_test_vJIT3biLsviUc0',
