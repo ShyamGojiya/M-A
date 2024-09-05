@@ -9,7 +9,9 @@ const allPakMahiti = async () => {
 };
 
 const singlePakMahiti = async (id) => {
-  const response = await axios.get(REACT_APP_BACKEND_URL + "/pakMahiti/" + id);
+  const response = await axios.get(
+    REACT_APP_BACKEND_URL + "/pakMahiti/sing/" + id
+  );
   if (response.data) {
     return response.data;
   }

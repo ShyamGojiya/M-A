@@ -123,7 +123,7 @@ function Single_Mahiti() {
           style={{ background: randomColor }}
         >
           <h1 className="text-3xl sm:text-3xl xs:text-2xl text-white font-bold sizeof">
-            {PakMahiti?.plantName}
+            {PakMahiti?.plantName}ના ઉપયોગ
           </h1>
         </div>
 
@@ -134,19 +134,17 @@ function Single_Mahiti() {
           >
             બધી વિગતો વાંચો
           </button> */}
-          {PakMahiti?.uses.map((value, index) => {
+          {/* {PakMahiti?.uses.map((value, index) => {
             return (
-              index !== 0 && (
-                <button
-                  key={`button${index}`}
-                  className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
-                  onClick={() => toggleVisibility(`text${index}`)}
-                >
-                  {value.title}
-                </button>
-              )
+              <button
+                key={`button${index}`}
+                className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+                onClick={() => toggleVisibility(`text${index}`)}
+              >
+                {value.title}
+              </button>
             );
-          })}
+          })} */}
         </section>
 
         {/* {visibleText === "textAll" && (
@@ -154,17 +152,14 @@ function Single_Mahiti() {
         )} */}
 
         <div className="container-fluid">
-          {PakMahiti?.uses.map(
-            (value, index) =>
-              visibleText === `text${index}` && (
-                <div key={index} id={`content${index}`} className="content">
-                  <h2>
-                    <b>{value.title}</b>
-                  </h2>
-                  <p className="text text-justify">{value.uses}</p>
-                </div>
-              )
-          )}
+          {PakMahiti?.uses.map((value, index) => (
+            <div key={index} id={`content${index}`} className="content">
+              <h2>
+                <b>{value.title}</b>
+              </h2>
+              <p className="text text-justify">{value.uses}</p>
+            </div>
+          ))}
         </div>
       </div>
     </>
