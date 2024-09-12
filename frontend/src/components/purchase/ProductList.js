@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-// import { FaRegHeart } from "react-icons/fa6";
-// import { LiaStarSolid } from "react-icons/lia";
 import ProductListItem from "./ProductListItem";
 import PurchaseNav from "./PurchaseNav";
-
-// Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { AddCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
+import { allProduct } from "../../features/Product/productSlice";
 
-const ProductList = (props) => {
+const ProductList = () => {
   // Redux
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products?.product?.data);
+
+  // useEffect(() => {
+  // dispatch(allProduct());
+  // }, []);
 
   const AddToCart = (product) => {
     // dispatch(AddCart(product, 1));
@@ -26,6 +28,8 @@ const ProductList = (props) => {
     window.scrollTo({
       top: 0,
     });
+    dispatch(allProduct());
+    console.log(products);
   }, []);
 
   // for product type filter button
@@ -39,20 +43,18 @@ const ProductList = (props) => {
       <PurchaseNav filterChange={handleFilterChange} />
       <div className="selling-cont">
         {currentFilter === "All"
-          ? props.product.map((item, index) => {
+          ? products?.map((item, index) => {
               return (
                 <div key={"Item" + index}>
-                  {/* <ProductListItem product={item} addToCart={AddToCart} /> */}
                   <ProductListItem product={item} />
                 </div>
               );
             })
-          : props.product
-              .filter((product) => product.type === currentFilter)
+          : products
+              ?.filter((product) => product.type === currentFilter)
               .map((item, index) => {
                 return (
                   <div key={"Item" + index}>
-                    {/* <ProductListItem product={item} addToCart={AddToCart} /> */}
                     <ProductListItem product={item} />
                   </div>
                 );

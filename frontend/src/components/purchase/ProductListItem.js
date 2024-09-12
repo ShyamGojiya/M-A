@@ -16,12 +16,13 @@ const ProductListItem = ({ product }) => {
   // update state(product)
   const handleClick = () => {
     // dispatch(updateProduct(product));
-    navigate("/productInfo");
+    navigate("/purchase/" + product._id);
   };
 
   // handel navigate
   const handleAddToCart = () => {
     // addToCart(product);
+    navigate("/purchase/" + product._id);
   };
 
   return (
@@ -56,7 +57,7 @@ const ProductListItem = ({ product }) => {
       </div>
       <div>
         <button className="buy-card-button z-20" onClick={handleAddToCart}>
-          Add to cart
+          Click
         </button>
       </div>
     </div>

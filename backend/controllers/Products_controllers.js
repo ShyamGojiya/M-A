@@ -19,3 +19,9 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const data = await Product.find();
   res.send({ success: true, total: data.length, data });
 });
+
+exports.singleProduct = catchAsyncErrors(async (req, res, next) => {
+  // const data = await pakPadhati.insertMany(pak_data);
+  const data = await Product.findById(req.params.id);
+  res.send({ success: true, data });
+});

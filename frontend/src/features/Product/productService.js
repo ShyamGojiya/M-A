@@ -8,4 +8,11 @@ const allProduct = async () => {
   }
 };
 
-export const productService = { allProduct };
+const singleProduct = async (id) => {
+  const response = await axios.get(REACT_APP_BACKEND_URL + "/product/" + id);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const productService = { allProduct, singleProduct };

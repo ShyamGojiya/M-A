@@ -28,8 +28,8 @@ function App() {
         <Route path="/practices/:id" element={<Click />} />
         <Route path="/information" element={<UsesCards />} />
         <Route path="/information/:id" element={<Single_Mahiti />} />
-        <Route path="/productInfo" element={<ProductDetails />} />
-        <Route path="/purchase" element={<ProductList product={Product} />} />
+        <Route path="/purchase" element={<ProductList />} />
+        <Route path="/purchase/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
