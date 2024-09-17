@@ -12,7 +12,7 @@ function Home() {
       </div> */}
       <Carousel />
       <NavCards />
-      <About />
+      {/* <About /> */}
       <Contact />
     </>
   );
