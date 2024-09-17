@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/home/Footer";
 import Navbar from "./components/home/Navbar";
@@ -16,8 +16,16 @@ import Cart from "./components/purchase/Cart";
 import { Toaster } from "react-hot-toast";
 import ProductDetails from "./components/purchase/ProductDetails";
 import Single_Mahiti from "./components/information/Single_Mahiti";
+import Profile from "./components/home/Profile";
+import { useDispatch } from "react-redux";
+import { myProfileDetails } from "./features/User/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(myProfileDetails());
+  }, []);
+
   return (
     <>
       <Toaster />
@@ -33,6 +41,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <div>
         <ScrollToTopButton />

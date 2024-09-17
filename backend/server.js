@@ -10,6 +10,6 @@ connect_db();
 const PORT = process.env.PORT;
 
 //server connect
-const server = app.listen(PORT,()=>{
-    console.log(`running on PORT : ${PORT}`);
+const server = app.listen(PORT, () => {
+  console.log(`running on PORT : ${PORT}`);
 });

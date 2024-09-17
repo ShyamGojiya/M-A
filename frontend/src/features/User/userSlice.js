@@ -24,6 +24,25 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk("user/logout", async (arg, thunkAPI) => {
+  try {
+    return await userService.logoutUser();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message || "error occured");
+  }
+});
+
+export const myProfileDetails = createAsyncThunk(
+  "user/my_profile",
+  async (arg, thunkAPI) => {
+    try {
+      return await userService.myProfile();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message || "error occured");
+    }
+  }
+);
+
 const initialState = {
   isError: false,
   isSuccess: false,
@@ -64,13 +83,50 @@ export const userSlice = createSlice({
         state.isSuccess = true;
         state.isAuthenticated = true;
         state.user = action.payload;
+        state.message = "none";
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
+        state.isAuthenticated = false;
         state.isError = true;
         state.message = action.error;
+      })
+      .addCase(myProfileDetails.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(myProfileDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
         state.isAuthenticated = true;
+        state.user = action.payload;
+      })
+      .addCase(myProfileDetails.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+        state.isAuthenticated = false;
+      })
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+        state.isAuthenticated = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.isAuthenticated = false;
+        state.message = "logeed out success";
+        // state.user = action.payload;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+        state.isAuthenticated = false;
       });
   },
 });

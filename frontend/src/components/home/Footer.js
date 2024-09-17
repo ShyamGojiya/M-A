@@ -6,9 +6,8 @@ import { MdCall, MdMail } from "react-icons/md";
 function Footer() {
   return (
     <>
-    <style>
-      {
-        `
+      <style>
+        {`
         /* Define the keyframes for rotation */
 @keyframes rotate {
   from {
@@ -24,23 +23,22 @@ function Footer() {
   animation: rotate 2s linear infinite;
 }
 
-        `
-      }
-    </style>
+        `}
+      </style>
       <footer className=" self-end w-full flex mt-4 bg-[#4a4a4a] justify-around rounded-tr-3xl rounded-tl-3xl sm:p-8 max-sm:flex-col max-sm:gap-6 max-sm:p-2">
         {/* Logo, title and Links */}
         <div className="flex flex-col gap-3 justify-start">
-        <span>
-  <img
-    src="https://res.cloudinary.com/dcxdcs6l4/image/upload/v1689830261/College/LOGO_b8mklr.png"
-    className="max-sm:w-12 sm:w-24 rotate-animation"
-    alt="logo"
-  />
-</span>
+          <span>
+            <img
+              src="https://res.cloudinary.com/dcxdcs6l4/image/upload/v1689830261/College/LOGO_b8mklr.png"
+              className="max-sm:w-12 sm:w-24 rotate-animation"
+              alt="logo"
+            />
+          </span>
 
           <h3 className="text-3xl font-semibold text-[#009372] font-sans max-sm:text-xl">
-            Medicinal<span className="text-slate-200 font-sans"> and </span>Aromatic
-            Plants
+            Medicinal<span className="text-slate-200 font-sans"> and </span>
+            Aromatic Plants
           </h3>
           <ul className="flex gap-2 text-slate-200 flex-wrap max-sm:text-sm ">
             <li className="m-0 p-0">હોમ</li>
@@ -58,7 +56,9 @@ function Footer() {
             <li className="m-0 p-0">અમારા વિશે</li>
           </ul>
 
-          <span className="text-[#009372]">Medicinal and Aromatic Plants Portal @2023</span>
+          <span className="text-[#009372]">
+            Medicinal and Aromatic Plants Portal @2023
+          </span>
         </div>
 
         {/* contact */}

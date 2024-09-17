@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());
-app.use(cors({ credentials: true }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 //routes import
 const PakPadhati = require("./routes/PakPadhati");
