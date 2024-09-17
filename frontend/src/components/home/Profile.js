@@ -17,7 +17,7 @@ const Profile = () => {
     if (!isAuthenticated) {
       navigate("/login");
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const handleLogout = () => {
     dispatch(logout());

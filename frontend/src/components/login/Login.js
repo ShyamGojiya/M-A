@@ -14,7 +14,7 @@ const Login = () => {
 
   useEffect(() => {
     navigate("/profile");
-  }, []);
+  }, [isAuthenticated]);
 
   const [formType, setFormType] = useState("login");
 
@@ -45,14 +45,11 @@ const Login = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    // console.log(user);
     dispatch(registerUser(user));
-    // history.push("/");
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // console.log(loginEmail, loginPassword);
     dispatch(loginUser({ email: loginEmail, password: loginPassword }));
     navigate("/");
   };
