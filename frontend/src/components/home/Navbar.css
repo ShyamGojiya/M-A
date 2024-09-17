@@ -115,45 +115,71 @@
 }
 
 /* For navbar menubar */
+/* styles.css */
 .navbar-menu {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    /* background-color: #333; Adjust background color as needed */
+    padding: 0;
+    
 }
 
 .navbar-menu ul {
-    display: inline-flex;
+    display: flex;
     list-style-type: none;
-    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
-.navbar-menu li{
-    padding-left: 20px;
+.navbar-menu li {
+    position: relative;
+    padding: 10px;
     font-size: large;
     font-family: 'Noto Sans Gujarati', sans-serif;
-    color : white   
+    color: white;
+    font-weight: 600;
 }
 
 .navbar-menu li:hover {
     color: #95e600;
-    cursor: pointer;
-    text-decoration: none;
-    transform: scale(1.15);
+    transform: scale(1.07);
 }
 
-.navbar-menu li>a{
-    font-size: 1.25rem;
-    font-weight: lighter;
+.navbar-menu li a {
+    font-size: 1.10rem;
+    /* font-weight: lighter; */
     text-decoration: none;
-    font-family: 'Noto Sans Gujarati', sans-serif;
-    color : white   
+    color: inherit; /* Inherit color from li */
+    display: inline-block; /* Ensure correct positioning for pseudo-elements */
+    position: relative; /* Necessary for the pseudo-element positioning */
 }
 
-.navbar-menu li>a:hover {
+.navbar-menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; /* Adjust based on padding and font size */
+    left: 50%;
+    height: 2px;
+    background-color: #95e600; /* Adjust color for the line */
     color: #95e600;
-    cursor: pointer;
-    text-decoration: none;
-    transform: scale(2);
+    width: 0;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* .navbar-menu li:hover a::after {
+    width: 50%;
+} */
+
+.navbar-menu li a:focus::after,
+.navbar-menu li a:hover::after {
+    width: 50%;
+}
+
+.navbar-menu li a:focus,
+.navbar-menu li a:hover {
+    color: #95e600;
 }
 
 .navbar-button {
