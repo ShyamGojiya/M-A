@@ -7,13 +7,12 @@ import Contact from "./components/home/Contact";
 function Home() {
   return (
     <>
-      {/* <div className="a1">
-        <Navbar stickey={true}/>
-      </div> */}
       <Carousel />
       <NavCards />
-    
-      {/* <Contact /> */}
+
+      {/* <About /> */}
+      <Contact />
+
     </>
   );
 }
