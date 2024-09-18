@@ -12,8 +12,8 @@ function Home() {
       </div> */}
       <Carousel />
       <NavCards />
-      {/* <About /> */}
-      <Contact />
+    
+      {/* <Contact /> */}
     </>
   );
 }
