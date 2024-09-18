@@ -198,14 +198,14 @@ const ProductDetails = () => {
             {/* Add to Cart & Add to Whishlist */}
             <div className="flex flex-row flex-wrap items-center gap-6 my-4">
               <button
-                className="flex flex-row gap-1 items-center bg-white text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm"
+                className="flex flex-row gap-1 items-center bg-white text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:text-red-600"
                 onClick={handlePayment}
               >
                 અત્યારે જ ઓર્ડર કરો
               </button>
               <button
                 onClick={handleAddToCart}
-                className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-white font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm"
+                className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-white font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-white hover:text-red-600"
               >
                 <HiOutlineShoppingCart /> Add to Cart
               </button>

@@ -18,7 +18,7 @@ export default function Navbar() {
     }
   }
 
-  // Run the function when the page loads
+  // Run the function when the page loads 
   window.addEventListener("load", checkAndSetShowMenu);
 
   // Run the function when the window is resized
@@ -52,27 +52,23 @@ export default function Navbar() {
             </Link>
           </div>
           <div className={showMenu ? "navbar-menu" : "navbar-menu active"}>
-            <ul>
-              <li>
-                <Link to="/">હોમ<hr/></Link>
-                {/* <button onClick={handleHomeClick}>હોમ</button> */}
-              </li>
-              <li>
-                <Link to="/information">માહિતી<hr/></Link>
-              </li>
-              <li>
-                <Link to="/practices">પાકની પદ્ધતિઓ<hr/></Link>
-              </li>
-              <li>
-                <Link to="/purchase">ખરીદો<hr/></Link>
-              </li>
-              {/* <li>
-                <Link to="/contact">સંપર્ક</Link>
-              </li> */}
-              <li>
-                <Link to="/about">અમારા વિશે<hr/></Link>
-              </li>
-            </ul>
+          <ul>
+            <li>
+                <Link to="/"><b>હોમ</b></Link>
+            </li>
+            <li>
+                <Link to="/information"><b>માહિતી</b></Link>
+            </li>
+            <li>
+                <Link to="/practices"><b>પાકની પદ્ધતિઓ</b></Link>
+            </li>
+            <li>
+                <Link to="/purchase"><b>ખરીદો</b></Link>
+            </li>
+            <li>
+                <Link to="/about"><b>અમારા વિશે</b></Link>
+            </li>
+        </ul>
 
             <div className="navbar-button">
               <Link to={"/login"}>

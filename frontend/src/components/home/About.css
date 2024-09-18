@@ -1,0 +1,137 @@
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  width: 380px;
+  height: 470px;
+  background-color: #020101;
+  color: #000000;
+  border-radius: 20px;
+  border: 2px solid #00cc66;
+  text-align: center;
+  padding: 30px;
+  transition: 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: linear-gradient(130deg, rgba(0,117,113,1) 0%,rgba(92,205,164,1) 50% , rgba(255,255,255,1) 100%);
+}
+.card:hover{
+
+    border: 5px solid #00cc66;
+    background: linear-gradient(90deg, rgba(0,117,113,1) 0%,rgba(92,205,164,1) 50% , rgba(255,255,255,1) 100%);
+    transform: scale(1.05);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  /* background: linear-gradient(90deg, #00ff00, #00cc66, #00ff99); */
+  border-radius: 23px;
+  opacity: 0;
+  transition: 0.9s ease-in-out;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 18px;
+}
+
+/* Accordion Container */
+.accordion {
+  width: 50%;
+  margin: 30px auto;
+  margin-left: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Accordion Item */
+.accordion-item {
+  border: 2px solid green;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.9s ease;
+}
+
+/* Accordion Header */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Accordion Header Title */
+.accordion-header h3 {
+
+  
+  font-size: 18px;
+  font-weight: 600;
+  color: #136643;
+  
+}
+
+/* Accordion Icon */
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.accordion-header.active .icon {
+  transform: rotate(180deg);
+}
+
+/* Accordion Content */
+.accordion-content {
+  padding: 16px;
+  display: none;
+  background-color: #fafafa;
+  color: #555;
+  font-size: 16px;
+}
+
+/* Show Content */
+.accordion-content.show {
+  display: block;
+  font-weight: 600;
+}
+
+/* Additional Styling for Content */
+.accordion-content p {
+  margin: 0;
+}

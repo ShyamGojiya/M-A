@@ -9,8 +9,10 @@ function Home() {
     <>
       <Carousel />
       <NavCards />
+
       {/* <About /> */}
       <Contact />
+
     </>
   );
 }
