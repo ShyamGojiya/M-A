@@ -5,6 +5,7 @@ import { loginUser, registerUser } from "../../features/User/userSlice";
 import ProfileImage from "../../Images/human_icon.png";
 import usericon from "../../Images/userup.png";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,10 @@ const Login = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
-    navigate("/profile");
+    if (isAuthenticated) {
+      toast.success("Login Successfully!!", { position: "top-right" });
+      navigate("/profile");
+    }
   }, [isAuthenticated]);
 
   const [formType, setFormType] = useState("login");
@@ -51,7 +55,10 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email: loginEmail, password: loginPassword }));
-    navigate("/");
+    // if (isAuthenticated) {
+    //   toast.success("Login Successfully!!");
+    //   navigate("/profile");
+    // }
   };
 
   return (
@@ -111,37 +118,40 @@ const Login = () => {
       )}
 
       {formType === "signup" && (
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
           <div className="div2">
             <img src={usericon} width="80px" height="80px" alt="" />
 
             <div className="div3">
-              <label for="username">Name</label>
+              <label for="name">Name</label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="name"
+                name="name"
                 placeholder="Your Name"
+                value={name}
                 required
                 onChange={handleChange}
               />
 
-              <label for="username">EMail</label>
+              <label for="email">EMail</label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 placeholder="Email id"
+                value={email}
                 required
                 onChange={handleChange}
               />
 
-              <label for="password">Mobile No.</label>
+              <label for="mobile">Mobile No.</label>
               <input
                 type="number"
-                id="number"
-                name="number"
+                id="mobile"
+                name="mobile"
                 placeholder="Mobile No."
+                value={mobile}
                 required
                 onChange={handleChange}
               />
@@ -152,18 +162,19 @@ const Login = () => {
                 id="password"
                 name="password"
                 placeholder="password"
+                value={password}
                 required
                 onChange={handleChange}
               />
 
-              <label for="password">Confirm Password</label>
+              <label for="c_password">Confirm Password</label>
               <input
                 type="password"
-                id="password"
-                name="password"
-                placeholder="password"
+                id="c_password"
+                name="c_password"
+                placeholder="confirm password"
                 required
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
             <div>

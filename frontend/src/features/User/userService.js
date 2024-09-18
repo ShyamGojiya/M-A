@@ -6,7 +6,7 @@ const registerUser = async (newUser) => {
     withCredentials: true,
     headers: { "Content-Type": "multipart/form-data" },
   };
-  // console.log(newUser);
+  console.log(newUser);
   const response = await axios.post(
     REACT_APP_BACKEND_URL + "/user/register",
     newUser,

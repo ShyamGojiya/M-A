@@ -5,7 +5,7 @@ export const registerUser = createAsyncThunk(
   "user/register",
   async (newUser, thunkAPI) => {
     try {
-      // console.log(newUser);
+      console.log("slice : " + newUser);
       return await userService.registerUser(newUser);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -17,6 +17,7 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (loginData, thunkAPI) => {
     try {
+      console.log(loginData);
       return await userService.loginUser(loginData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

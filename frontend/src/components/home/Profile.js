@@ -4,6 +4,7 @@ import Loader from "../loader/Loader.js";
 import { Link, useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { logout } from "../../features/User/userSlice.js";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user, isLoading, isAuthenticated } = useSelector(
@@ -15,15 +16,17 @@ const Profile = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
+      toast.success("Logout Success", { position: "top-right" });
       navigate("/login");
     }
   }, [isAuthenticated]);
 
   const handleLogout = () => {
     dispatch(logout());
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    // if (!isAuthenticated) {
+    //   toast.success("Logout Success");
+    //   navigate("/login");
+    // }
   };
   return (
     <Fragment>
