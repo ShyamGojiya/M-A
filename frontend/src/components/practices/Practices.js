@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 function Practices(props) {
   return (
     <div className="container-fluid">
+
+
       {props?.data?.map((value, index) => (
-        <div key={index} id={`content${index}`} className="content">
+        
+        <div key={index} id={`content${index}`} className="content bg-slate-300 font-semibold">
+          <div className="contentnew bg-slate-400 mt-0 rounded-full mb-3 mr-70  flex items-center justify-center">
           <h2>
             <b className="text-lg font-extrabold">{value.title}</b>
           </h2>
+          </div>
           {index === 0 && (
             <ul className="mb-2">
               {value.names.guj && (
@@ -52,8 +57,8 @@ function Practices(props) {
             <div className="flex gap-4 max-sm:flex-col">
               {value.desc.map((val, subIndex) => (
                 <div key={subIndex} className="sm:w-1/2 max-sm:w-full">
-                  <h3>
-                    <b>{val.title}</b>
+                  <h3 className="">
+                    {/* <b>{val.title}</b> */}
                   </h3>
                   {Array.isArray(val.desc) ? (
                     <>

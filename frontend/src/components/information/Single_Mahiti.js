@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { singlePakMahiti } from "../../features/PakMahiti/pakMahitiSlice.js";
+import UseDetails from "./UseDetails.js";
 // import Practices from "./Practices.js";
 
 function Single_Mahiti() {
@@ -116,7 +117,10 @@ function Single_Mahiti() {
           }
         `}
       </style>
-
+{/* 
+          <div>
+            <UseDetails/>
+          </div> */}
       <div>
         <div
           className="gradient-container rounded-[3vw] my-4 flex items-center justify-center"
@@ -153,11 +157,13 @@ function Single_Mahiti() {
 
         <div className="container-fluid">
           {PakMahiti?.uses.map((value, index) => (
-            <div key={index} id={`content${index}`} className="content">
-              <h2>
-                <b>{value.title}</b>
+            <div key={index} id={`content${index}`}  className="content bg-slate-300 p-2  border-3 border-sky-600">
+              <h2 className="mb-2">
+                <button style={{ background: randomColor }} className="bg-red-600 text-white rounded-full p-2 text-md font-semibold">{value.title}</button>
+                <hr className="text-red-600"/>
+                <br/>
               </h2>
-              <p className="text text-justify">{value.uses}</p>
+              <p className="text text-justify font-semibold">{value.uses}</p>
             </div>
           ))}
         </div>

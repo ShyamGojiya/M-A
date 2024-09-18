@@ -55,8 +55,15 @@ nav {
 .content {
     border: 2px solid #b8b8b8;
     border-radius: 2rem;
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding-bottom: 1rem;
+    padding: 0 0 10px 0;
     margin-top: 1rem;
+}
+
+.contentnew{
+
+    border-radius: 2.5% 2.5% 25% 44% / 70% 70% 0 0;
 }
 
 h3{
