@@ -54,3 +54,8 @@ function App() {
 }
 
 export default App;
+/*
+-----------clone command-------
+git checkout main
+git pull origin main
+*/
