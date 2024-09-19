@@ -24,6 +24,7 @@ const Login = () => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [avatar, setAvatar] = useState(ProfileImage);
   const [avatarPreview, setAvatarPreview] = useState(ProfileImage);
@@ -49,6 +50,10 @@ const Login = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("confirm password not match", { position: "top-right" });
+      return;
+    }
     dispatch(registerUser(user));
   };
 
@@ -154,6 +159,11 @@ const Login = () => {
                 value={mobile}
                 required
                 onChange={handleChange}
+                maxLength={5}
+                onInput={(e) => (e.target.value = e.target.value.slice(0, 10))}
+                // minLength={10}
+                // min={1111111111}
+                // max={9999999999}
               />
 
               <label for="password">Password</label>
@@ -174,6 +184,8 @@ const Login = () => {
                 name="c_password"
                 placeholder="confirm password"
                 required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 // onChange={handleChange}
               />
             </div>

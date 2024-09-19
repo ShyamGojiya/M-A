@@ -19,6 +19,7 @@ import Single_Mahiti from "./components/information/Single_Mahiti";
 import Profile from "./components/home/Profile";
 import { useDispatch } from "react-redux";
 import { myProfileDetails } from "./features/User/userSlice";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
       <Toaster />
       <Navbar />
       <Routes>
+        {/* User Router */}
         <Route path="/" element={<Home />} />
         <Route path="/practices" element={<Cards />} />
         <Route path="/practices/:id" element={<Click />} />
@@ -42,6 +44,9 @@ function App() {
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<Dashboard />} />
       </Routes>
       <div>
         <ScrollToTopButton />

@@ -43,7 +43,7 @@ const Profile = () => {
             <div>
               <div>
                 <h4>Full Name</h4>
-                <p>{user.name}</p>
+                {user && <p>{user.name}</p>}
               </div>
               <div>
                 <h4>Email</h4>
