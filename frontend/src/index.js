@@ -9,13 +9,13 @@ import { Provider } from "react-redux";
 // import store from "./app/store.js";
 import { store } from "./app/store.js";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <App/>
     </Router>
   </Provider>
 );

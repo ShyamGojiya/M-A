@@ -16,6 +16,10 @@ body {
   background-color: #ededed;
 }
 
+.ant-layout{
+  min-height: 100vh;
+}
+
 .w-48{
   width: 48%;
 }

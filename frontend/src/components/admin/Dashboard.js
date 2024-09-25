@@ -51,59 +51,24 @@ const Dashboard = () => {
           }}
           items={[
             {
-              key: "",
+              key: "/",
               icon: <AiOutlineDashboard className="fs-4" />,
-              label: "Dashboard",
+              label: "Home",
             },
             {
-              key: "customers",
-              icon: <AiOutlineUser className="fs-4" />,
-              label: "Customers",
-            },
-            {
-              key: "Catalog",
+              key: "pakpadhati",
               icon: <AiOutlineShoppingCart className="fs-4" />,
-              label: "Catalog",
+              label: "PakPadhati",
               children: [
                 {
-                  key: "product",
+                  key: "add-pakpadhati",
                   icon: <AiOutlineShoppingCart className="fs-4" />,
-                  label: "Add Product",
+                  label: "Add PakPadhati",
                 },
                 {
-                  key: "list-product",
+                  key: "view",
                   icon: <AiOutlineShoppingCart className="fs-4" />,
-                  label: "Product List",
-                },
-                {
-                  key: "brand",
-                  icon: <SiBrandfolder className="fs-4" />,
-                  label: "Brand",
-                },
-                {
-                  key: "list-brand",
-                  icon: <SiBrandfolder className="fs-4" />,
-                  label: "Brand List ",
-                },
-                {
-                  key: "category",
-                  icon: <BiCategoryAlt className="fs-4" />,
-                  label: "Category",
-                },
-                {
-                  key: "list-category",
-                  icon: <BiCategoryAlt className="fs-4" />,
-                  label: "Category List",
-                },
-                {
-                  key: "color",
-                  icon: <AiOutlineBgColors className="fs-4" />,
-                  label: "Color",
-                },
-                {
-                  key: "list-color",
-                  icon: <AiOutlineBgColors className="fs-4" />,
-                  label: "Color List",
+                  label: "View PakPadhati",
                 },
               ],
             },
