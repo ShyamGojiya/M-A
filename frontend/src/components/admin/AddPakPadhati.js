@@ -49,18 +49,24 @@ const AddPakPadhati = () => {
     plantData.plantName=plantName;
     // do this
     allName.names.guj=guj
-    await setAllName({
-      title: "નામ અને પર્યાય",
-      names: {
-        guj: guj,
-        hind: hind,
-        sanskrit: sanskrit,
-        eng: eng,
-        lat: lat,
-        kul: kul,
-      },
-      desc: desc,
-    })
+    allName.names.hind=hind
+    allName.names.sanskrit=sanskrit
+    allName.names.eng=eng
+    allName.names.lat=lat
+    allName.names.kul=kul
+    allName.desc=desc
+    // await setAllName({
+    //   title: "નામ અને પર્યાય",
+    //   names: {
+    //     guj: guj,
+    //     hind: hind,
+    //     sanskrit: sanskrit,
+    //     eng: eng,
+    //     lat: lat,
+    //     kul: kul,
+    //   },
+    //   desc: desc,
+    // })
     plantData.details.push(allName);
     console.log(plantData);
     // Handle form submission logic here (e.g., API call)
