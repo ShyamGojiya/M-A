@@ -30,7 +30,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <Layout style={{ background:"red",minHeight: "95vh",overflowY:"hidden" }}>
+    <Layout style={{ minHeight: "95vh", overflowY: "hidden" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className="text-white fs-2 text-center py-3 mb-0">
@@ -136,7 +136,7 @@ const Dashboard = () => {
         <Header
           style={{
             padding: 0,
-            background: colorBgContainer,
+            background: "rgb(226 232 240)",
             position: "relative",
             display: "flex",
             alignItems: "center",
@@ -199,7 +199,7 @@ const Dashboard = () => {
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
+            background: "rgb(226 232 240)",
             borderRadius: borderRadiusLG,
             // overflow:"hidden",
           }}

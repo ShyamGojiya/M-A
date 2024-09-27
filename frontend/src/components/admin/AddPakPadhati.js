@@ -48,7 +48,7 @@ const AddPakPadhati = () => {
   };
 
   //clear add field after submit button
-  const clearAllData = ()=>{
+  const clearAllData = () => {
     setPlantData({
       plantName: "",
       thumbnail: "",
@@ -69,14 +69,14 @@ const AddPakPadhati = () => {
   //submit btn
   const handleSubmit = async (e) => {
     e.preventDefault();
-    plantData.plantName=plantName;
-    allName.names.guj=guj
-    allName.names.hind=hind
-    allName.names.sanskrit=sanskrit
-    allName.names.eng=eng
-    allName.names.lat=lat
-    allName.names.kul=kul
-    allName.desc=desc
+    plantData.plantName = plantName;
+    allName.names.guj = guj
+    allName.names.hind = hind
+    allName.names.sanskrit = sanskrit
+    allName.names.eng = eng
+    allName.names.lat = lat
+    allName.names.kul = kul
+    allName.desc = desc
     plantData.details.push(allName);
     console.log(plantData);
 
@@ -87,7 +87,7 @@ const AddPakPadhati = () => {
   };
 
   return (
-    <div style={{height:"70vh"}} className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll">
+    <div style={{ height: "80vh" }} className="max-w-2xl mx-auto p-6 bg-slate-50 shadow-md rounded-lg  overflow-y-scroll">
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
