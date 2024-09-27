@@ -39,7 +39,7 @@ function App() {
     <>
       {/* <BrowserRouter> */}
       <Toaster />
-      {!isAdmin && <Navbar />}
+      {/* {!isAdmin && <Navbar />} */}
         <Routes>
           {/* User Router */}
           <Route path="/" element={<Home />} />
@@ -58,14 +58,8 @@ function App() {
           <Route path="/admin" element={<Dashboard />}>
             <Route path="add-pakpadhati" element={<AddPakPadhati />} />
           </Route>
-          {/* <Route path="/admin">
-            <Route index element={<Dashboard />} />
-            <Route path="add-pakpadhati" element={<AddPakPadhati />} />
-          </Route> */}
         </Routes>
-      <div>
-        <ScrollToTopButton />
-      </div>
+      <div>{!isAdmin && <ScrollToTopButton />}</div>
       <div>{!isAdmin && <Footer />}</div>
       {/* </BrowserRouter> */}
     </>

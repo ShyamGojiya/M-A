@@ -34,20 +34,42 @@ const AddPakPadhati = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [c1, setC1] = useState("");
 
+  //handle add category btn
   const handleAddCategory = () => {
+    //push category object to main data
     plantData.details.push({
       title: selectedCategory,
       desc: c1,
     });
-    // console.log(plantData);
+
+    //clear category section data
     setSelectedCategory("");
     setC1("");
   };
 
+  //clear add field after submit button
+  const clearAllData = ()=>{
+    setPlantData({
+      plantName: "",
+      thumbnail: "",
+      image: [],
+      details: [],
+    });
+    setImages([]);
+    setPlantName("");
+    setGuj("");
+    setHind("");
+    setSanskrit("");
+    setEng("");
+    setLat("");
+    setKul("");
+    setDesc("");
+  }
+
+  //submit btn
   const handleSubmit = async (e) => {
     e.preventDefault();
     plantData.plantName=plantName;
-    // do this
     allName.names.guj=guj
     allName.names.hind=hind
     allName.names.sanskrit=sanskrit
@@ -55,25 +77,17 @@ const AddPakPadhati = () => {
     allName.names.lat=lat
     allName.names.kul=kul
     allName.desc=desc
-    // await setAllName({
-    //   title: "નામ અને પર્યાય",
-    //   names: {
-    //     guj: guj,
-    //     hind: hind,
-    //     sanskrit: sanskrit,
-    //     eng: eng,
-    //     lat: lat,
-    //     kul: kul,
-    //   },
-    //   desc: desc,
-    // })
     plantData.details.push(allName);
     console.log(plantData);
-    // Handle form submission logic here (e.g., API call)
+
+    // dispatch method for pakPadhati
+
+    //after submit clear fields
+    clearAllData();
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div style={{height:"70vh"}} className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll">
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

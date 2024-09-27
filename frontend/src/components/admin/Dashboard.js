@@ -30,13 +30,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <Layout>
+    <Layout style={{ background:"red",minHeight: "95vh",overflowY:"hidden" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className="text-white fs-2 text-center py-3 mb-0">
-            <span className="sm-logo">UM</span>
-            <br />
-            <span className="lg-logo">E-Comm</span>
+            <span className="sm-logo">MAP</span>
           </h2>
         </div>
         <Menu
@@ -54,6 +52,11 @@ const Dashboard = () => {
               key: "/",
               icon: <AiOutlineDashboard className="fs-4" />,
               label: "Home",
+            },
+            {
+              key: "",
+              icon: <AiOutlineDashboard className="fs-4" />,
+              label: "Dashboard",
             },
             {
               key: "pakpadhati",
@@ -151,7 +154,7 @@ const Dashboard = () => {
               height: 64,
             }}
           />
-          <div className="d-flex  align-items-center">
+          <div className="d-flex align-items-center">
             <div className="d-flex  align-items-center dropdown ">
               <div
                 role="button"
@@ -198,6 +201,7 @@ const Dashboard = () => {
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
+            // overflow:"hidden",
           }}
         >
           <ToastContainer
