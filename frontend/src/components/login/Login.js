@@ -6,6 +6,8 @@ import ProfileImage from "../../Images/human_icon.png";
 import usericon from "../../Images/userup.png";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+// import { registerUser } from ""; // Update this path as needed
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,7 +17,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      toast.success("Login Successfully!!", { position: "top-right" });
       navigate("/profile");
     }
   }, [isAuthenticated]);
@@ -48,22 +49,29 @@ const Login = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("confirm password not match", { position: "top-right" });
       return;
     }
-    dispatch(registerUser(user));
+    const resultAction = await dispatch(registerUser(user));
+    if (registerUser.fulfilled.match(resultAction)) {
+      toast.success("Registration successful!");
+    } else {
+      toast.error(resultAction.payload);
+    }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email: loginEmail, password: loginPassword }));
-    // if (isAuthenticated) {
-    //   toast.success("Login Successfully!!");
-    //   navigate("/profile");
-    // }
+    const resultAction = await dispatch(loginUser({ email: loginEmail, password: loginPassword }));
+    if (loginUser.fulfilled.match(resultAction)) {
+      toast.success("Login Successfully!!", { position: "top-right" });
+      navigate("/profile");
+    } else {
+      toast.error(resultAction.payload, { position: "top-right" });
+    }
   };
 
   return (

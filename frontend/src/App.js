@@ -39,7 +39,7 @@ function App() {
     <>
       {/* <BrowserRouter> */}
       <Toaster />
-      {/* {!isAdmin && <Navbar />} */}
+      {!isAdmin && <Navbar />}
         <Routes>
           {/* User Router */}
           <Route path="/" element={<Home />} />

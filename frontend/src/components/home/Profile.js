@@ -16,13 +16,21 @@ const Profile = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
+      console.log("in logout useEffect");
       toast.success("Logout Success", { position: "top-right" });
       navigate("/login");
     }
   }, [isAuthenticated]);
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    // console.log("in logout");
+    const resultAction = await dispatch(logout());
+    if (logout.fulfilled.match(resultAction)) {
+      toast.success("Logout successful!");
+      navigate("/login");
+    } else {
+      toast.error(resultAction.payload);
+    }
     // if (!isAuthenticated) {
     //   toast.success("Logout Success");
     //   navigate("/login");
@@ -57,7 +65,7 @@ const Profile = () => {
               <div>
                 <Link to="/orders">My Orders</Link>
                 <Link to="/password/update">Change Password</Link>
-                <button onClick={() => handleLogout()}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </div>
             </div>
           </div>
