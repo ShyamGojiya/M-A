@@ -40,6 +40,7 @@ function App() {
       {/* <BrowserRouter> */}
       <Toaster />
       {!isAdmin && <Navbar />}
+
         <Routes>
           {/* User Router */}
           <Route path="/" element={<Home />} />
@@ -54,11 +55,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path="add-pakpadhati" element={<AddPakPadhati />} />
-          </Route>
-        </Routes>
+
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<Dashboard />}>
+          <Route path="add-pakpadhati" element={<AddPakPadhati />} />
+        </Route>
+      </Routes>
       <div>{!isAdmin && <ScrollToTopButton />}</div>
       <div>{!isAdmin && <Footer />}</div>
       {/* </BrowserRouter> */}
