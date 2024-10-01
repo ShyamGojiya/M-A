@@ -40,19 +40,22 @@ function App() {
       {/* <BrowserRouter> */}
       <Toaster />
       {!isAdmin && <Navbar />}
-      <Routes>
-        {/* User Router */}
-        <Route path="/" element={<Home />} />
-        <Route path="/practices" element={<Cards />} />
-        <Route path="/practices/:id" element={<Click />} />
-        <Route path="/information" element={<UsesCards />} />
-        <Route path="/information/:id" element={<Single_Mahiti />} />
-        <Route path="/purchase" element={<ProductList />} />
-        <Route path="/purchase/:id" element={<ProductDetails />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/about" element={<MainAbout />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+
+        <Routes>
+          {/* User Router */}
+          <Route path="/" element={<Home />} />
+          <Route path="/practices" element={<Cards />} />
+          <Route path="/practices/:id" element={<Click />} />
+          <Route path="/information" element={<UsesCards />} />
+          <Route path="/information/:id" element={<Single_Mahiti />} />
+          <Route path="/purchase" element={<ProductList />} />
+          <Route path="/purchase/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/about" element={<MainAbout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+
+
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />}>

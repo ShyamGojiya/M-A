@@ -11,7 +11,7 @@ const allPakPadhati = async () => {
 
 const singlePakPadhati = async (id) => {
   const response = await axios.get(
-    `http://localhost:2034/api/v1/pakPadhati/${id}`
+    REACT_APP_BACKEND_URL+`/pakPadhati/${id}`
   );
   if (response.data) {
     return response.data;

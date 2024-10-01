@@ -18,7 +18,7 @@ const registerUser = async (newUser) => {
 
 const loginUser = async (loginData) => {
   const config = {
-    withCredentials: true,
+    // withCredentials: true,
     headers: { "Content-Type": "application/json" },
   };
   const response = await axios.post(
@@ -37,7 +37,6 @@ const logoutUser = async () => {
   };
   const response = await axios.get(
     REACT_APP_BACKEND_URL + "/user/logout",
-    config
   );
   // console.log(response);
   if (response.data) {
@@ -50,7 +49,7 @@ const myProfile = async () => {
     withCredentials: true,
   };
   const link = REACT_APP_BACKEND_URL + "/user/profile";
-  const response = await axios.get(link, config);
+  const response = await axios.get(link);
   // console.log(response.data.data);
   if (response.data.data) {
     return JSON.parse(JSON.stringify(response.data.data));

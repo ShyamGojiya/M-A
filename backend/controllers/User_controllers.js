@@ -10,7 +10,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     public_id: "coming..soon..",
     url: "coming..soon..",
   };
-  console.log(req.body);
+  // console.log(req.body);
   const user = await User.create({ name, email, mobile, password, avatar });
   sendToken(user, 201, res);
 });
