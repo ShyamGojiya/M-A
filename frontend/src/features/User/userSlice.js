@@ -18,7 +18,6 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (loginData, thunkAPI) => {
     try {
-      // console.log(loginData);
       const data = await userService.loginUser(loginData);
       return JSON.parse(JSON.stringify(data.user));
     } catch (error) {

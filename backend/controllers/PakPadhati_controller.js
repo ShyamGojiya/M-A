@@ -1,6 +1,7 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const pakPadhati = require("../models/pakNiPadhati");
 const ErrorHandler = require("../utils/errorHandlers");
+const cloudinary = require("cloudinary");
 
 /*
 PakPadhati : pak ni detials,aeni abohava,aenu utpadan,etc
@@ -21,8 +22,32 @@ exports.getAllPakPadhati = catchAsyncErrors(async (req, res, next) => {
 
 //insert new PakPadhati
 exports.addPakPadhati = catchAsyncErrors(async (req, res, next) => {
-  // const data = await pakPadhati.insertMany(pak_data);
-  const data = await pakPadhati.insertMany(req.body);
+  console.log(req.body);
+  let images = [];
+
+  if (typeof req.body.image === "string") {
+    images.push(req.body.image);
+  } else {
+    images = req.body.image;
+  }
+
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i], {
+      folder: "MAPP",
+    });
+
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+
+  req.body.image = imagesLinks;
+  console.log(req.body);
+
+  const data = await pakPadhati.create(req.body);
   res.send({ success: true, data });
 });
 

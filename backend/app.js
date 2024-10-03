@@ -12,7 +12,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());
-app.use(cors({ credentials: true,  origin: ['http://localhost:3000', 'http://10.112.61.93:3000'], }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://10.112.61.93:3000"],
+    credentials: true,
+  })
+);
 // app.use(cors({ origin:'*' }));
 
 //routes import
