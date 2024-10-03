@@ -7,7 +7,7 @@ const sendToken = (user, statusCode, res) => {
     ),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // true in production, false in development
-    // sameSite: "None",
+    sameSite: "None",
   };
 
   res.status(statusCode).cookie("token", token, option).json({

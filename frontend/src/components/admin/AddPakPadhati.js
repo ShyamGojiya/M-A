@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPakPadhati } from "../../Admin-features/PakPadhati/pakPadhatiSlice";
+import toast from "react-hot-toast";
 
 const AddPakPadhati = () => {
+  const dispatch = useDispatch();
   const [plantData, setPlantData] = useState({
     plantName: "",
     thumbnail: "",
@@ -21,6 +25,7 @@ const AddPakPadhati = () => {
   });
   const [plantName, setPlantName] = useState("");
   const [images, setImages] = useState([]);
+  const [imagesPreview, setImagesPreview] = useState([]);
   const [guj, setGuj] = useState("");
   const [hind, setHind] = useState("");
   const [sanskrit, setSanskrit] = useState("");
@@ -33,6 +38,26 @@ const AddPakPadhati = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [c1, setC1] = useState("");
+
+  const createProductImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    setImages([]);
+    setImagesPreview([]);
+    console.log(files[0]);
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagesPreview((old) => [...old, reader.result]);
+          setImages((old) => [...old, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
 
   //handle add category btn
   const handleAddCategory = () => {
@@ -56,6 +81,7 @@ const AddPakPadhati = () => {
       details: [],
     });
     setImages([]);
+    setImagesPreview([]);
     setPlantName("");
     setGuj("");
     setHind("");
@@ -64,32 +90,46 @@ const AddPakPadhati = () => {
     setLat("");
     setKul("");
     setDesc("");
-  }
+  };
 
   //submit btn
   const handleSubmit = async (e) => {
     e.preventDefault();
     plantData.plantName = plantName;
-    allName.names.guj = guj
-    allName.names.hind = hind
-    allName.names.sanskrit = sanskrit
-    allName.names.eng = eng
-    allName.names.lat = lat
-    allName.names.kul = kul
-    allName.desc = desc
+
+    allName.names.guj = guj;
+    allName.names.hind = hind;
+    allName.names.sanskrit = sanskrit;
+    allName.names.eng = eng;
+    allName.names.lat = lat;
+    allName.names.kul = kul;
+    allName.desc = desc;
+
     plantData.details.push(allName);
+    plantData.image = images;
+    plantData.thumbnail = images[0];
     console.log(plantData);
 
-    // dispatch method for pakPadhati
-
-    //after submit clear fields
-    clearAllData();
+    const resultAction = await dispatch(addPakPadhati(plantData));
+    if (addPakPadhati.fulfilled.match(resultAction)) {
+      toast.success("pakPadhati added Successfully!!", {
+        position: "top-right",
+      });
+      //after success submit clear fields
+      clearAllData();
+    } else {
+      toast.error(resultAction.payload, { position: "top-right" });
+    }
   };
 
   return (
-    <div style={{ height: "80vh" }} className="max-w-2xl mx-auto p-6 bg-slate-50 shadow-md rounded-lg  overflow-y-scroll">
+    <div
+      style={{ height: "70vh" }}
+      className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
+    >
+
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
-      <form onSubmit={handleSubmit}>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 mb-1" htmlFor="plantName">
             Plant Name
@@ -113,11 +153,17 @@ const AddPakPadhati = () => {
             type="file"
             name="thumbnail"
             id="thumbnail"
-            value={images}
-            onChange={(e) => setImages(e.target.value)}
+            accept="image/*"
+            onChange={createProductImagesChange}
+            multiple
             className="w-full p-2 border border-gray-300 rounded"
-            required
           />
+        </div>
+
+        <div id="createProductFormImage">
+          {imagesPreview.map((image, index) => (
+            <img key={index} src={image} alt="Product Preview" />
+          ))}
         </div>
 
         <h3 className="text-lg font-semibold mb-2">Names:</h3>

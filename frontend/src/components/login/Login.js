@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 // import { registerUser } from ""; // Update this path as needed
 
-
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
