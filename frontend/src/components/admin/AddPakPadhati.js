@@ -96,6 +96,7 @@ const AddPakPadhati = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     plantData.plantName = plantName;
+
     allName.names.guj = guj;
     allName.names.hind = hind;
     allName.names.sanskrit = sanskrit;
@@ -103,6 +104,7 @@ const AddPakPadhati = () => {
     allName.names.lat = lat;
     allName.names.kul = kul;
     allName.desc = desc;
+
     plantData.details.push(allName);
     plantData.image = images;
     plantData.thumbnail = images[0];
@@ -125,6 +127,7 @@ const AddPakPadhati = () => {
       style={{ height: "70vh" }}
       className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
     >
+
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <div className="mb-4">
