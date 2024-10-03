@@ -15,7 +15,7 @@ function Click() {
   const singlePadhati = useSelector(
     (state) => state.pakPadhati?.singlePakPadhati?.data
   );
-
+  console.log(singlePadhati);
   const [visibleText, setVisibleText] = useState("textAll");
 
   const toggleVisibility = (textKey) => {
@@ -136,16 +136,16 @@ function Click() {
           </button>
           {singlePadhati?.details.map((value, index) => {
             return (
-              index !== 0 && (
-                <button
-                  key={`button${index}`}
-                  className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
-                  onClick={() => toggleVisibility(`text${index}`)}
-                >
-                  {value.title}
-                </button>
-              )
+              // index !== 0 && (
+              <button
+                key={`button${index}`}
+                className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+                onClick={() => toggleVisibility(`text${index}`)}
+              >
+                {value.title}
+              </button>
             );
+            // );
           })}
         </section>
 
@@ -161,7 +161,7 @@ function Click() {
                   <h2>
                     <b>{value.title}</b>
                   </h2>
-                  {index === 0 && (
+                  {value.title === "નામ અને પર્યાય" && (
                     <ul>
                       <li>ગુજરાતી : {value.names.guj}</li>
                       <li>હિન્દી: {value.names.hind}</li>

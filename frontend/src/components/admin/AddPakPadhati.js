@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPakPadhati } from "../../Admin-features/PakPadhati/pakPadhatiSlice";
 import toast from "react-hot-toast";
+import imageCompression from "browser-image-compression";
 
 const AddPakPadhati = () => {
   const dispatch = useDispatch();
@@ -39,24 +40,36 @@ const AddPakPadhati = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [c1, setC1] = useState("");
 
-  const createProductImagesChange = (e) => {
+  const createProductImagesChange = async (e) => {
     const files = Array.from(e.target.files);
+    const compressedImages = [];
 
-    setImages([]);
     setImagesPreview([]);
-    console.log(files[0]);
-    files.forEach((file) => {
-      const reader = new FileReader();
 
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-          setImages((old) => [...old, reader.result]);
-        }
-      };
+    for (const file of files) {
+      try {
+        // Compress the image
+        const options = {
+          maxSizeMB: 0.05, // Set the maximum size in MB
+          maxWidthOrHeight: 800, // Set the maximum width or height
+          useWebWorker: true, // Use a web worker for better performance
+        };
+        const compressedFile = await imageCompression(file, options);
+        const reader = new FileReader();
 
-      reader.readAsDataURL(file);
-    });
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setImagesPreview((old) => [...old, reader.result]);
+            compressedImages.push(reader.result);
+            setImages(compressedImages);
+          }
+        };
+
+        reader.readAsDataURL(compressedFile);
+      } catch (error) {
+        toast.error("Error compressing image: ", error);
+      }
+    }
   };
 
   //handle add category btn
@@ -107,7 +120,7 @@ const AddPakPadhati = () => {
 
     plantData.details.push(allName);
     plantData.image = images;
-    plantData.thumbnail = images[0];
+    // plantData.thumbnail = images[0];
     console.log(plantData);
 
     const resultAction = await dispatch(addPakPadhati(plantData));
@@ -127,7 +140,6 @@ const AddPakPadhati = () => {
       style={{ height: "70vh" }}
       className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
     >
-
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <div className="mb-4">

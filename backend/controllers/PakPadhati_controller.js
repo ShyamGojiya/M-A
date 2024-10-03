@@ -36,6 +36,9 @@ exports.addPakPadhati = catchAsyncErrors(async (req, res, next) => {
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: "MAPP",
+      transformation: [
+        { width: 800, height: 800, crop: "limit", quality: "auto:good" }, // Resize to a maximum of 800x800 and adjust quality
+      ],
     });
 
     imagesLinks.push({

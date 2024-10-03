@@ -29,7 +29,8 @@ export const addPakPadhati = createAsyncThunk(
     try {
       return await pakPadhatiService.addPakPadhati(plantData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

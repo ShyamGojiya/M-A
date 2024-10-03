@@ -24,8 +24,9 @@ const addPakPadhati = async (plantData) => {
     withCredentials: true,
     headers: { "Content-Type": "application/json" },
   };
-  console.log("service : ", plantData);
+  // console.log("service : ", plantData);
   const response = await axios.post(link, plantData, config);
+  console.log(response);
   if (response.data) {
     return response.data;
   }
