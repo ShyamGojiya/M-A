@@ -20,7 +20,6 @@ const detailsPakPadhati = async (plantData) => {
     withCredentials: true,
   };
   const response = await axios.get(link, config);
-  console.log(response);
   if (response.data) {
     return response.data;
   }

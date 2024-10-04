@@ -10,7 +10,7 @@ const Profile = () => {
   const { user, isLoading, isAuthenticated } = useSelector(
     (state) => state.user
   );
-
+  console.log(document.cookie);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
