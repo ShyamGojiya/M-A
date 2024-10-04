@@ -136,7 +136,6 @@ function Click() {
           </button>
           {singlePadhati?.details.map((value, index) => {
             return (
-              // index !== 0 && (
               <button
                 key={`button${index}`}
                 className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
@@ -145,13 +144,46 @@ function Click() {
                 {value.title}
               </button>
             );
-            // );
           })}
+          <button
+            className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+            onClick={() => toggleVisibility("images")}
+          >
+            ViewImg
+          </button>
         </section>
 
-        {visibleText === "textAll" && (
-          <Practices data={singlePadhati?.details} />
-        )}
+        {visibleText === "textAll" && <Practices data={singlePadhati} />}
+
+        {/* {visibleText === "images"
+          ? singlePadhati?.image.map((img, index) => (
+              <img src={img.url} alt={`image ${index}`} />
+            ))
+          : ""} */}
+
+        <div className="p-4">
+          {visibleText === "images" &&
+            (singlePadhati?.image.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {singlePadhati.image.map((img, index) => (
+                  <div
+                    key={index}
+                    className="relative overflow-hidden rounded-lg shadow-lg"
+                  >
+                    <img
+                      src={img.url}
+                      alt={`image ${index}`}
+                      className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500 text-lg font-semibold text-center">
+                No images available.
+              </p>
+            ))}
+        </div>
 
         <div className="container-fluid">
           {singlePadhati?.details.map(

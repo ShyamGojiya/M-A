@@ -29,7 +29,17 @@ export const addPakPadhati = createAsyncThunk(
     try {
       return await pakPadhatiService.addPakPadhati(plantData);
     } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const detailsPakPadhati = createAsyncThunk(
+  "pakPadhati/detailsPakPadhati",
+  async (thunkAPI) => {
+    try {
+      return await pakPadhatiService.detailsPakPadhati();
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -58,6 +68,21 @@ export const pakPadhatiSlice = createSlice({
         state.pakPadhati = action.payload;
       })
       .addCase(addPakPadhati.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(detailsPakPadhati.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(detailsPakPadhati.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.pakPadhati = action.payload;
+      })
+      .addCase(detailsPakPadhati.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

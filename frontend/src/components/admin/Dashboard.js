@@ -69,7 +69,7 @@ const Dashboard = () => {
                   label: "Add PakPadhati",
                 },
                 {
-                  key: "view",
+                  key: "view-pakpadhati",
                   icon: <AiOutlineShoppingCart className="fs-4" />,
                   label: "View PakPadhati",
                 },

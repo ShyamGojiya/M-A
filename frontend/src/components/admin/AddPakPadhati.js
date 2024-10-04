@@ -37,7 +37,7 @@ const AddPakPadhati = () => {
   const [desc, setDesc] = useState("");
 
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("0");
   const [c1, setC1] = useState("");
 
   const createProductImagesChange = async (e) => {
@@ -50,8 +50,8 @@ const AddPakPadhati = () => {
       try {
         // Compress the image
         const options = {
-          maxSizeMB: 0.05, // Set the maximum size in MB
-          maxWidthOrHeight: 800, // Set the maximum width or height
+          maxSizeMB: 0.01, // Set the maximum size in MB
+          maxWidthOrHeight: 700, // Set the maximum width or height
           useWebWorker: true, // Use a web worker for better performance
         };
         const compressedFile = await imageCompression(file, options);
@@ -75,14 +75,22 @@ const AddPakPadhati = () => {
   //handle add category btn
   const handleAddCategory = () => {
     //push category object to main data
-    plantData.details.push({
-      title: selectedCategory,
-      desc: c1,
-    });
+    if (selectedCategory === "0") {
+      toast.error("Enter CategoryData!!");
+    } else {
+      categories.push({
+        title: selectedCategory,
+        desc: c1.length > 30 ? c1.slice(0, 30) + "..." : c1,
+      });
+      plantData.details.push({
+        title: selectedCategory,
+        desc: c1,
+      });
 
-    //clear category section data
-    setSelectedCategory("");
-    setC1("");
+      //clear category section data
+      setSelectedCategory("0");
+      setC1("");
+    }
   };
 
   //clear add field after submit button
@@ -120,8 +128,7 @@ const AddPakPadhati = () => {
 
     plantData.details.push(allName);
     plantData.image = images;
-    // plantData.thumbnail = images[0];
-    console.log(plantData);
+    plantData.thumbnail = images[0];
 
     const resultAction = await dispatch(addPakPadhati(plantData));
     if (addPakPadhati.fulfilled.match(resultAction)) {
@@ -156,10 +163,9 @@ const AddPakPadhati = () => {
             required
           />
         </div>
-
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700 mb-1" htmlFor="thumbnail">
-            Thumbnail URL
+            Upload Image
           </label>
           <input
             type="file"
@@ -171,13 +177,65 @@ const AddPakPadhati = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-
-        <div id="createProductFormImage">
-          {imagesPreview.map((image, index) => (
-            <img key={index} src={image} alt="Product Preview" />
-          ))}
+        <div id="createProductFormImage" className="p-4">
+          {imagesPreview.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {imagesPreview.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative overflow-hidden rounded-lg shadow-lg"
+                >
+                  <img
+                    src={image}
+                    alt={`Product Preview ${index}`}
+                    className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 text-lg font-semibold text-center">
+              No images uploaded.
+            </p>
+          )}
+        </div> */}
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-1" htmlFor="thumbnail">
+            Upload Image
+          </label>
+          <input
+            type="file"
+            name="thumbnail"
+            id="thumbnail"
+            accept="image/*"
+            onChange={createProductImagesChange}
+            multiple
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-400"
+          />
         </div>
 
+        <div id="createProductFormImage" className="p-4">
+          {imagesPreview.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {imagesPreview.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative overflow-hidden rounded-lg shadow-lg"
+                >
+                  <img
+                    src={image}
+                    alt={`Product Preview ${index}`}
+                    className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 font-semibold text-center">
+              No images uploaded.
+            </p>
+          )}
+        </div>
         <h3 className="text-lg font-semibold mb-2">Names:</h3>
         {/* {plantData.details.map((detail, index) => ( */}
         <div className="mb-6">
@@ -256,9 +314,7 @@ const AddPakPadhati = () => {
           />
         </div>
         {/* ))} */}
-
         <h3 className="text-lg font-semibold mb-2">Category Section:</h3>
-
         <div className="mb-4">
           <label className="block text-gray-700 mb-1">Select Title</label>
           <select
@@ -266,16 +322,25 @@ const AddPakPadhati = () => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option value="">Select a Title</option>
-            <option value="Title 1">Title 1</option>
-            <option value="Title 2">Title 2</option>
-            <option value="Title 3">Title 3</option>
+            <option value={0}>--Select--</option>
+            <option>સુધારેલી જાત</option>
+            <option>જમીન અને આબોહવા</option>
+            <option>વાવણીનો સમય</option>
+            <option>ખેડ</option>
+            <option>ખાતર</option>
+            <option>બીજ અને વાવણી</option>
+            <option>પિયત</option>
+            <option>નીંદામણ</option>
+            <option>રોગ અને તેનું નિયંત્રણ</option>
+            <option>જીવાત અને તેનું નિયંત્રણ</option>
+            <option>કાપણી</option>
+            <option>ઉત્પાદન</option>
           </select>
 
           <label className="block text-gray-700 mb-1" htmlFor="c1">
             {selectedCategory} Description
           </label>
-          <input
+          <textarea
             type="text"
             id="c1"
             value={c1}
@@ -291,20 +356,19 @@ const AddPakPadhati = () => {
             Add Category
           </button>
         </div>
-
+        {console.log(categories)}
         {categories.length > 0 && (
           <div className="mb-4">
             <h4 className="text-lg font-semibold mb-2">Added Categories:</h4>
             <ul className="list-disc ml-5">
               {categories.map((cat, index) => (
                 <li key={index} className="text-gray-700">
-                  {cat.category} - C1: {cat.c1}, C2: {cat.c2}
+                  {cat.title} : {cat.desc}
                 </li>
               ))}
             </ul>
           </div>
         )}
-
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"

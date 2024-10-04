@@ -1,11 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import {
-  Routes,
-  Route,
-  useLocation,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import Footer from "./components/home/Footer";
 import Navbar from "./components/home/Navbar";
 import Cards from "./components/practices/Cards";
@@ -25,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { myProfileDetails } from "./features/User/userSlice";
 import Dashboard from "./components/admin/Dashboard";
 import AddPakPadhati from "./components/admin/AddPakPadhati";
+import DetailsPakPadhati from "./components/admin/DetailsPakPadhati";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,34 +33,38 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter> */}
+      {/* react hot toast */}
       <Toaster />
+
+      {/* Main Navbar */}
       {!isAdmin && <Navbar />}
 
-        <Routes>
-          {/* User Router */}
-          <Route path="/" element={<Home />} />
-          <Route path="/practices" element={<Cards />} />
-          <Route path="/practices/:id" element={<Click />} />
-          <Route path="/information" element={<UsesCards />} />
-          <Route path="/information/:id" element={<Single_Mahiti />} />
-          <Route path="/purchase" element={<ProductList />} />
-          <Route path="/purchase/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/about" element={<MainAbout />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-
-
+      <Routes>
+        {/* User Router */}
+        <Route path="/" element={<Home />} />
+        <Route path="/practices" element={<Cards />} />
+        <Route path="/practices/:id" element={<Click />} />
+        <Route path="/information" element={<UsesCards />} />
+        <Route path="/information/:id" element={<Single_Mahiti />} />
+        <Route path="/purchase" element={<ProductList />} />
+        <Route path="/purchase/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/about" element={<MainAbout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />}>
           <Route path="add-pakpadhati" element={<AddPakPadhati />} />
+          <Route path="view-pakpadhati" element={<DetailsPakPadhati />} />
         </Route>
       </Routes>
+
+      {/* ScrollToTop button */}
       <div>{!isAdmin && <ScrollToTopButton />}</div>
+
+      {/* Footer */}
       <div>{!isAdmin && <Footer />}</div>
-      {/* </BrowserRouter> */}
     </>
   );
 }

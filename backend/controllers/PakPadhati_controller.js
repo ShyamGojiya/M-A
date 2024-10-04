@@ -37,7 +37,7 @@ exports.addPakPadhati = catchAsyncErrors(async (req, res, next) => {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: "MAPP",
       transformation: [
-        { width: 800, height: 800, crop: "limit", quality: "auto:good" }, // Resize to a maximum of 800x800 and adjust quality
+        { width: 700, height: 700, crop: "limit", quality: "auto:good" }, // Resize to a maximum of 800x800 and adjust quality
       ],
     });
 
@@ -51,7 +51,7 @@ exports.addPakPadhati = catchAsyncErrors(async (req, res, next) => {
   console.log(req.body);
 
   const data = await pakPadhati.create(req.body);
-  res.send({ success: true, data });
+  res.send({ success: true, message: "PakPadhati Added Successfully!!" });
 });
 
 //delete all records

@@ -5,7 +5,25 @@ import { useNavigate } from "react-router-dom";
 function Practices(props) {
   return (
     <div className="container-fluid">
-      {props?.data?.map((value, index) => (
+      <div className="p-4">
+        {props?.data?.image.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {props?.data?.image?.map((img, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-lg shadow-lg"
+              >
+                <img
+                  src={img.url}
+                  alt={`image ${index}`}
+                  className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {props?.data?.details?.map((value, index) => (
         <div
           key={index}
           id={`content${index}`}
