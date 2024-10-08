@@ -129,7 +129,7 @@ function Click() {
 
         <section className="my-2 text-center">
           <button
-            className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+            className="button m-1 px-4 py-2 font-semibold text-lg sm:text-base xs:text-sm"
             onClick={() => toggleVisibility("textAll")}
           >
             બધી વિગતો વાંચો
@@ -138,7 +138,7 @@ function Click() {
             return (
               <button
                 key={`button${index}`}
-                className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+                className="button m-1 font-semibold px-4 py-2 text-lg sm:text-base xs:text-sm"
                 onClick={() => toggleVisibility(`text${index}`)}
               >
                 {value.title}
@@ -146,14 +146,14 @@ function Click() {
             );
           })}
           <button
-            className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
+            className="button rounded-4 m-1 px-4 py-2 font-semibold text-lg sm:text-base xs:text-sm"
             onClick={() => toggleVisibility("images")}
           >
-            ViewImg
+            છબીઓ
           </button>
         </section>
 
-        {visibleText === "textAll" && <Practices data={singlePadhati} />}
+        {visibleText === "textAll" && <Practices data={singlePadhati} clr={randomColor} />}
 
         {/* {visibleText === "images"
           ? singlePadhati?.image.map((img, index) => (
@@ -189,9 +189,10 @@ function Click() {
           {singlePadhati?.details.map(
             (value, index) =>
               visibleText === `text${index}` && (
-                <div key={index} id={`content${index}`} className="content">
+                <div key={index} id={`content${index}`} className="content font-semibold bg-slate-300 p-2">
                   <h2>
-                    <b>{value.title}</b>
+                    <button style={{ background: randomColor }} className="text-white font-semibold rounded-full p-1">{value.title}</button>
+                    <hr className="text-red-600 mb-1 mt-1"></hr>
                   </h2>
                   {value.title === "નામ અને પર્યાય" && (
                     <ul>
@@ -207,28 +208,31 @@ function Click() {
                     <div className="row">
                       {value.desc.map((val, subIndex) => (
                         <div key={subIndex} className="col col-6">
-                          <h3>
-                            <b>{val.title}</b>
-                          </h3>
+                          <div>
+                            <h3>
+                              <b className="text-red-600">{val.title}</b>
+                            </h3>
+
+                          </div>
                           {Array.isArray(val.desc) ? (
                             <ul>
                               {val.desc.map((item, itemIndex) => (
                                 <li
                                   key={itemIndex}
-                                  className="text text-justify"
+                                  className="text text-red-600 text-justify"
                                 >
                                   {item}
                                 </li>
                               ))}
                             </ul>
                           ) : (
-                            <p className="text text-justify">{val.desc}</p>
+                            <p className="text text-red-600 text-justify">{val.desc}</p>
                           )}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <p className="text text-justify">{value.desc}</p>
+                    <p className="text font-semibold text-justify">{value.desc}</p>
                   )}
                 </div>
               )

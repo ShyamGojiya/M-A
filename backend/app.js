@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true })); // Adjust as nec
 app.use(fileupload());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://10.112.61.93:3000"],
+    origin: ["http://localhost:3000", "http://10.112.72.92:3000", "http://10.112.61.93:3000", "http://10.112.72.0:3000"],
     credentials: true,
   })
 );

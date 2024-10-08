@@ -61,23 +61,25 @@ nav {
     margin-top: 1rem;
 }
 
-.contentnew{
+/* .contentnew {
 
     border-radius: 2.5% 2.5% 25% 44% / 70% 70% 0 0;
+} */
+
+h3 {
+    margin-top: 1rem;
+    ;
 }
 
-h3{
-    margin-top: 1rem;;
-}
-.image-style{
-    width: 100%;    
+.image-style {
+    width: 100%;
 }
 
-.aa{
+.aa {
     width: 100%;
     height: auto;
 }
 
-P{
+P {
     text-align: justify;
 }

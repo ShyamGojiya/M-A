@@ -117,7 +117,7 @@ function Single_Mahiti() {
           }
         `}
       </style>
-{/* 
+      {/* 
           <div>
             <UseDetails/>
           </div> */}
@@ -157,11 +157,11 @@ function Single_Mahiti() {
 
         <div className="container-fluid">
           {PakMahiti?.uses.map((value, index) => (
-            <div key={index} id={`content${index}`}  className="content bg-slate-300 p-2  border-3 border-sky-600">
-              <h2 className="mb-2">
+            <div key={index} id={`content${index}`} className="content bg-slate-300 p-2  border-3 border-sky-600">
+              <h2 className="mb-0">
                 <button style={{ background: randomColor }} className="bg-red-600 text-white rounded-full p-2 text-md font-semibold">{value.title}</button>
-                <hr className="text-red-600"/>
-                <br/>
+                <hr className="text-red-600 mt-1" />
+                <br />
               </h2>
               <p className="text text-justify font-semibold">{value.uses}</p>
             </div>
