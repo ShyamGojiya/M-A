@@ -15,7 +15,7 @@ cloudinary.config({
 });
 
 const PORT = process.env.PORT;
-const IP_ADDRESS = process.env.IP_ADDRESS;
+const IP_ADDRESS = process.env.IP_ADDRESS3;
 
 //server connect
 const server = app.listen(PORT, IP_ADDRESS, () => {
