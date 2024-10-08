@@ -1,28 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { pakPadhatiService } from "./pakPadhatiService";
 
-// export const allPakPadhati = createAsyncThunk(
-//   "pakPadhati/getAll",
-//   async (thunkAPI) => {
-//     try {
-//       return await pakPadhatiService.allPakPadhati();
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
-
-// export const singlePakPadhati = createAsyncThunk(
-//   "pakPadhati/singlePakPadhati",
-//   async (id, thunkAPI) => {
-//     try {
-//       return await pakPadhatiService.singlePakPadhati(id);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
-
 export const addPakPadhati = createAsyncThunk(
   "pakPadhati/addPakPadhati",
   async (plantData, thunkAPI) => {
@@ -39,6 +17,17 @@ export const detailsPakPadhati = createAsyncThunk(
   async (thunkAPI) => {
     try {
       return await pakPadhatiService.detailsPakPadhati();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deletePakPadhati = createAsyncThunk(
+  "pakPadhati/deletePakPadhati",
+  async (id, thunkAPI) => {
+    try {
+      return await pakPadhatiService.deletePakPadhati(id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -83,6 +72,21 @@ export const pakPadhatiSlice = createSlice({
         state.pakPadhati = action.payload;
       })
       .addCase(detailsPakPadhati.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(deletePakPadhati.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deletePakPadhati.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = "Delete Successfully!!";
+      })
+      .addCase(deletePakPadhati.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

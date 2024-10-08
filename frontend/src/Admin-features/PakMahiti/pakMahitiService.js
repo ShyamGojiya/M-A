@@ -1,8 +1,8 @@
 import axios from "axios";
 import { REACT_APP_BACKEND_URL } from "../../config";
 
-const addPakPadhati = async (plantData) => {
-  const link = REACT_APP_BACKEND_URL + `/pakPadhati`;
+const addPakMahiti = async (plantData) => {
+  const link = REACT_APP_BACKEND_URL + `/PakMahiti`;
   const config = {
     withCredentials: true,
     headers: { "Content-Type": "application/json" },
@@ -14,8 +14,8 @@ const addPakPadhati = async (plantData) => {
   }
 };
 
-const detailsPakPadhati = async () => {
-  const link = REACT_APP_BACKEND_URL + `/pakPadhati`;
+const detailsPakMahiti = async () => {
+  const link = REACT_APP_BACKEND_URL + `/pakmahiti`;
   const config = {
     withCredentials: true,
   };
@@ -25,8 +25,8 @@ const detailsPakPadhati = async () => {
   }
 };
 
-const deletePakPadhati = async (id) => {
-  const link = REACT_APP_BACKEND_URL + `/pakPadhati/${id}`;
+const deletePakMahiti = async (id) => {
+  const link = REACT_APP_BACKEND_URL + `/pakmahiti/${id}`;
   const config = {
     withCredentials: true,
   };
@@ -36,8 +36,8 @@ const deletePakPadhati = async (id) => {
   }
 };
 
-export const pakPadhatiService = {
-  addPakPadhati,
-  detailsPakPadhati,
-  deletePakPadhati,
+export const PakMahitiService = {
+  addPakMahiti,
+  detailsPakMahiti,
+  deletePakMahiti,
 };

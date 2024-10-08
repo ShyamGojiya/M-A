@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsPakPadhati } from "../../Admin-features/PakPadhati/pakPadhatiSlice";
+import { deletePakPadhati, detailsPakPadhati } from "../../Admin-features/PakPadhati/pakPadhatiSlice";
 import { ResponsiveTable } from "responsive-table-react";
+import toast from  "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const DetailsPakPadhati = () => {
   const dispatch = useDispatch();
@@ -11,7 +13,18 @@ const DetailsPakPadhati = () => {
   }, []);
 
   const { data } = useSelector((state) => state.AdminPakPadhati?.pakPadhati);
-  console.log(data);
+
+  const handleDelete = async (e,id)=>{
+    const resultAction = await dispatch(deletePakPadhati(id));
+    if (deletePakPadhati.fulfilled.match(resultAction)) {
+      toast.success("pakPadhati deleted Successfully!!", {
+        position: "top-right",
+      });
+      dispatch(detailsPakPadhati());
+    } else {
+      toast.error(resultAction.payload, { position: "top-right" });
+    }
+  }
 
   const columns = [
     {
@@ -42,8 +55,8 @@ const DetailsPakPadhati = () => {
       Id: index + 1,
       plantName: data[index].plantName,
       Image:<img src={data[index].thumbnail} alt={`image ${index+1}`} style={{width:"50px"}}/>,
-      View: "view",
-      Delete: "deletet",
+      View: <Link to={`/practices/${data[index]._id}`}><i class="fa-solid fa-eye"></i></Link>,
+      Delete: <button onClick={(e)=>handleDelete(e,data[index]._id)}><i class="fa-solid fa-trash" /></button>
     });
   }
 
