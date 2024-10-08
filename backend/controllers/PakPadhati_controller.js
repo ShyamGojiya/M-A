@@ -60,6 +60,11 @@ exports.deleteAllPadhati = catchAsyncErrors(async (req, res, next) => {
   res.status(200).send({ success: true, message: "all data deleted" });
 });
 
+exports.deletePakPadhati = catchAsyncErrors(async (req, res, next) => {
+  await pakPadhati.deleteOne({ _id: req.params.id });
+  res.status(200).send({ success: true, message: "Deleted  Successfully!!" });
+});
+
 //get single PakPadhati
 exports.getSinglePakPadhati = catchAsyncErrors(async (req, res, next) => {
   const data = await pakPadhati.findById(req.params.id);
