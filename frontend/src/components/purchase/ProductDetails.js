@@ -129,117 +129,119 @@ const ProductDetails = () => {
         >
           <MdOutlineKeyboardBackspace /> ખરીદવાનું ચાલુ રાખો
         </button>
-        <div className="flex flex-col justify-between lg:flex-row gap-16 lg:items-start max-sm:gap-4">
+        <div className="flex flex-col justify-between lg:flex-row gap-0 lg:items-start max-sm:gap-4">
           {/* Images Section */}
           <div className="sticky flex max-sm:flex-col gap-6 max-sm:gap-2 lg:w-2/4">
             <img
               src={product?.image}
               alt=""
-              className="w-4/5 self-center object-cover rounded-xl max-sm:w-full"
+              className="w-3/5 self-center object-cover rounded-xl max-sm:w-full"
             />
           </div>
           {/* Product Details */}
           <div className="flex flex-col lg:w-2/4 ">
-            {/* Heading */}
-            <div className="pl-2 border-l-2 border-hbr">
-              <span className="text-green-600 font-semibold max-sm:text-sm">
-                ઔષધીય અને સુગંધિત છોડ સંશોધન કેન્દ્ર
-              </span>
-              <h2 className="text-3xl font-bold max-sm:text-xl">
-                {product?.title}
-              </h2>
-            </div>
-            <p className="text-green-700 mt-3 font-semibold text-justify max-sm:text-xs">
-              કિંમત
-            </p>
-            {/* Price */}
-            <div className="flex flex-row items-baseline gap-2">
-              <h6 className="text-3xl font-semibold max-sm:text-2xl">
-                ₹{" "}
-                {Math.ceil(
-                  product?.price - product?.price * (product?.discount / 100)
-                )}
-              </h6>
-              <span className="text-lg font-semibold line-through text-gray-400 max-sm:text-sm">
-                ₹ {product?.price}
-              </span>
-              <span className="text-green-700 text-2xl font-semibold max-sm:text-lg">
-                {product?.discount}% off
-              </span>
-            </div>
-
-            {/* LIne */}
-            <hr className="my-2" />
-
-            {/* Quantity */}
-            <div className="flex flex-row flex-wrap items-center gap-6">
-              <span className="flex flex-row items-center gap-2 text-green-800 font-semibold text-xl max-sm:text-lg">
-                <FaBoxes /> જથ્થો:
-              </span>
-              <div className="flex flex-row items-center">
-                <button
-                  className="bg-gray-200 py-2 px-2 rounded-lg text-green-800 text-2xl max-sm:text-lg"
-                  onClick={() => handleQty("-")}
-                >
-                  <BiMinus />
-                </button>
-                <span className="py-4 px-3 rounded-lg max-sm:text-sm">
-                  {qty}
+            <div className="border-l-2 border-green-600 p-4">
+              {/* Heading */}
+              <div className="">
+                <span className="text-green-600 font-semibold max-sm:text-sm">
+                  ઔષધીય અને સુગંધિત છોડ સંશોધન કેન્દ્ર
                 </span>
+                <h2 className="text-3xl font-bold max-sm:text-xl">
+                  {product?.title}
+                </h2>
+              </div>
+              <p className="text-green-700 mt-3 font-semibold text-justify max-sm:text-xs">
+                કિંમત
+              </p>
+              {/* Price */}
+              <div className="flex flex-row items-baseline gap-2">
+                <h6 className="text-3xl font-semibold max-sm:text-2xl">
+                  ₹{" "}
+                  {Math.ceil(
+                    product?.price - product?.price * (product?.discount / 100)
+                  )}
+                </h6>
+                <span className="text-lg font-semibold line-through text-gray-400 max-sm:text-sm">
+                  ₹ {product?.price}
+                </span>
+                <span className="text-green-700 text-2xl font-semibold max-sm:text-lg">
+                  {product?.discount}% off
+                </span>
+              </div>
+
+              {/* LIne */}
+              <hr className="my-2" />
+
+              {/* Quantity */}
+              <div className="flex flex-row flex-wrap items-center gap-6">
+                <span className="flex flex-row items-center gap-2 text-green-800 font-semibold text-xl max-sm:text-lg">
+                  <FaBoxes /> જથ્થો:
+                </span>
+                <div className="flex flex-row items-center">
+                  <button
+                    className="bg-gray-200 py-2 px-2 rounded-lg text-green-800 text-2xl max-sm:text-lg"
+                    onClick={() => handleQty("-")}
+                  >
+                    <BiMinus />
+                  </button>
+                  <span className="py-4 px-3 rounded-lg max-sm:text-sm">
+                    {qty}
+                  </span>
+                  <button
+                    className="bg-gray-200 py-2 px-2 rounded-lg text-green-800 text-2xl max-sm:text-lg"
+                    onClick={() => handleQty("+")}
+                  >
+                    <BiPlus />
+                  </button>
+                </div>
+              </div>
+
+              {/* Add to Cart & Add to Whishlist */}
+              <div className="flex flex-row flex-wrap items-center gap-6 my-4">
                 <button
-                  className="bg-gray-200 py-2 px-2 rounded-lg text-green-800 text-2xl max-sm:text-lg"
-                  onClick={() => handleQty("+")}
+                  //className="border-2 rounded-lg p-2 font-semibold border-green-800 hover:bg-red-600 hover:text-white"
+                  className="flex flex-row gap-1 items-center bg-slate-100 text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-green-800 hover:text-white"
+                  onClick={handlePayment}
                 >
-                  <BiPlus />
+                  અત્યારે જ ઓર્ડર કરો
+                </button>
+                <button
+                  onClick={handleAddToCart}
+                  className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-slate-100  font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-slate-100 hover:text-green-900"
+                >
+                  <HiOutlineShoppingCart /> Add to Cart
                 </button>
               </div>
-            </div>
 
-            {/* Add to Cart & Add to Whishlist */}
-            <div className="flex flex-row flex-wrap items-center gap-6 my-4">
-              <button
-                //className="border-2 rounded-lg p-2 font-semibold border-green-800 hover:bg-red-600 hover:text-white"
-                className="flex flex-row gap-1 items-center bg-slate-100 text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-green-800 hover:text-white"
-                onClick={handlePayment}
-              >
-                અત્યારે જ ઓર્ડર કરો
-              </button>
-              <button
-                onClick={handleAddToCart}
-                className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-slate-100  font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-slate-100 hover:text-green-900"
-              >
-                <HiOutlineShoppingCart /> Add to Cart
-              </button>
-            </div>
+              {/* Line */}
+              <hr className="my-3" />
 
-            {/* Line */}
-            <hr className="my-3" />
-
-            <div className="my-4">
-              <div
-                className="flex flex-row items-center justify-between font-bold cursor-pointer"
-                onClick={() => setOpen(!open)}
-              >
-                <h2
-                  className={
-                    open
-                      ? "text-br text-lg max-sm:text-sm"
-                      : "text-lg max-sm:text-sm"
-                  }
+              <div className="my-4">
+                <div
+                  className="flex flex-row items-center justify-between font-bold cursor-pointer"
+                  onClick={() => setOpen(!open)}
                 >
-                  વધુ માહિતી
-                </h2>
-                {open ? (
-                  <FaChevronUp className="text-xl text-br font-thin max-sm:text-sm" />
-                ) : (
-                  <FaChevronDown className="text-xl font-thin max-sm:text-sm" />
+                  <h2
+                    className={
+                      open
+                        ? "text-br text-lg max-sm:text-sm"
+                        : "text-lg max-sm:text-sm"
+                    }
+                  >
+                    વધુ માહિતી
+                  </h2>
+                  {open ? (
+                    <FaChevronUp className="text-xl text-br font-thin max-sm:text-sm" />
+                  ) : (
+                    <FaChevronDown className="text-xl font-thin max-sm:text-sm" />
+                  )}
+                </div>
+                {open && (
+                  <div className="text-justify p-2 max-sm:text-sm">
+                    <p>{product?.desc}</p>
+                  </div>
                 )}
               </div>
-              {open && (
-                <div className="text-justify p-2 max-sm:text-sm">
-                  <p>{product?.desc}</p>
-                </div>
-              )}
             </div>
           </div>
         </div>

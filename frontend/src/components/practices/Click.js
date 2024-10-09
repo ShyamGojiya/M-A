@@ -161,10 +161,10 @@ function Click() {
             ))
           : ""} */}
 
-        <div className="p-4">
+        <div className="">
           {visibleText === "images" &&
             (singlePadhati?.image.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="w-full bg-slate-200 p-4 h-90 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {singlePadhati.image.map((img, index) => (
                   <div
                     key={index}
@@ -173,7 +173,7 @@ function Click() {
                     <img
                       src={img.url}
                       alt={`image ${index}`}
-                      className="w-full h-full object-cover rounded-lg transition-transform duration-200 transform hover:scale-105" // Set image to fill the container
+                      className="max-h-50 w-full h-full object-cover rounded-lg transition-transform duration-200 transform hover:scale-105" // Set image to fill the container
                     />
                   </div>
 
