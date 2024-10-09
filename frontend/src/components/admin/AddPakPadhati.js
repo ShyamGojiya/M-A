@@ -144,8 +144,8 @@ const AddPakPadhati = () => {
 
   return (
     <div
-      style={{ height: "70vh" }}
-      className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
+      style={{ height: "75vh" }}
+      className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
     >
       <h2 className="text-2xl font-bold mb-4">Plant Information Form</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>

@@ -168,14 +168,15 @@ function Click() {
                 {singlePadhati.image.map((img, index) => (
                   <div
                     key={index}
-                    className="relative overflow-hidden rounded-lg shadow-lg"
+                    className="w-200 h-200"
                   >
                     <img
                       src={img.url}
                       alt={`image ${index}`}
-                      className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
+                      className="w-full h-full object-cover rounded-lg transition-transform duration-200 transform hover:scale-105" // Set image to fill the container
                     />
                   </div>
+
                 ))}
               </div>
             ) : (
