@@ -7,8 +7,8 @@ const {
 } = require("../controllers/PakMahiti_controllers");
 const app = express.Router();
 
-app.post("/", addPakMahiti);
 app.get("/", getAllPakMahiti);
+app.post("/", addPakMahiti);
 app.delete("/del/:id", deletePakMahiti);
 app.get("/sing/:id", getSinglePakMahiti);
 

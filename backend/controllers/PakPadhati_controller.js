@@ -61,6 +61,10 @@ exports.deleteAllPadhati = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.deletePakPadhati = catchAsyncErrors(async (req, res, next) => {
+  const PakPadhati = await pakPadhati.findById(req.params.id);
+  for (let i = 0; i < PakPadhati.image.length; i++) {
+    await cloudinary.v2.uploader.destroy(PakPadhati.image[i].public_id);
+  }
   await pakPadhati.deleteOne({ _id: req.params.id });
   res.status(200).send({ success: true, message: "Deleted  Successfully!!" });
 });

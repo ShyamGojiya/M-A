@@ -54,7 +54,7 @@ export const PakMahitiSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.PakMahiti = action.payload;
+        state.pakMahiti = action.payload;
       })
       .addCase(addPakMahiti.rejected, (state, action) => {
         state.isLoading = false;

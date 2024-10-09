@@ -7,12 +7,35 @@ Kharido    : product Kharido
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const pakMahiti = require("../models/pakNiMahiti");
 const ErrorHandler = require("../utils/errorHandlers");
+const cloudinary = require("cloudinary");
 
 //insert new pakMahiti
 exports.addPakMahiti = catchAsyncErrors(async (req, res, next) => {
-  // const data = await pakPadhati.insertMany(pak_data);
-  const data = await pakMahiti.insertMany(req.body);
-  res.send({ success: true, total: data.length, data });
+  let images = [];
+
+  if (typeof req.body.image === "string") {
+    images.push(req.body.image);
+  } else {
+    images = req.body.image;
+  }
+
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i], {
+      folder: "MAPP",
+    });
+
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+
+  req.body.image = imagesLinks;
+  console.log(req.body);
+  const data = await pakMahiti.create(req.body);
+  res.send({ success: true, message: "PakPadhati Added Successfully!!", data });
 });
 
 //get all pakmahiti

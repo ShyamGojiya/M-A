@@ -8,6 +8,18 @@ const pakNiMahiti = new mongoose.Schema(
     thumbnail: {
       type: String,
     },
+    image: [
+      {
+        public_id: {
+          type: String,
+          required: true,
+        },
+        url: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     uses: {
       type: ["Mixed"],
     },

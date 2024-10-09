@@ -21,6 +21,8 @@ import { myProfileDetails } from "./features/User/userSlice";
 import Dashboard from "./components/admin/Dashboard";
 import AddPakPadhati from "./components/admin/AddPakPadhati";
 import DetailsPakPadhati from "./components/admin/DetailsPakPadhati";
+import AddPakMahiti from "./components/admin/AddPakMahiti";
+import DetailsPakMahiti from "./components/admin/DetailsPakMahiti";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +59,8 @@ function App() {
         <Route path="/admin" element={<Dashboard />}>
           <Route path="add-pakpadhati" element={<AddPakPadhati />} />
           <Route path="view-pakpadhati" element={<DetailsPakPadhati />} />
+          <Route path="add-pakmahiti" element={<AddPakMahiti />} />
+          <Route path="view-pakmahiti" element={<DetailsPakMahiti />} />
         </Route>
       </Routes>
 
