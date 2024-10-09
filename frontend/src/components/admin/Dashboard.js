@@ -31,7 +31,6 @@ const Dashboard = () => {
 
   return (
     <>
-
       <style>
         {`
 
@@ -90,12 +89,12 @@ const Dashboard = () => {
                 label: "Pak Mahiti",
                 children: [
                   {
-                    key: "coupon",
+                    key: "add-pakmahiti",
                     icon: <ImBlog className="fs-4" />,
                     label: "Add PakMahiti",
                   },
                   {
-                    key: "coupon-list",
+                    key: "view-pakmahiti",
                     icon: <RiCouponLine className="fs-4" />,
                     label: "View Pakmihiti",
                   },
@@ -177,7 +176,10 @@ const Dashboard = () => {
 
                   {/* <p className="mb-0">profile/signout</p> */}
                 </div>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuLink"
+                >
                   <li>
                     <Link
                       className="dropdown-item py-1 mb-1"
