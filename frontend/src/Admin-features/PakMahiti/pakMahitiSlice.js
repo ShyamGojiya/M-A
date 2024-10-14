@@ -39,6 +39,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  message: "",
 };
 
 export const PakMahitiSlice = createSlice({
@@ -54,9 +55,38 @@ export const PakMahitiSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.pakMahiti = action.payload;
       })
       .addCase(addPakMahiti.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(detailsPakMahiti.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(detailsPakMahiti.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.pakMahiti = action.payload;
+      })
+      .addCase(detailsPakMahiti.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(deletePakMahiti.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deletePakMahiti.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = "Delete Successfully!!";
+      })
+      .addCase(deletePakMahiti.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

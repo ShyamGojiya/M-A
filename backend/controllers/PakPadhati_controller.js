@@ -22,7 +22,7 @@ exports.getAllPakPadhati = catchAsyncErrors(async (req, res, next) => {
 
 //insert new PakPadhati
 exports.addPakPadhati = catchAsyncErrors(async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   let images = [];
 
   if (typeof req.body.image === "string") {

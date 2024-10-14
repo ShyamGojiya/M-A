@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPakPadhati } from "../../Admin-features/PakPadhati/pakPadhatiSlice";
 import toast from "react-hot-toast";
 import imageCompression from "browser-image-compression";
 import { addPakMahiti } from "../../Admin-features/PakMahiti/pakMahitiSlice";
@@ -9,7 +8,6 @@ const AddPakMahiti = () => {
   const dispatch = useDispatch();
   const [plantData, setPlantData] = useState({
     plantName: "",
-    thumbnail: "",
     image: [],
     uses: [],
   });
@@ -32,7 +30,6 @@ const AddPakMahiti = () => {
         // Compress the image
         const options = {
           maxSizeMB: 0.1, // Set the maximum size in MB
-          // maxWidthOrHeight: 700, // Set the maximum width or height
           useWebWorker: true, // Use a web worker for better performance
         };
         const compressedFile = await imageCompression(file, options);
@@ -97,17 +94,18 @@ const AddPakMahiti = () => {
     e.preventDefault();
     plantData.plantName = plantName;
     plantData.image = images;
-    plantData.thumbnail = images[0];
-    // console.log(plantData);
+    // plantData.thumbnail = {};
     const resultAction = await dispatch(addPakMahiti(plantData));
-    if (addPakPadhati.fulfilled.match(resultAction)) {
+    if (addPakMahiti.fulfilled.match(resultAction)) {
       toast.success("pakPadhati added Successfully!!", {
         position: "top-right",
       });
       //after success submit clear fields
       clearAllData();
     } else {
-      toast.error(resultAction.payload || "An error occurred", { position: "top-right" });
+      toast.error(resultAction.payload || "An error occurred", {
+        position: "top-right",
+      });
     }
   };
 

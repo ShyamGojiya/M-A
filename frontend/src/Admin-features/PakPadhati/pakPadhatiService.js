@@ -8,7 +8,7 @@ const addPakPadhati = async (plantData) => {
     headers: { "Content-Type": "application/json" },
   };
   const response = await axios.post(link, plantData, config);
-  console.log(response);
+  // console.log(response);
   if (response.data) {
     return response.data;
   }
