@@ -29,14 +29,19 @@ const UsesCards = () => {
               >
                 <div>
                   <img
-                    src={value.thumbnail || imgISB}
-                    className="w-60 h-60 rounded-xl "
+                    src={
+                      typeof value.thumbnail === "string"
+                        ? value.thumbnail
+                        : value.thumbnail.url
+                    }
+                    className="w-60 h-60 rounded-xl"
                     alt=""
                   />
                 </div>
-
                 <span className="w-full text-center font-bold py-6 text-lg">
-                  {value.plantName}
+                  {value.plantName.length > 20
+                    ? value.plantName.slice(0, 20) + "..."
+                    : value.plantName}
                 </span>
                 <Link to={`/information/${value._id}`} className="w-full">
                   <button className="w-full rounded-full bg-br hover:bg-hbr text-white font-semibold py-1.5">

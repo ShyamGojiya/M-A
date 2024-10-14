@@ -131,14 +131,14 @@ function Single_Mahiti() {
           </h1>
         </div>
 
-        <section className="my-2 text-center">
-          {/* <button
+        {/* <section className="my-2 text-center"> */}
+        {/* <button
             className="button m-1 px-4 py-2 text-lg sm:text-base xs:text-sm"
             onClick={() => toggleVisibility("textAll")}
           >
             બધી વિગતો વાંચો
           </button> */}
-          {/* {PakMahiti?.uses.map((value, index) => {
+        {/* {PakMahiti?.uses.map((value, index) => {
             return (
               <button
                 key={`button${index}`}
@@ -149,7 +149,7 @@ function Single_Mahiti() {
               </button>
             );
           })} */}
-        </section>
+        {/* </section> */}
 
         {/* {visibleText === "textAll" && (
           <Practices data={singlePadhati?.details} />
@@ -172,9 +172,28 @@ function Single_Mahiti() {
                 <hr className="text-red-600 mt-1" />
                 <br />
               </h2>
-              <p className="text text-justify font-semibold">{value.desc}</p>
+              <p className="text text-justify font-semibold">
+                {value.desc ? value.desc : value.uses}
+              </p>
             </div>
           ))}
+          <div className="">
+            {PakMahiti?.image.length > 0 ? (
+              <div className="w-full p-4 h-90 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {PakMahiti.image.map((img, index) => (
+                  <div key={index} className="w-200 h-200">
+                    <img
+                      src={img.url}
+                      alt={`image ${index}`}
+                      className="max-h-50 w-full h-full object-cover rounded-lg transition-transform duration-200 transform hover:scale-105" // Set image to fill the container
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </>

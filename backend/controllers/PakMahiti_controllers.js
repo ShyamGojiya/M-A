@@ -33,9 +33,13 @@ exports.addPakMahiti = catchAsyncErrors(async (req, res, next) => {
   }
 
   req.body.image = imagesLinks;
-  console.log(req.body);
+  req.body.thumbnail = imagesLinks[0];
+  // console.log(req.body);
   const data = await pakMahiti.create(req.body);
-  res.send({ success: true, message: "PakPadhati Added Successfully!!", data });
+  return res.json({
+    success: true,
+    message: "PakPadhati Added Successfully!!",
+  });
 });
 
 //get all pakmahiti

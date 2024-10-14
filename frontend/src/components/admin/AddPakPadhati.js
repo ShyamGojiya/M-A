@@ -362,7 +362,6 @@ const AddPakPadhati = () => {
             Add Category
           </button>
         </div>
-        {console.log(categories)}
         {categories.length > 0 && (
           <div className="mb-4">
             <h4 className="text-lg font-semibold mb-2">Added Categories:</h4>
