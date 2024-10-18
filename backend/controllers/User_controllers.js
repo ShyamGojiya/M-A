@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/User");
 const sendToken = require("../utils/sendToken");
 const ErrorHandler = require("../utils/errorHandlers");
+const mongoose = require("mongoose");
 
 //register user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -60,4 +61,41 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
 exports.myProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   res.status(200).json({ success: true, data: user });
+});
+
+//add to cart
+exports.addToCart = catchAsyncErrors(async (req, res, next) => {
+  const data = await User.findById(req.user.id);
+  const isPidAlreadyInCart = data.cartItem.some(
+    (pid) => pid.toString() === req.body.pid
+  );
+  if (!isPidAlreadyInCart) {
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        $push: { cartItem: req.body.pid },
+      },
+      { new: true }
+    );
+    res.status(200).json({ success: true, item: user.cartItem });
+  } else {
+    res.status(200).json({
+      success: true,
+      item: data.cartItem,
+      message: "Product already in cart",
+    });
+  }
+});
+
+//remove from cart
+exports.removeFromCart = catchAsyncErrors(async (req, res, next) => {
+  //const data = await User.findById(req.user.id);
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      $pull: { cartItem: req.body.pid },
+    },
+    { new: true }
+  );
+  res.status(200).json({ success: true, item: user.cartItem });
 });
