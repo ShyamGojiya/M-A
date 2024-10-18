@@ -10,20 +10,17 @@ const Profile = () => {
   const { user, isLoading, isAuthenticated } = useSelector(
     (state) => state.user
   );
-  console.log(document.cookie);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log("in logout useEffect");
       toast.success("Logout Success", { position: "top-right" });
       navigate("/login");
     }
   }, [isAuthenticated]);
 
   const handleLogout = async () => {
-    // console.log("in logout");
     const resultAction = await dispatch(logout());
     if (logout.fulfilled.match(resultAction)) {
       toast.success("Logout successful!");
@@ -31,10 +28,6 @@ const Profile = () => {
     } else {
       toast.error(resultAction.payload);
     }
-    // if (!isAuthenticated) {
-    //   toast.success("Logout Success");
-    //   navigate("/login");
-    // }
   };
   return (
     <Fragment>

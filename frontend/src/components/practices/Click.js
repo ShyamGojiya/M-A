@@ -15,7 +15,7 @@ function Click() {
   const singlePadhati = useSelector(
     (state) => state.pakPadhati?.singlePakPadhati?.data
   );
-  console.log(singlePadhati);
+
   const [visibleText, setVisibleText] = useState("textAll");
 
   const toggleVisibility = (textKey) => {
@@ -153,7 +153,9 @@ function Click() {
           </button>
         </section>
 
-        {visibleText === "textAll" && <Practices data={singlePadhati} clr={randomColor} />}
+        {visibleText === "textAll" && (
+          <Practices data={singlePadhati} clr={randomColor} />
+        )}
 
         {/* {visibleText === "images"
           ? singlePadhati?.image.map((img, index) => (
@@ -166,17 +168,13 @@ function Click() {
             (singlePadhati?.image.length > 0 ? (
               <div className="w-full bg-slate-200 p-4 h-90 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {singlePadhati.image.map((img, index) => (
-                  <div
-                    key={index}
-                    className="w-200 h-200"
-                  >
+                  <div key={index} className="w-200 h-200">
                     <img
                       src={img.url}
                       alt={`image ${index}`}
                       className="max-h-50 w-full h-full object-cover rounded-lg transition-transform duration-200 transform hover:scale-105" // Set image to fill the container
                     />
                   </div>
-
                 ))}
               </div>
             ) : (
@@ -190,9 +188,18 @@ function Click() {
           {singlePadhati?.details.map(
             (value, index) =>
               visibleText === `text${index}` && (
-                <div key={index} id={`content${index}`} className="content font-semibold bg-slate-300 p-2">
+                <div
+                  key={index}
+                  id={`content${index}`}
+                  className="content font-semibold bg-slate-300 p-2"
+                >
                   <h2>
-                    <button style={{ background: randomColor }} className="text-white font-semibold rounded-full p-1">{value.title}</button>
+                    <button
+                      style={{ background: randomColor }}
+                      className="text-white font-semibold rounded-full p-1"
+                    >
+                      {value.title}
+                    </button>
                     <hr className="text-red-600 mb-1 mt-1"></hr>
                   </h2>
                   {value.title === "નામ અને પર્યાય" && (
@@ -213,7 +220,6 @@ function Click() {
                             <h3>
                               <b className="text-red-600">{val.title}</b>
                             </h3>
-
                           </div>
                           {Array.isArray(val.desc) ? (
                             <ul>
@@ -227,13 +233,17 @@ function Click() {
                               ))}
                             </ul>
                           ) : (
-                            <p className="text text-red-600 text-justify">{val.desc}</p>
+                            <p className="text text-red-600 text-justify">
+                              {val.desc}
+                            </p>
                           )}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <p className="text font-semibold text-justify">{value.desc}</p>
+                    <p className="text font-semibold text-justify">
+                      {value.desc}
+                    </p>
                   )}
                 </div>
               )

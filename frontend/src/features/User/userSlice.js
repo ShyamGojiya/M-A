@@ -5,8 +5,10 @@ export const registerUser = createAsyncThunk(
   "user/register",
   async (newUser, thunkAPI) => {
     try {
-      const data = await userService.registerUser(newUser);
-      return JSON.parse(JSON.stringify(data.user));
+      let data = await userService.registerUser(newUser);
+      data = JSON.parse(JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
+      return data.user;
     } catch (error) {
       // console.log(error);
       return thunkAPI.rejectWithValue(error.response?.data?.message);
@@ -18,8 +20,11 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (loginData, thunkAPI) => {
     try {
-      const data = await userService.loginUser(loginData);
-      return JSON.parse(JSON.stringify(data.user));
+      let data = await userService.loginUser(loginData);
+      data = JSON.parse(JSON.stringify(data));
+      localStorage.setItem("token", data.token);
+      console.log(data.user);
+      return data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message);
     }
@@ -30,7 +35,9 @@ export const logout = createAsyncThunk("user/logout", async (arg, thunkAPI) => {
   try {
     return await userService.logoutUser();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message || "error occured");
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || "error occured"
+    );
   }
 });
 
@@ -40,7 +47,9 @@ export const myProfileDetails = createAsyncThunk(
     try {
       return await userService.myProfile();
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || "error occured");
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "error occured"
+      );
     }
   }
 );

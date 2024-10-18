@@ -29,7 +29,6 @@ const ProductList = () => {
       top: 0,
     });
     dispatch(allProduct());
-    console.log(products);
   }, []);
 
   // for product type filter button
