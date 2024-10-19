@@ -23,12 +23,28 @@ export const singleProduct = createAsyncThunk(
   }
 );
 
+export const getCartItems = createAsyncThunk(
+  "product/getCartItems",
+  async (thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const data = await productService.getCartDetails(token);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const initialState = {
   product: "",
   isError: false,
   isSuccess: false,
   isLoading: false,
   singleProductData: "",
+  cart: [],
 };
 
 export const productSlice = createSlice({
@@ -65,6 +81,22 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(getCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.cart = action.payload;
+      })
+      .addCase(getCartItems.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.cart = [];
         state.message = action.error;
       });
   },
