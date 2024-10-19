@@ -6,7 +6,7 @@ export const registerUser = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       let data = await userService.registerUser(newUser);
-      data = JSON.parse(JSON.stringify(data.user));
+      data = JSON.parse(JSON.stringify(data));
       localStorage.setItem("token", data.token);
       return data.user;
     } catch (error) {
