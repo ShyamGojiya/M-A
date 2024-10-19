@@ -99,3 +99,8 @@ exports.removeFromCart = catchAsyncErrors(async (req, res, next) => {
   );
   res.status(200).json({ success: true, item: user.cartItem });
 });
+
+exports.getCartItemsDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id).populate("cartItem");
+  res.status(200).send(user.cartItem);
+});

@@ -8,6 +8,7 @@ const {
   myProfile,
   addToCart,
   removeFromCart,
+  getCartItemsDetails,
 } = require("../controllers/User_controllers");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const app = express.Router();
@@ -19,6 +20,7 @@ app.post("/login", loginUser);
 app.post("/cart/add", isAuthenticatedUser, addToCart);
 app.post("/cart/remove", isAuthenticatedUser, removeFromCart);
 app.get("/profile", isAuthenticatedUser, myProfile);
+app.get("/getCart", isAuthenticatedUser, getCartItemsDetails);
 app.get("/:id", getSingleUser);
 
 module.exports = app;

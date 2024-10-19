@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "./userService";
 
+// remain here
 export const registerUser = createAsyncThunk(
   "user/register",
   async (newUser, thunkAPI) => {
@@ -10,7 +11,6 @@ export const registerUser = createAsyncThunk(
       localStorage.setItem("token", data.token);
       return data.user;
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error.response?.data?.message);
     }
   }
@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk(
       let data = await userService.loginUser(loginData);
       data = JSON.parse(JSON.stringify(data));
       localStorage.setItem("token", data.token);
-      console.log(data.user);
+      // console.log(data.user);
       return data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message);

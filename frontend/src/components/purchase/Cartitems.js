@@ -2,75 +2,48 @@ import React, { useEffect, useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-
-// Redux
 // import { AddCart, RemoveCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
 
 const Cartitems = (props) => {
-  // Redux
   const dispatch = useDispatch();
 
-  // console.log(props.cartProduct);
-  const [amount, setAmount] = useState(
-    props.cartProduct.quantity * props.cartProduct.data.price
-  );
-  const [qty, setQty] = useState(props.cartProduct.quantity || 1);
+  const [qty, setQty] = useState(1);
+  const [amount, setAmount] = useState(qty * props.cartProduct.price);
   const handleQty = (action) => {
     if (action === "-") {
       if (qty - 1 <= 0) {
         setQty(qty);
       } else {
         setQty(qty - 1);
+        dispatch();
       }
     } else if (action === "+") {
-      if (qty + 1 >= 11) {
+      if (qty + 1 >= props.cartProduct.stock) {
         setQty(qty);
       } else {
         setQty(qty + 1);
       }
-    } else {
-      setQty(qty + 1);
     }
+    setAmount(qty * props.cartProduct.price);
   };
 
-  // useEffect(() => {
-  //   setAmount(qty * props.cartProduct.data.price);
-
-  //   // increase Quantity when state change
-  // dispatch(AddCart(props.cartProduct.data , qty))
-  // }, [qty, props.cartProduct.data.price, dispatch, props.cartProduct.data]);
-
-  // remove I tem Reducer
-
-  const removeitem = () => {
-    // dispatch(RemoveCart(props.cartProduct.data._id));
-  };
-
-  // console.log(props.cartProduct.data);
   return (
     <>
       <div className="w-full flex flex-row gap-2">
-        {/* image */}
         <img
           className="w-28 h-36 rounded-md max-sm:w-20"
           src={
-            props.cartProduct.data.image ||
+            props.cartProduct.image ||
             "https://res.cloudinary.com/dcxdcs6l4/image/upload/v1696304428/q8roxocy3edtbtcwyhyz.png"
           }
           alt="product"
         />
 
-        {/* Details */}
         <div className="w-full flex flex-col justify-between">
           <div className="flex justify-between max-sm:flex-col">
             <div className="flex flex-col sm:gap-2 max-sm:gap-0 max-sm:text-sm">
-              {/* Product Title */}
-              <span className="font-semibold">
-                {props.cartProduct.data.title}
-              </span>
-
-              {/* Quantity */}
+              <span className="font-semibold">{props.cartProduct.title}</span>
               <div className="flex flex-row gap-2 max-sm:my-2">
                 <span>ક્વૉન્ટિટી:</span>
                 <div className="flex flex-row items-center">
@@ -90,11 +63,10 @@ const Cartitems = (props) => {
                 </div>
               </div>
 
-              {/* Price */}
               <span className="text-xl font-semibold max-sm:text-lg max-[300px]:text-sm }">
                 ₹{amount.toFixed(2)}{" "}
                 <sub className="text-green-600">
-                  {props.cartProduct.data.discount}% off
+                  {props.cartProduct.discount}% off
                 </sub>
               </span>
             </div>

@@ -15,4 +15,15 @@ const singleProduct = async (id) => {
   }
 };
 
-export const productService = { allProduct, singleProduct };
+const getCartDetails = async (token) => {
+  const response = await axios.get(
+    REACT_APP_BACKEND_URL + "/user/getCart?token=" + token
+  );
+  console.log(response.data);
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const productService = { allProduct, singleProduct, getCartDetails };
