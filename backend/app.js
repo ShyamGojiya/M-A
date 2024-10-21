@@ -14,7 +14,12 @@ app.use(express.urlencoded({ limit: "10mb", extended: true })); // Adjust as nec
 app.use(fileupload());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://10.112.72.92:3000", "http://10.112.61.93:3000", "http://10.112.72.0:3000"],
+    origin: [
+      "http://localhost:3000",
+      "http://10.112.72.92:3000",
+      "http://10.112.61.93:3000",
+      "http://10.112.72.0:3000",
+    ],
     credentials: true,
   })
 );
@@ -25,12 +30,14 @@ const PakPadhati = require("./routes/PakPadhati");
 const pakMahiti = require("./routes/PakMahiti");
 const User = require("./routes/User");
 const Product = require("./routes/Kharido");
+const Cart = require("./routes/Cart");
 
 //routes
 app.use("/api/v1/pakPadhati", PakPadhati);
 app.use("/api/v1/pakMahiti", pakMahiti);
 app.use("/api/v1/user", User);
 app.use("/api/v1/product", Product);
+app.use("/api/v1/cart", Cart);
 
 // const razorpay = new Razorpay({
 //   key_id: 'rzp_test_vJIT3biLsviUc0',

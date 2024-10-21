@@ -4,21 +4,26 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 // import { AddCart, RemoveCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
+import {
+  myCart,
+  removeFromCart,
+  updateQuantity,
+} from "../../features/Cart/cartSlice";
 
 const Cartitems = (props) => {
   const dispatch = useDispatch();
 
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(props.cartProduct.quantity);
   const [amount, setAmount] = useState(qty * props.cartProduct.price);
   const handleQty = (action) => {
-    if (action === "-") {
+    if (action == "-") {
       if (qty - 1 <= 0) {
         setQty(qty);
       } else {
         setQty(qty - 1);
         dispatch();
       }
-    } else if (action === "+") {
+    } else {
       if (qty + 1 >= props.cartProduct.stock) {
         setQty(qty);
       } else {
@@ -26,6 +31,26 @@ const Cartitems = (props) => {
       }
     }
     setAmount(qty * props.cartProduct.price);
+  };
+
+  useEffect(() => {
+    dispatch(updateQuantity({ id: props.cartProduct._id, quantity: qty }));
+    dispatch(myCart());
+  }, [qty]);
+
+  const handleRemoveItem = async () => {
+    const id = props.cartProduct._id;
+    const resultAction = await dispatch(removeFromCart(id));
+    if (removeFromCart.fulfilled.match(resultAction)) {
+      dispatch(myCart());
+      toast.success("Item Removed From Cart Successfully!!", {
+        position: "top-right",
+      });
+    } else {
+      toast.error(resultAction.payload || "An error occurred", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
@@ -76,14 +101,7 @@ const Cartitems = (props) => {
           <div className="flex flex-row items-center justify-end gap-2">
             <button
               className="flex flex-row items-center gap-2 cursor-pointer font-semibold text-red-500 max-sm:text-xs"
-              onClick={() => {
-                if (
-                  window.confirm("શું તમે આ Product કાઢી નાખવા માંગો છો..?")
-                ) {
-                  removeitem();
-                  toast.error("કાર્ટ માંથી પ્રોડક્ટ કાઢી..!!");
-                }
-              }}
+              onClick={handleRemoveItem}
             >
               <RiDeleteBin6Line /> Remove
             </button>
