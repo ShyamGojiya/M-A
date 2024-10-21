@@ -11,6 +11,7 @@ import { Product } from "../../Product";
 import toast from "react-hot-toast";
 import { singleProduct } from "../../features/Product/productSlice";
 import ProductList from "./ProductList";
+import { addToCart } from "../../features/Cart/cartSlice";
 
 const ProductDetails = () => {
   // navigate
@@ -59,7 +60,7 @@ const ProductDetails = () => {
 
   // handel navigate
   const handleAddToCart = () => {
-    // dispatch(AddCart(Product, qty));
+    dispatch(addToCart({ pid: id, quantity: qty }));
     toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!");
   };
 
@@ -199,7 +200,6 @@ const ProductDetails = () => {
               {/* Add to Cart & Add to Whishlist */}
               <div className="flex flex-row flex-wrap items-center gap-6 my-4">
                 <button
-                  //className="border-2 rounded-lg p-2 font-semibold border-green-800 hover:bg-red-600 hover:text-white"
                   className="flex flex-row gap-1 items-center bg-slate-100 text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-green-800 hover:text-white"
                   onClick={handlePayment}
                 >
