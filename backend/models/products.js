@@ -21,22 +21,29 @@ const productsSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Enter product stock"],
   },
-  quantity: {
-    type: Number,
-    required: [true, "Enter product stock"],
-    default: 1,
-  },
-  image: {
-    type: String,
-    default:
-      "https://res.cloudinary.com/dcxdcs6l4/image/upload/v1698313520/MAAPP/sowvpuuc5muctocyyvko.jpg",
-  },
+  // image: {
+  //   type: String,
+  //   default:
+  //     "https://res.cloudinary.com/dcxdcs6l4/image/upload/v1698313520/MAAPP/sowvpuuc5muctocyyvko.jpg",
+  // },
+  images: [
+    {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   desc: {
     type: String,
     required: [true, "Enter product description"],
   },
   createdAt: {
-    type: Date,
+    type: String,
     default: Date.now,
   },
 });

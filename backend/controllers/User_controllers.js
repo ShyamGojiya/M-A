@@ -19,7 +19,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 //all user --ADMIN
 exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
   const data = await User.find();
-  res.status(201).json({ total: data.length, data });
+  res.status(201).json(data);
 });
 
 //SIngle user --ADMIN
@@ -41,6 +41,11 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatch) {
     return next(new ErrorHandler("Email or password is invalid", 401));
   }
+
+  // Update createdAt field to current time
+  user.createdAt = new Date().toString();
+  await user.save();
+
   sendToken(user, 200, res);
 });
 

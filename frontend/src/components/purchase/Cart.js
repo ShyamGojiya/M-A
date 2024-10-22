@@ -13,7 +13,7 @@ export default function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
-
+  console.log(cartItems);
   useEffect(() => {
     dispatch(myCart());
   }, []);
@@ -82,7 +82,6 @@ export default function Cart() {
 
   return (
     <div className="container max-sm:p-1.5">
-      {/* Title */}
       <div className="my-4">
         <button
           className="flex flex-row gap-2 items-center text-br hover:text-green-600 font-semibold cursor-pointer max-sm:text-sm"
@@ -94,10 +93,10 @@ export default function Cart() {
           My Cart
         </h2>
         <span className="text-lg text-gray-400">
-          ({cartItems && cartItems.length})
+          No. of Items In cart: {cartItems && cartItems.length}
         </span>
       </div>
-      {cartItems && cartItems.length == 0 ? (
+      {cartItems && cartItems.length < 1 ? (
         <div className="w-full flex gap-2 font-semibold flex-col items-center justify-center min-h-[50vh]">
           <MdProductionQuantityLimits className="text-9xl text-br" />
           <span className="text-2xl text-gray-700">
@@ -106,7 +105,7 @@ export default function Cart() {
         </div>
       ) : (
         <>
-          <div className="w-[70%] h-fit rounded-lg border-2 border-br bg-white sm:p-4 max-sm:w-full max-sm:p-1">
+          <div className="w-[70%] h-fit rounded-lg border-2 border-br bg-white sm:p-4 max-sm:w-full max-sm:p-1 mb-4">
             {cartItems &&
               cartItems.length > 0 &&
               cartItems?.map((product, index) => {

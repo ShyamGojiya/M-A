@@ -40,13 +40,8 @@ const UserSchema = new mongoose.Schema({
       required: true,
     },
   },
-  cartItem: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "Product",
-    default: [],
-  },
   createdAt: {
-    type: Date,
+    type: String,
     default: Date.now,
   },
   resetPasswordToken: String,

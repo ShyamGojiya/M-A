@@ -1,41 +1,26 @@
 import React from "react";
 import "./ProductListItem.css";
 import { useDispatch } from "react-redux";
-// import { updateProduct } from "../../actions/ProductInfoAction";
 import { useNavigate } from "react-router-dom";
-// import { FaRegHeart } from "react-icons/fa6";
-// import { LiaStarSolid } from "react-icons/lia";
 
-// const ProductListItem = ({ product, addToCart }) => {
 const ProductListItem = ({ product }) => {
-  // navigate.
   const navigate = useNavigate();
-  // Redux
   const dispatch = useDispatch();
 
   // update state(product)
   const handleClick = () => {
-    // dispatch(updateProduct(product));
     navigate("/purchase/" + product._id);
   };
 
   // handel navigate
   const handleAddToCart = () => {
-    // addToCart(product);
     navigate("/purchase/" + product._id);
   };
 
   return (
     <div className="buy-card cursor-pointer">
       <div className="buy-card-img-cont" onClick={() => handleClick()}>
-        <img
-          src={
-            product.image ||
-            "https://res.cloudinary.com/dcxdcs6l4/image/upload/v1696305801/a6lhs6r6sov7pnudqliy.jpg"
-          }
-          className="buy-card-img"
-          alt=""
-        />
+        <img src={product.images[0].url} className="buy-card-img" alt="" />
       </div>
       <div className="buy-card-info" onClick={() => handleClick()}>
         <div className="buy-card-name">

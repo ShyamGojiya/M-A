@@ -57,6 +57,7 @@ const Login = () => {
     const resultAction = await dispatch(registerUser(user));
     if (registerUser.fulfilled.match(resultAction)) {
       toast.success("Registration successful!");
+      navigate("/profile");
     } else {
       toast.error(resultAction.payload);
     }
@@ -64,7 +65,9 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const resultAction = await dispatch(loginUser({ email: loginEmail, password: loginPassword }));
+    const resultAction = await dispatch(
+      loginUser({ email: loginEmail, password: loginPassword })
+    );
     if (loginUser.fulfilled.match(resultAction)) {
       toast.success("Login Successfully!!", { position: "top-right" });
       navigate("/profile");

@@ -6,15 +6,21 @@ const ErrorHandler = require("../utils/errorHandlers");
 
 //add to cart
 exports.addToCart = catchAsyncErrors(async (req, res, next) => {
+  const check = await Cart.find({ pid: req.body.pid, uid: req.user.id });
+  if (check.length > 0) {
+    return next(new ErrorHandler("Product Already exist in cart!!", 401));
+  }
   const product = await Product.findById(req.body.pid);
+
   req.body.ProductName = product.title;
   req.body.discount = product.discount;
   req.body.price = product.price;
+  req.body.stock = product.stock;
   req.body.image = product.image;
   req.body.uid = req.user.id;
 
   const data = await Cart.create(req.body);
-  console.log(data);
+  // console.log(data);
   res.status(201).json(data);
 });
 

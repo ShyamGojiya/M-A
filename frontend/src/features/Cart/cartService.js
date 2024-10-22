@@ -2,7 +2,7 @@ import axios from "axios";
 import { REACT_APP_BACKEND_URL } from "../../config";
 
 const addItemToCart = async (data, token) => {
-  console.log(data);
+  // console.log(data);
   const response = await axios.post(
     REACT_APP_BACKEND_URL + `/cart/add?token=${token}`,
     data
@@ -26,7 +26,6 @@ const deleteFromCart = async (id, token) => {
   const response = await axios.delete(
     REACT_APP_BACKEND_URL + `/cart/del/${id}?token=${token}`
   );
-  console.log(response.data);
   if (response.data) {
     return response.data;
   }
@@ -37,7 +36,6 @@ const updateCartQuantity = async (data, token) => {
     REACT_APP_BACKEND_URL +
       `/cart/quntity/${data.id}/${data.quantity}?token=${token}`
   );
-  console.log(response.data);
   if (response.data) {
     return response.data;
   }

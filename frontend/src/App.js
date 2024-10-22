@@ -23,6 +23,10 @@ import AddPakPadhati from "./components/admin/AddPakPadhati";
 import DetailsPakPadhati from "./components/admin/DetailsPakPadhati";
 import AddPakMahiti from "./components/admin/AddPakMahiti";
 import DetailsPakMahiti from "./components/admin/DetailsPakMahiti";
+import DetailsUser from "./components/admin/DetailsUser";
+import AddProduct from "./components/admin/AddProduct";
+import DetailsProduct from "./components/admin/DetailsProduct";
+import Order from "./components/admin/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +65,10 @@ function App() {
           <Route path="view-pakpadhati" element={<DetailsPakPadhati />} />
           <Route path="add-pakmahiti" element={<AddPakMahiti />} />
           <Route path="view-pakmahiti" element={<DetailsPakMahiti />} />
+          <Route path="add-product" element={<AddProduct />} />
+          <Route path="view-product" element={<DetailsProduct />} />
+          <Route path="users" element={<DetailsUser />} />
+          <Route path="orders" element={<Order />} />
         </Route>
       </Routes>
 

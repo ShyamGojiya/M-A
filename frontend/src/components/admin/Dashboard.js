@@ -101,41 +101,31 @@ const Dashboard = () => {
                 ],
               },
               {
-                key: "orders",
-                icon: <FaClipboardList className="fs-4" />,
-                label: "Orders",
-              },
-              {
-                key: "blogs",
-                icon: <FaBloggerB className="fs-4" />,
-                label: "Blogs",
+                key: "Product",
+                icon: <RiCouponLine className="fs-4" />,
+                label: "Product",
                 children: [
                   {
-                    key: "blog",
+                    key: "add-product",
                     icon: <ImBlog className="fs-4" />,
-                    label: "Add Blog",
+                    label: "Add Product",
                   },
                   {
-                    key: "blog-list",
-                    icon: <FaBloggerB className="fs-4" />,
-                    label: "Blog List",
-                  },
-                  {
-                    key: "blog-category",
-                    icon: <ImBlog className="fs-4" />,
-                    label: "Add Blog Category",
-                  },
-                  {
-                    key: "blog-category-list",
-                    icon: <FaBloggerB className="fs-4" />,
-                    label: "Blog Category List",
+                    key: "view-product",
+                    icon: <RiCouponLine className="fs-4" />,
+                    label: "View Product",
                   },
                 ],
               },
               {
-                key: "enquiries",
+                key: "users",
                 icon: <FaClipboardList className="fs-4" />,
-                label: "Enquiries",
+                label: "Users",
+              },
+              {
+                key: "orders",
+                icon: <FaClipboardList className="fs-4" />,
+                label: "Orders",
               },
             ]}
           />

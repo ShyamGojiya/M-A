@@ -5,30 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 // import { AddCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
 import { allProduct } from "../../features/Product/productSlice";
+import { myCart } from "../../features/Cart/cartSlice";
 
 const ProductList = () => {
-  // Redux
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products?.product?.data);
 
-  // useEffect(() => {
-  // dispatch(allProduct());
-  // }, []);
-
-  const AddToCart = (product) => {
-    // dispatch(AddCart(product, 1));
-    // navigate("/cart");
-
-    // Show a success notification using react-hot-toast
-    toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!");
-  };
-
   useEffect(() => {
-    // for on load scroll to top
     window.scrollTo({
       top: 0,
     });
     dispatch(allProduct());
+    dispatch(myCart());
   }, []);
 
   // for product type filter button

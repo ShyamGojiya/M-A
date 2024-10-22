@@ -9,7 +9,7 @@ export const addToCart = createAsyncThunk(
       const res = await cartService.addItemToCart(data, token);
       return res;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
     }
   }
 );
@@ -17,8 +17,6 @@ export const addToCart = createAsyncThunk(
 export const myCart = createAsyncThunk("cart/getMyCart", async (thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
-    console.log("in myCart");
-
     const res = await cartService.getMyCart(token);
     return res;
   } catch (error) {
@@ -53,7 +51,7 @@ export const updateQuantity = createAsyncThunk(
 );
 
 const initialState = {
-  cart: "",
+  cart: [],
   isError: false,
   isSuccess: false,
   isLoading: false,

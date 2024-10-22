@@ -20,6 +20,10 @@ const CartSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Enter Product Quantity"],
   },
+  stock: {
+    type: Number,
+    required: [true, "Enter Product Stock"],
+  },
   discount: {
     type: Number,
     required: [true, "Enter Product Discount"],

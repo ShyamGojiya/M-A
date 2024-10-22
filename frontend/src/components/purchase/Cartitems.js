@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-// import { AddCart, RemoveCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
 import {
   myCart,
@@ -15,22 +14,19 @@ const Cartitems = (props) => {
 
   const [qty, setQty] = useState(props.cartProduct.quantity);
   const [amount, setAmount] = useState(qty * props.cartProduct.price);
+
   const handleQty = (action) => {
-    if (action == "-") {
-      if (qty - 1 <= 0) {
-        setQty(qty);
-      } else {
-        setQty(qty - 1);
-        dispatch();
-      }
-    } else {
-      if (qty + 1 >= props.cartProduct.stock) {
-        setQty(qty);
-      } else {
+    if (action === "add") {
+      if (qty + 1 < props.cartProduct.stock) {
+        setAmount((qty + 1) * props.cartProduct.price);
         setQty(qty + 1);
       }
+    } else {
+      if (qty - 1 > 0) {
+        setAmount((qty - 1) * props.cartProduct.price);
+        setQty(qty - 1);
+      }
     }
-    setAmount(qty * props.cartProduct.price);
   };
 
   useEffect(() => {
@@ -68,20 +64,22 @@ const Cartitems = (props) => {
         <div className="w-full flex flex-col justify-between">
           <div className="flex justify-between max-sm:flex-col">
             <div className="flex flex-col sm:gap-2 max-sm:gap-0 max-sm:text-sm">
-              <span className="font-semibold">{props.cartProduct.title}</span>
+              <span className="font-semibold">
+                {props.cartProduct.ProductName}
+              </span>
               <div className="flex flex-row gap-2 max-sm:my-2">
                 <span>ક્વૉન્ટિટી:</span>
                 <div className="flex flex-row items-center">
                   <button
                     className="bg-green-100 py-1.5 px-1.5 rounded-lg text-hbr text-xl max-sm:text-xs cursor-progress"
-                    onClick={() => handleQty("-")}
+                    onClick={() => handleQty("remove")}
                   >
                     <BiMinus />
                   </button>
                   <span className=" px-3 rounded-lg max-sm:text-sm">{qty}</span>
                   <button
                     className="bg-green-100 py-1.5 px-1.5 rounded-lg text-hbr text-xl max-sm:text-xs"
-                    onClick={() => handleQty("+")}
+                    onClick={() => handleQty("add")}
                   >
                     <BiPlus />
                   </button>

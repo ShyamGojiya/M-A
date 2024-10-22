@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const PurchaseNav = (props) => {
   const navigate = useNavigate();
-  // const cartItem = useSelector(state => state.Cart.Products);
-  // console.log(cartItem);
-
+  const cartItems = useSelector((state) => state.cart.cart);
   // for active filter change
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -19,7 +17,6 @@ const PurchaseNav = (props) => {
   };
   return (
     <div className="sticky top-[10vh] flex justify-between py-3 z-[5] filter-gradiant md:px-24 max-md:px-2">
-      {/* Filter Buttons */}
       <div className="flex md:gap-4 max-md:gap-2">
         <button
           onClick={() => handleButtonClick("All")}
@@ -68,8 +65,9 @@ const PurchaseNav = (props) => {
         <button className="relative">
           <div className="cart-icon" onClick={() => navigate("/cart")}>
             <div className="cart-notification">
-              {/* <p className="cart-notification-text">{cartItem.length}</p> */}
-              <p className="cart-notification-text">4</p>
+              <p className="cart-notification-text">
+                {cartItems && cartItems.length}
+              </p>
             </div>
             <HiShoppingCart />
           </div>

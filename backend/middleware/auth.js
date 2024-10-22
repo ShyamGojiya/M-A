@@ -7,8 +7,10 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   const token = req.query.token;
   console.log("token : " + token);
 
-  if (!token) {
-    return next(new ErrorHandler("Please Login to Access this page", 401));
+  if (!token || token == "null") {
+    return next(
+      new ErrorHandler("કૃપા કરીને આ સામગ્રીને મેળવવા માટે લૉગિન કરો", 401)
+    );
   }
   const decodeData = jwt.verify(token, process.env.JWT_SECRET);
 

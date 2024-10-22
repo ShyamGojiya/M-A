@@ -21,7 +21,7 @@ const ProductDetails = () => {
   const product = useSelector(
     (state) => state.products?.singleProductData.data
   );
-  // console.log(product);
+  const cartItems = useSelector((state) => state.cart.cart);
 
   useEffect(() => {
     // for on load scroll to top
@@ -59,9 +59,17 @@ const ProductDetails = () => {
   };
 
   // handel navigate
-  const handleAddToCart = () => {
-    dispatch(addToCart({ pid: id, quantity: qty }));
-    toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!");
+  const handleAddToCart = async () => {
+    const resultAction = await dispatch(addToCart({ pid: id, quantity: qty }));
+    if (addToCart.fulfilled.match(resultAction)) {
+      toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!", {
+        position: "top-right",
+      });
+    } else {
+      toast.error(resultAction.payload || "An error occurred", {
+        position: "top-right",
+      });
+    }
   };
 
   // Razorpay
@@ -115,7 +123,9 @@ const ProductDetails = () => {
         <button className="relative">
           <div className="cart-icon" onClick={() => navigate("/cart")}>
             <div className="cart-notification">
-              <p className="cart-notification-text">{4}</p>
+              <p className="cart-notification-text">
+                {cartItems && cartItems.length}
+              </p>
             </div>
             <HiShoppingCart />
           </div>

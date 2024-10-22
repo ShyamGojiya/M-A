@@ -7,11 +7,33 @@ Kharido    : product Kharido
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/products");
 const ErrorHandler = require("../utils/errorHandlers");
+const cloudinary = require("cloudinary");
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
-  // const data = await pakPadhati.insertMany(pak_data);
-  const data = await Product.insertMany(req.body);
-  res.send({ success: true, total: data.length, data });
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i], {
+      folder: "MAPP",
+    });
+
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+
+  req.body.images = imagesLinks;
+  const data = await Product.create(req.body);
+  res.send(data);
 });
 
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
