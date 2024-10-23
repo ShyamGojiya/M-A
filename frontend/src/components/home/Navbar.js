@@ -6,22 +6,18 @@ import { FaUserCircle } from "react-icons/fa";
 import l1 from "../../Images/l1.png";
 
 export default function Navbar() {
-  // for toggle menu in small devices
   const [showMenu, setShowMenu] = useState(true);
 
   function checkAndSetShowMenu() {
     if (window.innerWidth < 1024) {
-      // console.log("It works");
       setShowMenu(false);
     } else {
-      setShowMenu(true); // Set to false when the window is less than or equal to 1024 pixels
+      setShowMenu(true);
     }
   }
 
-  // Run the function when the page loads
   window.addEventListener("load", checkAndSetShowMenu);
 
-  // Run the function when the window is resized
   window.addEventListener("resize", checkAndSetShowMenu);
 
   return (
@@ -104,11 +100,6 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-      {/* {showSignin ? <Signin closeSignin={siginModelClose} /> : <></>} */}
-      {/* Cart Modal */}
-      {
-        // showCart ? <Cart closeCart = {cartClose}/> : <></>
-      }
     </>
   );
 }

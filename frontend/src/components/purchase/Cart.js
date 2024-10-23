@@ -13,7 +13,6 @@ export default function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
-  console.log(cartItems);
   useEffect(() => {
     dispatch(myCart());
   }, []);
