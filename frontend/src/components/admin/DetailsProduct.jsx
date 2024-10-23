@@ -69,7 +69,7 @@ const DetailsProduct = () => {
         price: <div className="font-semibold">{item.price}</div>,
         fprice: (
           <div className="font-semibold">
-            {(item.price * item.discount) / 100}
+            {(item.price - (item.price * item.discount) / 100).toFixed(0)}
           </div>
         ),
         View: (

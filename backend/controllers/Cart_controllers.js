@@ -16,7 +16,7 @@ exports.addToCart = catchAsyncErrors(async (req, res, next) => {
   req.body.discount = product.discount;
   req.body.price = product.price;
   req.body.stock = product.stock;
-  req.body.image = product.image;
+  req.body.image = product.images[0].url;
   req.body.uid = req.user.id;
 
   const data = await Cart.create(req.body);

@@ -7,10 +7,11 @@ import {
   updateProduct,
 } from "../../Admin-features/Product/productSlice"; // Ensure updateProduct is imported
 import { singleProduct } from "../../features/Product/productSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const product = useSelector(
@@ -28,10 +29,10 @@ const UpdateProduct = () => {
     images: [],
   });
 
+  const fetchProduct = async () => {
+    await dispatch(singleProduct(id));
+  };
   useEffect(() => {
-    const fetchProduct = async () => {
-      await dispatch(singleProduct(id));
-    };
     fetchProduct();
   }, [dispatch, id]);
 
@@ -95,6 +96,8 @@ const UpdateProduct = () => {
       toast.success("Product updated Successfully!!", {
         position: "top-right",
       });
+      // fetchProduct();
+      navigate("/admin/view-product");
     } else {
       toast.error(resultAction.payload || "An error occurred", {
         position: "top-right",
