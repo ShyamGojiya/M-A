@@ -47,3 +47,12 @@ exports.singleProduct = catchAsyncErrors(async (req, res, next) => {
   const data = await Product.findById(req.params.id);
   res.send({ success: true, data });
 });
+
+exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+  for (let i = 0; i < product.images.length; i++) {
+    await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+  }
+  await product.deleteOne({ _id: req.params.id });
+  res.status(200).send({ success: true, message: "Deleted  Successfully!!" });
+});

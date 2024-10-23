@@ -7,7 +7,7 @@ import adminUserSlice from "../Admin-features/User/userSlice";
 import pakMahitiSlice from "../features/PakMahiti/pakMahitiSlice";
 import productSlice from "../features/Product/productSlice";
 import cartSlice from "../features/Cart/cartSlice";
-import { adminProductSlice } from "../Admin-features/Product/productSlice";
+import adminProductSlice from "../Admin-features/Product/productSlice";
 
 export const store = configureStore({
   reducer: {

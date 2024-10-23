@@ -20,7 +20,11 @@ const ProductListItem = ({ product }) => {
   return (
     <div className="buy-card cursor-pointer">
       <div className="buy-card-img-cont" onClick={() => handleClick()}>
-        <img src={product.images[0].url} className="buy-card-img" alt="" />
+        <img
+          src={product.image ? product.image : product.images[0].url}
+          className="buy-card-img"
+          alt=""
+        />
       </div>
       <div className="buy-card-info" onClick={() => handleClick()}>
         <div className="buy-card-name">

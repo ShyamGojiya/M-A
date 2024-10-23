@@ -5,7 +5,8 @@ const catchAsyncErrors = require("./catchAsyncErrors");
 
 exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   const token = req.query.token;
-  console.log("token : " + token);
+  // const { token } = req.cookies;
+  // console.log("token : " + token);
 
   if (!token || token == "null") {
     return next(

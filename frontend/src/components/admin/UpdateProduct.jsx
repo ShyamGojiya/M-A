@@ -1,11 +1,23 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import imageCompression from "browser-image-compression";
-import { addNewProduct } from "../../Admin-features/Product/productSlice";
+import {
+  addNewProduct,
+  updateProduct,
+} from "../../Admin-features/Product/productSlice"; // Ensure updateProduct is imported
+import { singleProduct } from "../../features/Product/productSlice";
+import { useParams } from "react-router-dom";
 
-const AddProduct = () => {
+const UpdateProduct = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const product = useSelector(
+    (state) => state.products?.singleProductData.data
+  );
+  const [loading, setLoading] = useState(false);
+  const [imagesPreview, setImagesPreview] = useState([]);
   const [productData, setProductData] = useState({
     title: "",
     type: "",
@@ -15,15 +27,28 @@ const AddProduct = () => {
     desc: "",
     images: [],
   });
-  const [title, setTitle] = useState("");
-  const [type, setType] = useState("0");
-  const [price, setPrice] = useState();
-  const [discount, setDiscount] = useState();
-  const [stock, setStock] = useState();
-  const [desc, setDesc] = useState("");
-  const [images, setImages] = useState([]);
-  const [imagesPreview, setImagesPreview] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      await dispatch(singleProduct(id));
+    };
+    fetchProduct();
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (product) {
+      setProductData({
+        title: product.title,
+        type: product.type,
+        price: product.price,
+        discount: product.discount,
+        stock: product.stock,
+        desc: product.desc,
+        images: product.images,
+      });
+      setImagesPreview(product.images.map((image) => image.url)); // Set images preview
+    }
+  }, [product]);
 
   const fileInputRef = useRef(null);
 
@@ -31,7 +56,7 @@ const AddProduct = () => {
     const files = Array.from(e.target.files);
     const compressedImages = [];
 
-    setImagesPreview([]);
+    setImagesPreview([]); // Clear previous previews
 
     for (const file of files) {
       try {
@@ -46,7 +71,10 @@ const AddProduct = () => {
           if (reader.readyState === 2) {
             setImagesPreview((old) => [...old, reader.result]);
             compressedImages.push(reader.result);
-            setImages(compressedImages);
+            setProductData((prevData) => ({
+              ...prevData,
+              images: compressedImages,
+            }));
           }
         };
 
@@ -57,39 +85,16 @@ const AddProduct = () => {
     }
   };
 
-  const clearAllData = () => {
-    setTitle("");
-    setType("0");
-    setPrice("");
-    setDiscount("");
-    setStock("");
-    setDesc("");
-    setImages([]);
-    setImagesPreview([]);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = null;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true
-    productData.title = title;
-    productData.type = type;
-    productData.price = price;
-    productData.discount = discount;
-    productData.stock = stock;
-    productData.desc = desc;
-    productData.images = images;
+    setLoading(true);
+    const resultAction = await dispatch(updateProduct({ id, productData }));
+    setLoading(false);
 
-    const resultAction = await dispatch(addNewProduct(productData));
-    setLoading(false); // Set loading to false after dispatching
-
-    if (addNewProduct.fulfilled.match(resultAction)) {
-      toast.success("Product added Successfully!!", {
+    if (updateProduct.fulfilled.match(resultAction)) {
+      toast.success("Product updated Successfully!!", {
         position: "top-right",
       });
-      clearAllData();
     } else {
       toast.error(resultAction.payload || "An error occurred", {
         position: "top-right",
@@ -100,10 +105,11 @@ const AddProduct = () => {
   return (
     <div
       style={{ height: "75vh" }}
-      className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg  overflow-y-scroll"
+      className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg overflow-y-scroll"
     >
-      <h2 className="text-2xl font-bold mb-4">AddProduct Form</h2>
+      <h2 className="text-2xl font-bold mb-4">Update Product Form</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        {/* Other input fields remain unchanged */}
         <div className="mb-4">
           <label className="block text-gray-700 mb-1" htmlFor="productTitle">
             Product Name
@@ -112,8 +118,10 @@ const AddProduct = () => {
             type="text"
             name="productTitle"
             id="productTitle"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={productData.title}
+            onChange={(e) =>
+              setProductData({ ...productData, title: e.target.value })
+            }
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
@@ -125,8 +133,10 @@ const AddProduct = () => {
           </label>
           <select
             className="w-full p-2 border border-gray-300 rounded mb-2"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
+            value={productData.type}
+            onChange={(e) =>
+              setProductData({ ...productData, type: e.target.value })
+            }
           >
             <option value={0}>--Select--</option>
             <option>છોડવા</option>
@@ -144,8 +154,10 @@ const AddProduct = () => {
             type="number"
             name="productstock"
             id="productstock"
-            value={stock}
-            onChange={(e) => setStock(e.target.value)}
+            value={productData.stock}
+            onChange={(e) =>
+              setProductData({ ...productData, stock: e.target.value })
+            }
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
@@ -159,8 +171,10 @@ const AddProduct = () => {
             type="number"
             name="productprice"
             id="productprice"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            value={productData.price}
+            onChange={(e) =>
+              setProductData({ ...productData, price: e.target.value })
+            }
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
@@ -174,8 +188,10 @@ const AddProduct = () => {
             type="number"
             name="productdiscount"
             id="productdiscount"
-            value={discount}
-            onChange={(e) => setDiscount(e.target.value)}
+            value={productData.discount}
+            onChange={(e) =>
+              setProductData({ ...productData, discount: e.target.value })
+            }
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
@@ -189,8 +205,10 @@ const AddProduct = () => {
             type="text"
             name="productdesc"
             id="productdesc"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
+            value={productData.desc}
+            onChange={(e) =>
+              setProductData({ ...productData, desc: e.target.value })
+            }
             className="w-full p-2 border border-gray-300 rounded"
             required
           />
@@ -212,7 +230,8 @@ const AddProduct = () => {
           />
         </div>
 
-        <div id="createProductFormImage" className="p-4">
+        {/* Preview Images */}
+        <div className="p-4">
           {imagesPreview.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {imagesPreview.map((image, index) => (
@@ -240,7 +259,7 @@ const AddProduct = () => {
           className={`w-full p-2 rounded transition duration-200 ${
             loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
           } text-white`}
-          disabled={loading} // Disable button when loading
+          disabled={loading}
         >
           {loading ? (
             <div className="flex items-center justify-center">
@@ -262,7 +281,7 @@ const AddProduct = () => {
               Loading...
             </div>
           ) : (
-            "Submit"
+            "Update"
           )}
         </button>
       </form>
@@ -270,4 +289,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

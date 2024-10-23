@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../loader/Loader.js";
 import { Link, useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { logout } from "../../features/User/userSlice.js";
+import { logout, myProfileDetails } from "../../features/User/userSlice.js";
 import toast from "react-hot-toast";
 
 const Profile = () => {
@@ -18,6 +18,10 @@ const Profile = () => {
       navigate("/login");
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    dispatch(myProfileDetails());
+  }, []);
 
   const handleLogout = async () => {
     const resultAction = await dispatch(logout());

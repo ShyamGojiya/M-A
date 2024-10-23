@@ -9,7 +9,9 @@ const allProduct = async () => {
 };
 
 const singleProduct = async (id) => {
-  const response = await axios.get(REACT_APP_BACKEND_URL + "/product/" + id);
+  const response = await axios.get(
+    REACT_APP_BACKEND_URL + "/product/get/" + id
+  );
   if (response.data) {
     return response.data;
   }

@@ -144,7 +144,7 @@ const ProductDetails = () => {
           {/* Images Section */}
           <div className="sticky flex max-sm:flex-col gap-6 max-sm:gap-2 lg:w-2/4">
             <img
-              src={product?.image}
+              src={product?.images[0].url}
               alt=""
               className="w-3/5 self-center object-cover rounded-xl max-sm:w-full"
             />

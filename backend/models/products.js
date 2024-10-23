@@ -21,11 +21,6 @@ const productsSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Enter product stock"],
   },
-  // image: {
-  //   type: String,
-  //   default:
-  //     "https://res.cloudinary.com/dcxdcs6l4/image/upload/v1698313520/MAAPP/sowvpuuc5muctocyyvko.jpg",
-  // },
   images: [
     {
       public_id: {

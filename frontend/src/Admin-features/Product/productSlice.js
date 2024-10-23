@@ -12,6 +12,39 @@ export const addNewProduct = createAsyncThunk(
   }
 );
 
+export const allProduct = createAsyncThunk(
+  "product/allProduct",
+  async (thunkAPI) => {
+    try {
+      return await productService.allProductDetails();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.deleteSingleProduct(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id, data, thunkAPI) => {
+    try {
+      return await productService.deleteSingleProduct(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
+
 const initialState = {
   product: "",
   isError: false,
@@ -35,6 +68,21 @@ export const adminProductSlice = createSlice({
         state.product = action.payload;
       })
       .addCase(addNewProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+      })
+      .addCase(allProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(allProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.product = action.payload;
+      })
+      .addCase(allProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
