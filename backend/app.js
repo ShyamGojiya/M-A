@@ -6,6 +6,9 @@ const errorHandlers = require("./middleware/error");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./config/config.env" });
 
 //middleware
 app.use(express.json({ limit: "10mb" })); // Adjust as necessary

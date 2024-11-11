@@ -28,6 +28,8 @@ import AddProduct from "./components/admin/AddProduct";
 import DetailsProduct from "./components/admin/DetailsProduct";
 import Order from "./components/admin/Order";
 import UpdateProduct from "./components/admin/UpdateProduct";
+import SuccessPage from "./components/purchase/SuccessPage";
+import CancelPage from "./components/purchase/CancelPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +61,8 @@ function App() {
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/cancel" element={<CancelPage />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />}>
