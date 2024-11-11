@@ -8,6 +8,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/products");
 const ErrorHandler = require("../utils/errorHandlers");
 const cloudinary = require("cloudinary");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.addProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
@@ -116,4 +117,36 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   }
   await product.deleteOne({ _id: req.params.id });
   res.status(200).send({ success: true, message: "Deleted  Successfully!!" });
+});
+
+exports.paymentApi = catchAsyncErrors(async (req, res, next) => {
+  const products = req.body.product;
+
+  const lineItems = products.map((product) => ({
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: product.ProductName,
+        images: [product.image],
+      },
+      unit_amount: Math.round(product.price * 100), // Price in cents
+    },
+    quantity: product.quantity,
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: lineItems,
+    mode: "payment",
+    success_url: "http://localhost:3000/success?id=" + products[0].uid,
+    cancel_url: "http://localhost:3000/cancel",
+  });
+
+  return res.json({ id: session.id });
+});
+
+// remain
+exports.PlaceOrder = catchAsyncErrors(async (req, res, next) => {
+  const id = req.params.id;
+  const cartItems = await Cart.find({ uid: id });
 });

@@ -8,11 +8,23 @@ import Cartitems from "./Cartitems";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { myCart } from "../../features/Cart/cartSlice";
+// src/PaymentForm.js
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm.js";
+import { REACT_APP_BACKEND_URL, REACT_Publis_key } from "../../config.js";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+// Initialize Stripe.js with your Stripe public key (Test Key)
+const stripePromise = loadStripe(REACT_Publis_key);
 
 export default function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
+  // console.log(cartItems);
+
   useEffect(() => {
     dispatch(myCart());
   }, []);
@@ -34,49 +46,28 @@ export default function Cart() {
   // Razorpay
   const [orderId, setOrderId] = useState("");
 
-  // const loadRazorpayScript = () => {
-  //   return new Promise((resolve) => {
-  //     const script = document.createElement('script');
-  //     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-  //     script.onload = resolve;
-  //     document.head.appendChild(script);
-  //   });
-  // };
-
   const handlePayment = async () => {
-    // const amount = (((cartTotal.reduce((paryialSum, n)=> paryialSum+n, 0)) - (cartDiscount.reduce((paryialSum, n)=> paryialSum+n, 0)))*100).toFixed(0);
-    // console.log(amount);
-    // try {
-    // await loadRazorpayScript(); // Wait for the script to load
-    // const response = await fetch('http://localhost:5000/create-order', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ amount }),
-    // });
-    // const data = await response.json();
-    // setOrderId(data.id);
-    // const options = {
-    //   key: 'rzp_test_vJIT3biLsviUc0',
-    //   amount: data.amount,
-    //   order_id: data.id,
-    //   name: 'Medicinal & Aromatic Plants Portal',
-    //   description: 'Payment for your order',
-    //   prefill: {
-    //     name: 'Medicinal & Aromatic Plants Portal',
-    //     email: 'info.maapp@aau.in',
-    //   },
-    //   handler: function (response) {
-    //     console.log(response);
-    //     // Handle success or failure here
-    //   },
-    // };
-    // const razorpay = new window.Razorpay(options);
-    // razorpay.open();
-    // } catch (error) {
-    // console.error('Error initiating payment:', error);
-    // }
+    const stripe = await loadStripe(REACT_Publis_key);
+
+    const data = {
+      product: cartItems,
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const link = REACT_APP_BACKEND_URL + "/product/payment";
+
+    const response = await axios.post(link, data, headers);
+
+    const session = response.data;
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+    if (result.error) {
+      toast.error(result.error, { position: "top-right" });
+    }
   };
 
   return (
@@ -195,6 +186,9 @@ export default function Cart() {
                 </div>
               </div>
             </div>
+            {/* <Elements stripe={stripePromise}>
+              <CheckoutForm amount={1999.0} />
+            </Elements> */}
 
             <div className="w-full flex flex-row items-center justify-center p-4 text-gray-500">
               <span className="flex flex-row gap-2 items-center text-lg font-semibold uppercase max-sm:text-sm">
