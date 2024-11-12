@@ -10,24 +10,20 @@ var OrderSchema = new mongoose.Schema(
       ref: "User",
       require: true,
     },
-    orderItems: [
+    order: [
       {
-        product: {
+        pid: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
           required: true,
         },
-        qantity: {
+        quantity: {
           type: Number,
           required: true,
         },
       },
     ],
     paidAt: {
-      type: Date,
-      default: Date.now(),
-    },
-    month: {
       type: Date,
       default: Date.now(),
     },
