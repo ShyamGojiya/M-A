@@ -8,6 +8,7 @@ import pakMahitiSlice from "../features/PakMahiti/pakMahitiSlice";
 import productSlice from "../features/Product/productSlice";
 import cartSlice from "../features/Cart/cartSlice";
 import adminProductSlice from "../Admin-features/Product/productSlice";
+import orderSlice from "../features/Order/orderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     user: userSlice,
     products: productSlice,
     cart: cartSlice,
+    order: orderSlice,
   },
 });

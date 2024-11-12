@@ -14,6 +14,7 @@ import ProductList from "./components/purchase/ProductList";
 import Cart from "./components/purchase/Cart";
 import { Toaster } from "react-hot-toast";
 import ProductDetails from "./components/purchase/ProductDetails";
+import { default as MyOrder } from "./components/purchase/Order";
 import Single_Mahiti from "./components/information/Single_Mahiti";
 import Profile from "./components/home/Profile";
 import { useDispatch } from "react-redux";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/about" element={<MainAbout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/order" element={<MyOrder />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/cancel" element={<CancelPage />} />
 

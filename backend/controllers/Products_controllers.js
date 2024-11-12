@@ -6,6 +6,9 @@ Kharido    : product Kharido
 
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Product = require("../models/products");
+const Cart = require("../models/Cart");
+const Order = require("../models/Order");
+const User = require("../models/User");
 const ErrorHandler = require("../utils/errorHandlers");
 const cloudinary = require("cloudinary");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -106,6 +109,8 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.singleProduct = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.params.id);
+
   const data = await Product.findById(req.params.id);
   res.send({ success: true, data });
 });
@@ -129,7 +134,7 @@ exports.paymentApi = catchAsyncErrors(async (req, res, next) => {
         name: product.ProductName,
         images: [product.image],
       },
-      unit_amount: Math.round(product.price * 100), // Price in cents
+      unit_amount: Math.round(product.price * (100 - product.discount)), // Price in cents
     },
     quantity: product.quantity,
   }));
@@ -145,8 +150,76 @@ exports.paymentApi = catchAsyncErrors(async (req, res, next) => {
   return res.json({ id: session.id });
 });
 
-// remain
 exports.PlaceOrder = catchAsyncErrors(async (req, res, next) => {
-  const id = req.params.id;
+  const id = req.user.id;
+  console.log(id);
+
+  const user = await User.findById(id);
+  if (!user) {
+    return res
+      .status(404)
+      .json({ success: false, message: "User Not Found!!" });
+  }
+  console.log(user);
+
   const cartItems = await Cart.find({ uid: id });
+  // console.log(cartItems);
+
+  if (cartItems.length < 1) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Yout Cart is Empty!!" });
+  }
+
+  const data = {};
+  data.user = id;
+  data.order = [];
+
+  cartItems.map((product, index) =>
+    data.order.push({ pid: product.pid, quantity: product.quantity })
+  );
+  // console.log(data.order);
+
+  let p = cartItems.map(
+    (product, index) =>
+      (product.price * (100 - product.discount) * product.quantity) / 100
+  );
+
+  data.totalPrice = 0;
+  for (let index = 0; index < p.length; index++) {
+    data.totalPrice += p[index];
+  }
+
+  const order = await Order.create(data);
+  await Cart.deleteMany({ uid: id });
+
+  res.status(200).json({ order });
+});
+
+exports.MyOrder = catchAsyncErrors(async (req, res, next) => {
+  const id = req.user.id;
+
+  const Orders = await Order.find({ user: id }).populate("order.pid").exec();
+
+  if (!Orders || Orders.length === 0) {
+    return res
+      .status(404)
+      .json({ success: false, message: "No Order Found!!" });
+  }
+
+  return res.status(200).json({ success: true, Orders });
+});
+
+exports.GetAllOrder = catchAsyncErrors(async (req, res, next) => {
+  const order = await Order.find();
+
+  return res.status(200).json({ len: order.length, order });
+});
+
+exports.DeleteOrder = catchAsyncErrors(async (req, res, next) => {
+  const id = req.params.id;
+
+  const order = await Order.deleteOne({ _id: id });
+
+  return res.status(200).json({ success: true });
 });
