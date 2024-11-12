@@ -4,6 +4,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
 import { Button, Flex, Layout, Menu, theme } from "antd";
 import {
@@ -161,8 +162,12 @@ const Dashboard = () => {
                   aria-expanded="false"
                   className="d-flex gap-3 "
                 >
-                  <AiOutlineUser className="fs-4" />
-                  <h5 className="mb-0 me-3 ">Signout/Profile</h5>
+                  {/* <AiOutlineUser className="fs-4" />
+                  <h5 className="mb-0 me-3 ">Signout</h5> */}
+
+
+                  <LogoutOutlined className="fs-3 mr-6 text-red-600" />
+
 
                   {/* <p className="mb-0">profile/signout</p> */}
                 </div>
