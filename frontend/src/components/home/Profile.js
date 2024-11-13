@@ -63,7 +63,7 @@ const Profile = () => {
                 </li>
                 <li>
                   <Link
-                    to="/orders"
+                    to="/order"
                     className="block font-semibold text-lg text-green-600 border-2 border-green-600 rounded-lg p-2 text-center hover:bg-green-100 transition duration-300"
                   >
                     My Orders

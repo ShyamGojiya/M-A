@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyOrder } from "../../features/Order/orderSlice";
+import { Link } from "react-router-dom";
 
 const MyOrder = () => {
   const dispatch = useDispatch();
@@ -8,11 +9,13 @@ const MyOrder = () => {
     dispatch(getMyOrder());
   }, [dispatch]);
   const orders = useSelector((state) => state.order.order.Orders);
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-semibold mb-4">My Orders</h1>
+      <Link to={"/profile"}>Back To Profile</Link>
+      <Link to={"/purchase"}>View Product</Link>
       {orders && orders.length > 0 ? (
         orders.map((orderItem, index) => (
           <div key={index} className="bg-white p-4 mb-6 shadow-md rounded-md">
@@ -20,14 +23,19 @@ const MyOrder = () => {
             <p className="text-gray-600 mb-4">
               Order Date: {new Date(orderItem.createdAt).toLocaleString()}
             </p>
+            {orderItem.orderStatus === "Finished" ? (
+              <p className="text-green-600 mb-4">
+                Order Status: {orderItem.orderStatus}
+              </p>
+            ) : (
+              <p className="text-red-600 mb-4">Order Status: Pending</p>
+            )}
+
             <p className="text-gray-600 mb-4">
-              Order Status: {orderItem.orderStatus}
+              Total Price: ₹{orderItem.totalPrice}
             </p>
             <p className="text-gray-600 mb-4">
-              Total Price: ${orderItem.totalPrice}
-            </p>
-            <p className="text-gray-600 mb-4">
-              Paid At: {new Date(orderItem.paidAt).toLocaleString()}
+              Paid At: {new Date(orderItem.createdAt).toLocaleString()}
             </p>
 
             <h3 className="text-lg font-semibold mb-2">Products</h3>
@@ -41,16 +49,12 @@ const MyOrder = () => {
                     <div>
                       <h4 className="font-medium">{product.pid.title}</h4>
                       <p className="text-gray-600 text-sm">
-                        {product.pid.desc}
-                      </p>
-                      <p className="text-gray-600 text-sm">
                         Type: {product.pid.type}
                       </p>
                       <p className="text-gray-600 text-sm">
-                        Price: ${product.pid.price}
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Discount: {product.pid.discount}%
+                        Price: ₹
+                        {(product.pid.price * (100 - product.pid.discount)) /
+                          100}
                       </p>
                       <p className="text-gray-600 text-sm">
                         Quantity: {product.quantity}
