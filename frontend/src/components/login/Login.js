@@ -51,7 +51,7 @@ const Login = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error("confirm password not match", { position: "top-right" });
+      toast.error("confirm password not match", { position: "top-center" });
       return;
     }
     const resultAction = await dispatch(registerUser(user));
@@ -59,7 +59,7 @@ const Login = () => {
       toast.success("Registration successful!");
       navigate("/profile");
     } else {
-      toast.error(resultAction.payload);
+      toast.error(resultAction.payload, { position: "top-center" });
     }
   };
 
@@ -69,10 +69,10 @@ const Login = () => {
       loginUser({ email: loginEmail, password: loginPassword })
     );
     if (loginUser.fulfilled.match(resultAction)) {
-      toast.success("Login Successfully!!", { position: "top-right" });
+      toast.success("Login Successfully!!", { position: "top-center" });
       navigate("/profile");
     } else {
-      toast.error(resultAction.payload, { position: "top-right" });
+      toast.error(resultAction.payload, { position: "top-center" });
     }
   };
 
@@ -171,9 +171,9 @@ const Login = () => {
                 onChange={handleChange}
                 maxLength={5}
                 onInput={(e) => (e.target.value = e.target.value.slice(0, 10))}
-                // minLength={10}
-                // min={1111111111}
-                // max={9999999999}
+              // minLength={10}
+              // min={1111111111}
+              // max={9999999999}
               />
 
               <label for="password">Password</label>
@@ -196,7 +196,7 @@ const Login = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                // onChange={handleChange}
+              // onChange={handleChange}
               />
             </div>
             <div>

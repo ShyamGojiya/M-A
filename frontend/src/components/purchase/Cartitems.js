@@ -18,12 +18,12 @@ const Cartitems = (props) => {
   const handleQty = (action) => {
     if (action === "add") {
       if (qty + 1 < props.cartProduct.stock) {
-        setAmount((qty + 1) * props.cartProduct.price);
+        // setAmount((qty + 1) * props.cartProduct.price);
         setQty(qty + 1);
       }
     } else {
       if (qty - 1 > 0) {
-        setAmount((qty - 1) * props.cartProduct.price);
+        // setAmount((qty - 1) * props.cartProduct.price);
         setQty(qty - 1);
       }
     }
@@ -39,12 +39,12 @@ const Cartitems = (props) => {
     const resultAction = await dispatch(removeFromCart(id));
     if (removeFromCart.fulfilled.match(resultAction)) {
       dispatch(myCart());
-      toast.success("Item Removed From Cart Successfully!!", {
-        position: "top-right",
+      toast.success("કાર્ટમાંથી પ્રોડક્ટ સફળતાપૂર્વક દૂર કરી!!", {
+        position: "top-center",
       });
     } else {
       toast.error(resultAction.payload || "An error occurred", {
-        position: "top-right",
+        position: "top-center",
       });
     }
   };
@@ -87,7 +87,11 @@ const Cartitems = (props) => {
               </div>
 
               <span className="text-xl font-semibold max-sm:text-lg max-[300px]:text-sm }">
-                ₹{amount.toFixed(2)}{" "}
+                ₹ {props.cartProduct.price * (100 - props.cartProduct.discount) / 100}
+                <span className="text-slate-400 ml-1 mr-1 text-sm line-through">
+                  ₹ {props.cartProduct.price}{" "}
+                </span>
+
                 <sub className="text-green-600">
                   {props.cartProduct.discount}% off
                 </sub>

@@ -87,12 +87,12 @@ const AddProduct = () => {
 
     if (addNewProduct.fulfilled.match(resultAction)) {
       toast.success("Product added Successfully!!", {
-        position: "top-right",
+        position: "top-center",
       });
       clearAllData();
     } else {
       toast.error(resultAction.payload || "An error occurred", {
-        position: "top-right",
+        position: "top-center",
       });
     }
   };
@@ -237,9 +237,8 @@ const AddProduct = () => {
 
         <button
           type="submit"
-          className={`w-full p-2 rounded transition duration-200 ${
-            loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
-          } text-white`}
+          className={`w-full p-2 rounded transition duration-200 ${loading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
+            } text-white`}
           disabled={loading} // Disable button when loading
         >
           {loading ? (

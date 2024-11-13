@@ -98,13 +98,13 @@ const AddPakMahiti = () => {
     const resultAction = await dispatch(addPakMahiti(plantData));
     if (addPakMahiti.fulfilled.match(resultAction)) {
       toast.success("pakPadhati added Successfully!!", {
-        position: "top-right",
+        position: "top-center",
       });
       //after success submit clear fields
       clearAllData();
     } else {
       toast.error(resultAction.payload || "An error occurred", {
-        position: "top-right",
+        position: "top-center",
       });
     }
   };

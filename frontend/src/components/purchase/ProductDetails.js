@@ -63,11 +63,11 @@ const ProductDetails = () => {
     const resultAction = await dispatch(addToCart({ pid: id, quantity: qty }));
     if (addToCart.fulfilled.match(resultAction)) {
       toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!", {
-        position: "top-right",
+        position: "top-center",
       });
     } else {
       toast.error(resultAction.payload || "An error occurred", {
-        position: "top-right",
+        position: "top-center",
       });
     }
   };

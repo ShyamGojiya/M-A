@@ -66,7 +66,7 @@ export default function Cart() {
       sessionId: session.id,
     });
     if (result.error) {
-      toast.error(result.error, { position: "top-right" });
+      toast.error(result.error, { position: "top-center" });
     }
   };
 
@@ -82,7 +82,7 @@ export default function Cart() {
         <h2 className="font-bold text-3xl my-2 max-sm:text-2xl font-serif">
           My Cart
         </h2>
-        <span className="text-lg text-gray-400">
+        <span className="text-lg text-slate-500">
           No. of Items In cart: {cartItems && cartItems.length}
         </span>
       </div>
@@ -139,13 +139,13 @@ export default function Cart() {
                   </span>
                 </div>
 
-                <div className="flex flex-row justify-between">
+                {/* <div className="flex flex-row justify-between">
                   <span>Delivery: </span>
                   <span>
                     <font className="text-br">Free</font>{" "}
                     <font className="line-through">₹99.00</font>
                   </span>
-                </div>
+                </div> */}
 
                 {/* Line */}
                 <hr className="my-2" />
