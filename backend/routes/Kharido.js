@@ -10,6 +10,7 @@ const {
   MyOrder,
   DeleteOrder,
   GetAllOrder,
+  ChangeOrderType,
 } = require("../controllers/Products_controllers");
 const { isAuthenticatedUser } = require("../middleware/auth");
 const app = express.Router();
@@ -24,5 +25,6 @@ app.post("/order", isAuthenticatedUser, PlaceOrder);
 app.get("/order/admin", GetAllOrder);
 app.get("/order/all", isAuthenticatedUser, MyOrder);
 app.delete("/order/del/:id", DeleteOrder);
+app.put("/order/:id", ChangeOrderType);
 
 module.exports = app;

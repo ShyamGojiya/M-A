@@ -192,6 +192,13 @@ exports.PlaceOrder = catchAsyncErrors(async (req, res, next) => {
 
   const order = await Order.create(data);
   await Cart.deleteMany({ uid: id });
+  const newOrder = order.order;
+
+  for (let index = 0; index < newOrder.length; index++) {
+    const p = await Product.findById(newOrder[index].pid);
+    p.stock = p.stock - newOrder[index].quantity;
+    await p.save();
+  }
 
   res.status(200).json({ order });
 });
@@ -211,7 +218,7 @@ exports.MyOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.GetAllOrder = catchAsyncErrors(async (req, res, next) => {
-  const order = await Order.find();
+  const order = await Order.find().populate("order.pid");
 
   return res.status(200).json({ len: order.length, order });
 });
@@ -220,6 +227,18 @@ exports.DeleteOrder = catchAsyncErrors(async (req, res, next) => {
   const id = req.params.id;
 
   const order = await Order.deleteOne({ _id: id });
+
+  return res.status(200).json({ success: true });
+});
+
+exports.ChangeOrderType = catchAsyncErrors(async (req, res, next) => {
+  const id = req.params.id;
+  // console.log(id);
+
+  const order = await Order.findById(id);
+  order.orderStatus = "Finished";
+  await order.save();
+  // console.log(order);
 
   return res.status(200).json({ success: true });
 });

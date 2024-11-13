@@ -79,6 +79,12 @@ export default function Cart() {
         >
           <MdOutlineKeyboardBackspace /> ખરીદવાનું ચાલુ રાખો
         </button>
+        <button
+          className="flex flex-row gap-2 items-center text-br hover:text-green-600 font-semibold cursor-pointer max-sm:text-sm"
+          onClick={() => navigate("/order")}
+        >
+          <i class="fa-solid fa-store"></i> આર્ડર જોવો
+        </button>
         <h2 className="font-bold text-3xl my-2 max-sm:text-2xl font-serif">
           My Cart
         </h2>
