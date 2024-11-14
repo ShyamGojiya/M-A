@@ -74,9 +74,6 @@ export default function Navbar() {
                   <b>અમારા વિશે</b>
                 </Link>
               </li>
-              <li>
-                <Link to="/admin">D</Link>
-              </li>
             </ul>
 
             <div className="navbar-button">

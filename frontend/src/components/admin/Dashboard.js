@@ -1,43 +1,95 @@
 import React, { useState } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
+import { ImBlog } from "react-icons/im";
+import "react-toastify/dist/ReactToastify.css";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  LogoutOutlined
+  LogoutOutlined,
 } from "@ant-design/icons";
-import { Button, Flex, Layout, Menu, theme } from "antd";
-import {
-  AiOutlineDashboard,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-  AiOutlineBgColors,
-} from "react-icons/ai";
-import { ImBlog } from "react-icons/im";
-import { FaClipboardList, FaBloggerB } from "react-icons/fa";
-import { SiBrandfolder } from "react-icons/si";
-import { BiCategoryAlt } from "react-icons/bi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Button, Layout, Menu, theme, Row, Col } from "antd";
+import { AiOutlineDashboard, AiOutlineShoppingCart } from "react-icons/ai";
 import { RiCouponLine } from "react-icons/ri";
+import { FaClipboardList } from "react-icons/fa";
+import { Line } from "react-chartjs-2"; // Import Chart.js Line chart
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/User/userSlice";
+import toast from "react-hot-toast";
+
+// Register Chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Example data for statistics
+  const totalUsers = 1200;
+  const totalProducts = 250;
+  const totalOrders = 350;
+
+  // Chart data for example (you can replace this with your own data)
+  const data = {
+    labels: ["January", "February", "March", "April", "May", "June"],
+    datasets: [
+      {
+        label: "Sales Growth",
+        data: [30, 45, 75, 120, 160, 200],
+        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(75,192,192,0.2)",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  const handleLogout = async () => {
+    const result = await dispatch(logout());
+    if (logout.fulfilled.match(result)) {
+      toast.success("Logout success");
+      navigate("/login");
+    } else {
+      toast.error("Logout failed");
+    }
+  };
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const navigate = useNavigate();
-
   return (
     <>
-      <style>
-        {`
-
-        `}
-      </style>
-
       <Layout style={{ minHeight: "95vh", overflowY: "hidden" }}>
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="logo">
@@ -51,14 +103,11 @@ const Dashboard = () => {
             className="font-semibold"
             defaultSelectedKeys={[""]}
             onClick={({ key }) => {
-              if (key == "signout") {
-              } else {
-                navigate(key);
-              }
+              navigate(key);
             }}
             items={[
               {
-                key: "/",
+                key: "/profile",
                 icon: <AiOutlineDashboard className="fs-4" />,
                 label: "Home",
               },
@@ -162,14 +211,9 @@ const Dashboard = () => {
                   aria-expanded="false"
                   className="d-flex gap-3 "
                 >
-                  {/* <AiOutlineUser className="fs-4" />
-                  <h5 className="mb-0 me-3 ">Signout</h5> */}
-
-
-                  <LogoutOutlined className="fs-3 mr-6 text-red-600" />
-
-
-                  {/* <p className="mb-0">profile/signout</p> */}
+                  <button onClick={() => handleLogout()}>
+                    <LogoutOutlined className="fs-3 mr-6 text-red-600" />
+                  </button>
                 </div>
                 <div
                   className="dropdown-menu"
@@ -207,7 +251,7 @@ const Dashboard = () => {
               minHeight: 280,
               background: "rgb(226 232 240)",
               borderRadius: borderRadiusLG,
-              // overflow:"hidden",
+              // overflow: "hidden",
             }}
           >
             <ToastContainer
@@ -223,6 +267,34 @@ const Dashboard = () => {
               theme="light"
             />
             <ToastContainer />
+            {/* Dashboard content */}
+            {/* <Row gutter={[16, 16]}>
+              <Col xs={24} sm={12} md={8}>
+                <div className="bg-white shadow-md p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold">Total Users</h3>
+                  <p className="text-3xl">{totalUsers}</p>
+                </div>
+              </Col>
+              <Col xs={24} sm={12} md={8}>
+                <div className="bg-white shadow-md p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold">Total Products</h3>
+                  <p className="text-3xl">{totalProducts}</p>
+                </div>
+              </Col>
+              <Col xs={24} sm={12} md={8}>
+                <div className="bg-white shadow-md p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold">Total Orders</h3>
+                  <p className="text-3xl">{totalOrders}</p>
+                </div>
+              </Col>
+            </Row> */}
+
+            {/* Line chart */}
+            {/* <div className="bg-white shadow-md p-6 rounded-lg mt-6">
+              <h3 className="text-xl font-semibold">Sales Growth Over Time</h3>
+              <Line data={data} options={options} />
+            </div> */}
+            {/* Additional content can go here */}
             <Outlet />
           </Content>
         </Layout>
