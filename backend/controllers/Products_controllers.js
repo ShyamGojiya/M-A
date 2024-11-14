@@ -218,7 +218,7 @@ exports.MyOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.GetAllOrder = catchAsyncErrors(async (req, res, next) => {
-  const order = await Order.find().populate("order.pid");
+  const order = await Order.find().populate("user").populate("order.pid");
 
   return res.status(200).json({ len: order.length, order });
 });
