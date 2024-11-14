@@ -15,6 +15,8 @@
   font-weight: lighter;
 } */
 
+
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -29,15 +31,13 @@ input[type="number"] {
 
 .div1 {
   background: rgb(30, 177, 148);
-  background: linear-gradient(
-    97deg,
-    rgba(30, 177, 148, 1) 14%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: linear-gradient(97deg,
+      rgba(30, 177, 148, 1) 14%,
+      rgba(255, 255, 255, 1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120vh;
+  height: 80vh;
   flex-direction: column;
 }
 
@@ -62,23 +62,19 @@ input[type="number"] {
   cursor: pointer;
   height: 100%;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(95, 209, 178, 1) 0%,
-    rgba(24, 109, 194, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(95, 209, 178, 1) 0%,
+      rgba(24, 109, 194, 1) 100%);
 }
 
 .btnsign:hover {
   color: white;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    270deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(95, 209, 178, 1) 0%,
-    rgba(24, 109, 194, 1) 100%
-  );
+  background: linear-gradient(270deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(95, 209, 178, 1) 0%,
+      rgba(24, 109, 194, 1) 100%);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -93,23 +89,19 @@ input[type="number"] {
   cursor: pointer;
   height: 100%;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    270deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(95, 209, 178, 1) 0%,
-    rgba(24, 109, 194, 1) 100%
-  );
+  background: linear-gradient(270deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(95, 209, 178, 1) 0%,
+      rgba(24, 109, 194, 1) 100%);
 }
 
 .btnlogin:hover {
   color: white;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(95, 209, 178, 1) 0%,
-    rgba(24, 109, 194, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(95, 209, 178, 1) 0%,
+      rgba(24, 109, 194, 1) 100%);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -118,6 +110,7 @@ input[type="number"] {
   height: 100%;
   width: 100%;
 }
+
 .btnlogin button {
   height: 100%;
   width: 100%;
@@ -127,11 +120,9 @@ input[type="number"] {
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   background: rgb(46, 217, 186);
-  background: linear-gradient(
-    261deg,
-    rgba(46, 217, 186, 1) 0%,
-    rgba(30, 132, 177, 1) 100%
-  );
+  background: linear-gradient(261deg,
+      rgba(46, 217, 186, 1) 0%,
+      rgba(30, 132, 177, 1) 100%);
   width: 350px;
   padding: 20px;
   height: 600px;
@@ -161,12 +152,14 @@ input[type="number"] {
   height: auto;
   width: 300px;
 }
+
 .div3 label {
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
   color: rgb(255, 255, 255);
 }
+
 .div3 input {
   padding: 7px;
   width: 100%;
@@ -177,25 +170,27 @@ input[type="number"] {
   margin-bottom: 15px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 .div3 input:focus {
-  border-color: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(92, 9, 121, 1) 46%
-  );
+  border-color: linear-gradient(0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(92, 9, 121, 1) 46%);
   outline: none;
   box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
 }
+
 .div3 input::placeholder {
   color: rgba(179, 159, 159, 0.6);
   font-size: smaller;
   font-weight: bolder;
 }
+
 .div3 input:hover {
   border-color: #2196f3;
   box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }
+
 .btn {
   padding: 8px 20px;
   margin-top: 0;
@@ -203,11 +198,9 @@ input[type="number"] {
   height: 45px;
   border: none;
   border-radius: 25px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(9, 9, 121, 1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(9, 9, 121, 1) 100%);
   font-size: 18px;
   color: white;
   cursor: pointer;
@@ -218,24 +211,22 @@ input[type="number"] {
   position: relative;
   overflow: hidden;
 }
+
 .btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(9, 9, 121, 1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(9, 9, 121, 1) 100%);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   outline: none;
   color: black;
 }
+
 .btn:active {
   transform: scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(9, 9, 121, 1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(9, 9, 121, 1) 100%);
 }
 
 .btn::before {
@@ -251,6 +242,7 @@ input[type="number"] {
   transition: transform 0.6s, opacity 0.6s;
   opacity: 0;
 }
+
 .btn:active::before {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;

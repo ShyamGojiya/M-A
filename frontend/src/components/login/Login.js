@@ -78,7 +78,7 @@ const Login = () => {
 
   return (
     <div className="div1">
-      <div className="divbtn">
+      <div className="divbtn mb-30">
         <div className="btnsign">
           <button
             className={`signup-btn ${formType === "signup" ? "active" : ""}`}
