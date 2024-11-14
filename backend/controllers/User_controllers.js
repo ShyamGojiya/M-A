@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/User");
 const sendToken = require("../utils/sendToken");
 const ErrorHandler = require("../utils/errorHandlers");
+const cloudinary = require("cloudinary");
 const mongoose = require("mongoose");
 
 //register user
@@ -72,4 +73,30 @@ exports.myProfile = catchAsyncErrors(async (req, res, next) => {
 exports.deleteSingleUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.id);
   res.status(200).json({ success: true, data: user });
+});
+
+//update Profile
+exports.UpdateMyProfile = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  // console.log(req.body);
+
+  if (!user) {
+    return next(new ErrorHandler("User not found", 404));
+  }
+  const { name, email, mobile, avatar } = req.body;
+
+  if (avatar) {
+    const result = await cloudinary.v2.uploader.upload(avatar, {
+      folder: "MAPP",
+    });
+
+    user.avatar.public_id = result.public_id;
+    user.avatar.url = result.secure_url;
+  }
+  user.name = name;
+  user.email = email;
+  user.mobile = mobile;
+
+  await user.save();
+  res.status(200).json({ success: true, user });
 });

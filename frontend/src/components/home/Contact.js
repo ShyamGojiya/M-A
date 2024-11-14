@@ -1,20 +1,31 @@
 import React from "react";
 import "./Contact.css";
+import toast from "react-hot-toast";
 
 function Contact() {
+  const handleClick = (e) => {
+    e.preventDefault();
+    toast.success("Message Sent");
+  };
+
   return (
     <>
-      <section id="contact" className="contact-area section-padding-100-0 sm:mx-24 max-sm:mx-2 my-6">
+      <section
+        id="contact"
+        className="contact-area section-padding-100-0 sm:mx-24 max-sm:mx-2 my-6"
+      >
         <div className="row align-items-center justify-content-between">
           <div className="col-12 col-lg-6 sm:pr-10 max-sm:mb-4">
             {/* Section Heading */}
             <div className="section-heading">
-              <h2 className="font-extrabold text-2xl text-br">સંપર્કમાં  રહો</h2>
-              <p className="pb-2">અમને ઇ-મેઇલ મોકલો, અમે પછીથી સંપર્ક કરીશું.</p>
+              <h2 className="font-extrabold text-2xl text-br">સંપર્કમાં રહો</h2>
+              <p className="pb-2">
+                અમને ઇ-મેઇલ મોકલો, અમે પછીથી સંપર્ક કરીશું.
+              </p>
             </div>
             {/* Contact Form Area */}
             <div className="contact-form-area mb-100">
-              <form action="#" method="post">
+              <form>
                 <div className="row">
                   <div className="col-12 col-sm-6">
                     <div className="form-group">
@@ -60,7 +71,10 @@ function Contact() {
                     </div>
                   </div>
                   <div className="col-12">
-                    <button type="submit" className="flex items-center justify-center py-2 px-4 rounded-xl bg-br text-white hover:bg-hbr">
+                    <button
+                      onClick={(e) => handleClick(e)}
+                      className="flex items-center justify-center py-2 px-4 rounded-xl bg-br text-white hover:bg-hbr"
+                    >
                       સંદેશ મોકલો
                     </button>
                   </div>

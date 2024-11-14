@@ -31,6 +31,7 @@ import Order from "./components/admin/Order";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import SuccessPage from "./components/purchase/SuccessPage";
 import CancelPage from "./components/purchase/CancelPage";
+import UpdateProfile from "./components/home/UpdateProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ function App() {
         <Route path="/order" element={<MyOrder />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/cancel" element={<CancelPage />} />
+        <Route path="/me/update" element={<UpdateProfile />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />}>

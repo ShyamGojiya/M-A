@@ -21,7 +21,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(myProfileDetails());
-  }, []);
+  }, [dispatch]);
 
   const handleLogout = async () => {
     const resultAction = await dispatch(logout());

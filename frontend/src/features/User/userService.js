@@ -60,4 +60,30 @@ const myProfile = async () => {
   }
 };
 
-export const userService = { registerUser, loginUser, myProfile, logoutUser };
+const UpdateProfile = async (data) => {
+  const config = {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  const token = localStorage.getItem("token");
+
+  const link = REACT_APP_BACKEND_URL + `/user/profile?token=${token}`;
+  // console.log(data);
+
+  const response = await axios.put(link, data, config);
+  console.log(response);
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const userService = {
+  registerUser,
+  loginUser,
+  myProfile,
+  logoutUser,
+  UpdateProfile,
+};

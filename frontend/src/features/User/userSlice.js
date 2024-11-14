@@ -40,6 +40,19 @@ export const logout = createAsyncThunk("user/logout", async (arg, thunkAPI) => {
   }
 });
 
+export const updateProfile = createAsyncThunk(
+  "user/updateProfile",
+  async (updateData, thunkAPI) => {
+    try {
+      let data = await userService.UpdateProfile(updateData);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
+
 export const myProfileDetails = createAsyncThunk(
   "user/my_profile",
   async (arg, thunkAPI) => {
@@ -137,6 +150,21 @@ export const userSlice = createSlice({
         state.isError = true;
         state.message = action.error;
         state.isAuthenticated = false;
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        // state.user = action.payload;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
       });
   },
 });
