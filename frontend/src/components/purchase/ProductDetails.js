@@ -105,6 +105,15 @@ const ProductDetails = () => {
           <MdOutlineKeyboardBackspace /> ચાલુ રાખો
         </button>
 
+        <div className="flex flex-col justify-between lg:flex-row gap-0 lg:items-start max-sm:gap-4">
+          {/* Images Section */}
+          <div className="w-[400px] h-[400px] relative overflow-hidden rounded-xl">
+            <img
+              src={product?.images[0].url}
+              alt=""
+              className="w-full h-full object-cover"
+
+
         {/* Product Content Layout */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-0 max-sm:gap-4">
           {/* Large Image Section */}
@@ -113,6 +122,7 @@ const ProductDetails = () => {
               src={selectedImage}
               alt="Product Image"
               className="w-full max-w-[400px] lg:w-1/2 self-center object-cover rounded-xl max-sm:w-full"
+
             />
           </div>
 

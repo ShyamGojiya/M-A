@@ -61,6 +61,63 @@ const Order = () => {
           </p>
         )}
         {filteredOrders && filteredOrders.length > 0 ? (
+
+          filteredOrders.map((orderItem, index) => (
+            <div key={index} className="bg-slate-200 p-4 mb-6 shadow-md rounded-md">
+              <h2 className="text-xl font-bold mb-2">Order #{index + 1}</h2>
+              {orderItem.orderStatus !== "Finished" && (
+                <button
+                  onClick={() =>
+                    handelTypeChange(orderItem._id, orderItem.orderStatus)
+                  }
+                  className="bg-green-600 text-white font-bold px-6 py-2 rounded-md hover:bg-green-700 transition"
+                >
+                  Click To Finish
+                </button>
+              )}
+              <p className="text-gray-600 mt-2 font-bold mb-4">
+                Order Date: {new Date(orderItem.createdAt).toLocaleString()}
+              </p>
+              <p className="text-gray-600 font-bold mb-4">
+                Order By: {orderItem.user.name} , {orderItem.user.email}
+              </p>
+              {orderItem.orderStatus === "Finished" ? (
+                <p className="text-green-600 font-bold mb-4">
+                  Order Status: {orderItem.orderStatus}
+                </p>
+              ) : (
+                <p className="text-red-600 font-bold mb-4">Order Status: Pending</p>
+              )}
+
+              <p className="text-gray-600 font-bold text-lg mb-4">
+                Total Price: ₹{orderItem.totalPrice}
+              </p>
+              <p className="text-green-600 font-bold mb-4">
+                Paid At: {new Date(orderItem.createdAt).toLocaleString()}
+              </p>
+
+              <h3 className="text-lg font-semibold font-bold mb-2">Products</h3>
+              <div className="space-y-4">
+                {orderItem.order && orderItem.order.length > 0 ? (
+                  orderItem.order.map((product, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center justify-between border-b border-gray-200 pb-4"
+                    >
+                      <div>
+                        <h4 className="text-lg font-bold">{product.pid.title}</h4>
+                        <p className="text-gray-600 font-bold text-sm">
+                          Type: {product.pid.type}
+                        </p>
+                        <p className="text-gray-600 font-bold text-sm">
+                          Price: ₹
+                          {(product.pid.price * (100 - product.pid.discount)) /
+                            100}
+                        </p>
+                        <p className="text-gray-600 font-bold text-sm">
+                          Quantity: {product.quantity}
+                        </p>
+
           filteredOrders
             .slice()
             .reverse()
@@ -124,6 +181,7 @@ const Order = () => {
                             Quantity: {product.quantity}
                           </p>
                         </div>
+
                       </div>
                     ))
                   ) : (
