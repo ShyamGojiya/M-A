@@ -171,9 +171,6 @@ const Login = () => {
                 onChange={handleChange}
                 maxLength={5}
                 onInput={(e) => (e.target.value = e.target.value.slice(0, 10))}
-              // minLength={10}
-              // min={1111111111}
-              // max={9999999999}
               />
 
               <label for="password">Password</label>
@@ -196,7 +193,7 @@ const Login = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              // onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
             <div>

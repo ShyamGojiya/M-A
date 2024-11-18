@@ -6,15 +6,11 @@ import { HiOutlineShoppingCart, HiShoppingCart } from "react-icons/hi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Product } from "../../Product";
-// import { AddCart } from "../../actions/CartActions";
 import toast from "react-hot-toast";
 import { singleProduct } from "../../features/Product/productSlice";
-import ProductList from "./ProductList";
-import { addToCart } from "../../features/Cart/cartSlice";
+import { addToCart, myCart } from "../../features/Cart/cartSlice";
 
 const ProductDetails = () => {
-  // navigate
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -22,23 +18,31 @@ const ProductDetails = () => {
     (state) => state.products?.singleProductData.data
   );
   const cartItems = useSelector((state) => state.cart.cart);
-
+  const [selectedImage, setSelectedImage] = useState(product?.images[0]?.url); // Default to the first image
+  //for geting product detail
   useEffect(() => {
     // for on load scroll to top
-    window.scrollTo({
-      top: 0,
-    });
-    dispatch(singleProduct(id));
-  }, [id]);
+    const effectFx = async () => {
+      window.scrollTo({
+        top: 0,
+      });
+      await dispatch(singleProduct(id));
+      // setSelectedImage(product?.images[0]?.url);
+    };
+    effectFx();
+  }, [id, dispatch]);
 
-  // retrive product and CartItem from redux store
-  // const product = useSelector((state) => state.ProductInfo.product);
-  // const cartItem = useSelector((state) => state.Cart.Products);
+  // Update the selected image when the `product` data changes
+  useEffect(() => {
+    if (product?.images?.length > 0) {
+      setSelectedImage(product?.images[0]?.url); // Set the first image of the new product
+    }
+  }, [product]); // This will run every time `product` changes
 
   // description Open Close toggle
   const [open, setOpen] = useState(false);
 
-  //for quantity
+  //for quantity handle
   const [qty, setQty] = useState(1);
   const handleQty = (action) => {
     if (action === "-") {
@@ -65,6 +69,7 @@ const ProductDetails = () => {
       toast.success("પ્રોડક્ટ કાર્ટમાં સફળતાપૂર્વક ઉમેરવામાં આવી..!", {
         position: "top-center",
       });
+      await dispatch(myCart());
     } else {
       toast.error(resultAction.payload || "An error occurred", {
         position: "top-center",
@@ -72,53 +77,11 @@ const ProductDetails = () => {
     }
   };
 
-  // Razorpay
-  const [orderId, setOrderId] = useState("");
-
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = resolve;
-      document.head.appendChild(script);
-    });
-  };
-
-  const handlePayment = async () => {
-    // const amount = (
-    //   Math.ceil(Product.price - Product.price * (Product.discount / 100)) *
-    //   qty *
-    //   100
-    // ).toFixed(0);
-    // console.log(amount);
-    // try {
-    // await loadRazorpayScript(); // Wait for the script to load
-    // const data = await response.json();
-    // setOrderId(data.id);
-    // const options = {
-    //   key: "rzp_test_vJIT3biLsviUc0",
-    //   amount: data.amount,
-    //   order_id: data.id,
-    //   name: "Medicinal & Aromatic Plants Portal",
-    //   description: "Payment for your order",
-    //   prefill: {
-    //     name: "Medicinal & Aromatic Plants Portal",
-    //     email: "info.maapp@aau.in",
-    //   },
-    //   handler: function (response) {
-    //     console.log(response);
-    //     // Handle success or failure here
-    //   },
-    // };
-    // const razorpay = new window.Razorpay(options);
-    // razorpay.open();
-    // } catch (error) {
-    //   console.error("Error initiating payment:", error);
-    // }
-  };
+  const handlePayment = async () => {};
 
   return (
     <>
+      {/* Cart Icon */}
       <div className="fixed left-[90vw] top-[11vh] flex items-center justify-end z-[5]">
         <button className="relative">
           <div className="cart-icon" onClick={() => navigate("/cart")}>
@@ -132,14 +95,16 @@ const ProductDetails = () => {
         </button>
       </div>
 
-      {/* Product Information */}
+      {/* Main Content */}
       <div className="max-sm:p-2 xl:px-48 md:px-16 lg:px-24 sm:py-10">
+        {/* Back Button */}
         <button
           className="flex flex-row gap-2 py-2.5 items-center text-br hover:text-green-600 font-semibold cursor-pointer max-sm:text-sm"
           onClick={() => navigate("/purchase")}
         >
-          <MdOutlineKeyboardBackspace /> ખરીદવાનું ચાલુ રાખો
+          <MdOutlineKeyboardBackspace /> ચાલુ રાખો
         </button>
+
         <div className="flex flex-col justify-between lg:flex-row gap-0 lg:items-start max-sm:gap-4">
           {/* Images Section */}
           <div className="w-[400px] h-[400px] relative overflow-hidden rounded-xl">
@@ -147,14 +112,25 @@ const ProductDetails = () => {
               src={product?.images[0].url}
               alt=""
               className="w-full h-full object-cover"
+
+
+        {/* Product Content Layout */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-0 max-sm:gap-4">
+          {/* Large Image Section */}
+          <div className="sticky flex max-sm:flex-col gap-6 max-sm:gap-2 lg:w-2/4">
+            <img
+              src={selectedImage}
+              alt="Product Image"
+              className="w-full max-w-[400px] lg:w-1/2 self-center object-cover rounded-xl max-sm:w-full"
+
             />
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col lg:w-2/4 ">
+          <div className="flex flex-col lg:w-2/4">
             <div className="border-l-2 border-green-600 p-4">
-              {/* Heading */}
-              <div className="">
+              {/* Product Title and Description */}
+              <div>
                 <span className="text-green-600 font-semibold max-sm:text-sm">
                   ઔષધીય અને સુગંધિત છોડ સંશોધન કેન્દ્ર
                 </span>
@@ -162,10 +138,11 @@ const ProductDetails = () => {
                   {product?.title}
                 </h2>
               </div>
+
+              {/* Price Section */}
               <p className="text-green-700 mt-3 font-semibold text-justify max-sm:text-xs">
                 કિંમત
               </p>
-              {/* Price */}
               <div className="flex flex-row items-baseline gap-2">
                 <h6 className="text-3xl font-semibold max-sm:text-2xl">
                   ₹{" "}
@@ -181,10 +158,9 @@ const ProductDetails = () => {
                 </span>
               </div>
 
-              {/* LIne */}
               <hr className="my-2" />
 
-              {/* Quantity */}
+              {/* Quantity Control */}
               <div className="flex flex-row flex-wrap items-center gap-6">
                 <span className="flex flex-row items-center gap-2 text-green-800 font-semibold text-xl max-sm:text-lg">
                   <FaBoxes /> જથ્થો:
@@ -208,25 +184,19 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              {/* Add to Cart & Add to Whishlist */}
+              {/* Add to Cart Button */}
               <div className="flex flex-row flex-wrap items-center gap-6 my-4">
                 <button
-                  className="flex flex-row gap-1 items-center bg-slate-100 text-green-800 border-2 border-green-800 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-green-800 hover:text-white"
-                  onClick={handlePayment}
-                >
-                  અત્યારે જ ઓર્ડર કરો
-                </button>
-                <button
                   onClick={handleAddToCart}
-                  className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-slate-100  font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-slate-100 hover:text-green-900"
+                  className="flex flex-row gap-1 items-center bg-green-800 border-2 border-green-800 text-slate-100 font-semibold py-2.5 px-10 rounded-lg h-full max-sm:px-3 max-sm:text-sm hover:bg-slate-100 hover:text-green-900"
                 >
                   <HiOutlineShoppingCart /> Add to Cart
                 </button>
               </div>
 
-              {/* Line */}
               <hr className="my-3" />
 
+              {/* Additional Information Toggle */}
               <div className="my-4">
                 <div
                   className="flex flex-row items-center justify-between font-bold cursor-pointer"
@@ -255,6 +225,19 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Thumbnail Image Gallery */}
+        <div className="flex gap-4 mt-6 overflow-x-auto">
+          {product?.images?.map((image, index) => (
+            <img
+              key={index}
+              src={image?.url}
+              alt={`Thumbnail ${index}`}
+              className="w-20 h-20 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-green-600"
+              onClick={() => setSelectedImage(image?.url)} // Update selected image on click
+            />
+          ))}
         </div>
       </div>
     </>

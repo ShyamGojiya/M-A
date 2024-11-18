@@ -168,42 +168,6 @@ const AddPakPadhati = () => {
             required
           />
         </div>
-        {/* <div className="mb-4">
-          <label className="block text-gray-700 mb-1" htmlFor="thumbnail">
-            Upload Image
-          </label>
-          <input
-            type="file"
-            name="thumbnail"
-            id="thumbnail"
-            accept="image/*"
-            onChange={createProductImagesChange}
-            multiple
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div id="createProductFormImage" className="p-4">
-          {imagesPreview.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {imagesPreview.map((image, index) => (
-                <div
-                  key={index}
-                  className="relative overflow-hidden rounded-lg shadow-lg"
-                >
-                  <img
-                    src={image}
-                    alt={`Product Preview ${index}`}
-                    className="w-full h-auto transition-transform duration-200 transform hover:scale-105"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-500 text-lg font-semibold text-center">
-              No images uploaded.
-            </p>
-          )}
-        </div> */}
         <div className="mb-4">
           <label className="block text-gray-700 mb-1" htmlFor="thumbnail">
             Upload Image
